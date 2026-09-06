@@ -1,0 +1,398 @@
+import React, { useState } from 'react';
+import { useApp } from '../../context/AppContext';
+import { 
+  Award, 
+  Clock, 
+  FileCheck2, 
+  ShieldAlert, 
+  Sparkles, 
+  CheckCircle2, 
+  ArrowRight, 
+  Calculator, 
+  BrainCircuit, 
+  BookOpenCheck,
+  ShieldCheck,
+  Zap,
+  Info
+} from 'lucide-react';
+
+export default function TestBannerSection() {
+  const { openModal } = useApp();
+  const [activeTab, setActiveTab] = useState(0);
+
+  const sections = [
+    {
+      id: 'A',
+      title: 'Section A: Numerical Aptitude & Quantitative',
+      qs: '20 Questions',
+      marks: '20 Marks',
+      timeRec: '25 Mins',
+      desc: 'Evaluates computational speed, arithmetic reasoning, percentages, ratios, probability, and data interpretation.',
+      topics: ['Arithmetic & Percentages', 'Speed & Distance', 'Ratios & Averages', 'Probability & Permutations', 'Data Interpretation'],
+      icon: Calculator,
+      color: '#38BDF8',
+      bgGlow: 'rgba(56, 189, 248, 0.15)'
+    },
+    {
+      id: 'B',
+      title: 'Section B: Logical & Algorithmic Reasoning',
+      qs: '20 Questions',
+      marks: '20 Marks',
+      timeRec: '25 Mins',
+      desc: 'Assesses pattern recognition, logical deduction, algorithmic sequences, coding-decoding, and puzzle solving.',
+      topics: ['Pattern & Number Series', 'Coding-Decoding', 'Blood Relations & Direction', 'Syllogisms & Deductions', 'Algorithmic Logic'],
+      icon: BrainCircuit,
+      color: '#818CF8',
+      bgGlow: 'rgba(129, 140, 248, 0.15)'
+    },
+    {
+      id: 'C',
+      title: 'Section C: Technical English & Communication',
+      qs: '10 Questions',
+      marks: '10 Marks',
+      timeRec: '10 Mins',
+      desc: 'Measures reading comprehension, technical vocabulary, sentence correction, and professional corporate tone.',
+      topics: ['Technical Grammar', 'Corporate Vocabulary', 'Reading Comprehension', 'Sentence Correction', 'Error Spotting'],
+      icon: BookOpenCheck,
+      color: '#34D399',
+      bgGlow: 'rgba(52, 211, 153, 0.15)'
+    }
+  ];
+
+  return (
+    <section id="test-banner" style={{
+      padding: '5rem 0',
+      background: 'linear-gradient(135deg, #050E1D 0%, #0B1E3D 45%, #163B75 100%)',
+      color: '#FFFFFF',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* High-tech grid background overlay */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: 'radial-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+        opacity: 0.8,
+        pointerEvents: 'none'
+      }} />
+
+      {/* Ambient Neon Lighting */}
+      <div style={{
+        position: 'absolute',
+        top: '-15%',
+        left: '-5%',
+        width: '500px',
+        height: '500px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(30, 99, 214, 0.25) 0%, rgba(0,0,0,0) 70%)',
+        pointerEvents: 'none'
+      }} />
+
+      <div style={{
+        position: 'absolute',
+        bottom: '-20%',
+        right: '-10%',
+        width: '550px',
+        height: '550px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(0,0,0,0) 70%)',
+        pointerEvents: 'none'
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gap: '3.5rem',
+          alignItems: 'center'
+        }}>
+          {/* Left Column: Exam Details & Merit Value Proposition */}
+          <div>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              padding: '0.35rem 0.95rem',
+              backgroundColor: 'rgba(56, 189, 248, 0.15)',
+              border: '1px solid rgba(56, 189, 248, 0.35)',
+              borderRadius: '9999px',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              color: '#38BDF8',
+              marginBottom: '1.25rem',
+              letterSpacing: '0.4px',
+              textTransform: 'uppercase'
+            }}>
+              <Sparkles size={13} color="#38BDF8" /> Official Evaluation Examination 2026
+            </div>
+
+            <h2 style={{
+              fontSize: 'clamp(2.1rem, 3.8vw, 3rem)',
+              fontWeight: 900,
+              color: '#FFFFFF',
+              lineHeight: 1.15,
+              marginBottom: '1.15rem',
+              letterSpacing: '-0.02em'
+            }}>
+              AVP FutureTech Internship Aptitude Test 2026
+            </h2>
+
+            <p style={{
+              fontSize: '1.05rem',
+              color: '#CBD5E1',
+              lineHeight: 1.65,
+              marginBottom: '2.25rem'
+            }}>
+              A comprehensive 60-minute qualifying examination designed to test numerical aptitude, logical reasoning, and English technical communication. Candidates scoring <strong style={{ color: '#38BDF8' }}>80% or above</strong> earn our exclusive <strong style={{ color: '#4ADE80' }}>₹699 Merit Scholarship</strong> (saving ₹5,300).
+            </p>
+
+            {/* Test Features 3-Card Grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+              gap: '1rem',
+              marginBottom: '2.5rem'
+            }}>
+              <div style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.07)',
+                backdropFilter: 'blur(10px)',
+                padding: '1.1rem 1rem',
+                borderRadius: '14px',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#38BDF8'
+                  }}>
+                    <Clock size={18} />
+                  </div>
+                  <div style={{ fontSize: '0.76rem', color: '#94A3B8', fontWeight: 600 }}>Total Duration</div>
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '1.15rem', color: '#FFFFFF' }}>60 Minutes</div>
+                <div style={{ fontSize: '0.72rem', color: '#38BDF8', marginTop: '0.15rem' }}>Auto-Save Enabled</div>
+              </div>
+
+              <div style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.07)',
+                backdropFilter: 'blur(10px)',
+                padding: '1.1rem 1rem',
+                borderRadius: '14px',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgba(129, 140, 248, 0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#818CF8'
+                  }}>
+                    <FileCheck2 size={18} />
+                  </div>
+                  <div style={{ fontSize: '0.76rem', color: '#94A3B8', fontWeight: 600 }}>Question Count</div>
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '1.15rem', color: '#FFFFFF' }}>50 MCQs</div>
+                <div style={{ fontSize: '0.72rem', color: '#818CF8', marginTop: '0.15rem' }}>3 Core Sections</div>
+              </div>
+
+              <div style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.07)',
+                backdropFilter: 'blur(10px)',
+                padding: '1.1rem 1rem',
+                borderRadius: '14px',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgba(52, 211, 153, 0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#34D399'
+                  }}>
+                    <Award size={18} />
+                  </div>
+                  <div style={{ fontSize: '0.76rem', color: '#94A3B8', fontWeight: 600 }}>Merit Subsidy</div>
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '1.15rem', color: '#4ADE80' }}>Score 80%+ → ₹699</div>
+                <div style={{ fontSize: '0.72rem', color: '#94A3B8', marginTop: '0.15rem' }}>Save 88% on Fees</div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <button
+                onClick={() => openModal('register')}
+                className="btn btn-lg"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  color: 'var(--primary-navy)',
+                  fontWeight: 800,
+                  fontSize: '1rem',
+                  borderRadius: '12px',
+                  padding: '0.9rem 1.8rem',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.35)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.6rem',
+                  cursor: 'pointer',
+                  border: 'none',
+                  transition: 'all 0.25s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(56, 189, 248, 0.35)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.35)';
+                }}
+              >
+                <span>Register for Test Now</span>
+                <ArrowRight size={18} color="var(--primary-navy)" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Interactive Exam Pattern & Section Breakdown Card */}
+          <div>
+            <div style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.06)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1.5px solid rgba(255, 255, 255, 0.18)',
+              borderRadius: '24px',
+              padding: '2.25rem 2rem',
+              boxShadow: '0 20px 45px -10px rgba(0, 0, 0, 0.4)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              {/* Top Accent Gradient Line */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '4px',
+                background: 'linear-gradient(90deg, #38BDF8 0%, #818CF8 50%, #34D399 100%)'
+              }} />
+
+              {/* Card Title */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <h3 style={{ fontSize: '1.35rem', color: '#FFFFFF', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                  <FileCheck2 size={22} color="#38BDF8" /> Exam Pattern Breakdown
+                </h3>
+                <span style={{
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                  color: '#38BDF8',
+                  padding: '0.25rem 0.65rem',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(56, 189, 248, 0.3)'
+                }}>
+                  Total: 50 Marks / 50 Qs
+                </span>
+              </div>
+
+              {/* 3 Section Breakdown Cards */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {sections.map((sec, idx) => {
+                  const Icon = sec.icon;
+                  return (
+                    <div
+                      key={sec.id}
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '14px',
+                        padding: '1rem 1.25rem',
+                        transition: 'all 0.25s ease'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <div style={{
+                            width: '38px',
+                            height: '38px',
+                            borderRadius: '10px',
+                            backgroundColor: sec.bgGlow,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: sec.color,
+                            flexShrink: 0
+                          }}>
+                            <Icon size={20} />
+                          </div>
+                          <div>
+                            <div style={{ fontWeight: 800, fontSize: '0.98rem', color: '#FFFFFF' }}>
+                              {sec.title}
+                            </div>
+                            <div style={{ fontSize: '0.78rem', color: '#94A3B8', marginTop: '0.15rem' }}>
+                              {sec.desc}
+                            </div>
+                          </div>
+                        </div>
+
+                        <span style={{
+                          backgroundColor: sec.color,
+                          color: '#0B1E3D',
+                          fontWeight: 800,
+                          fontSize: '0.78rem',
+                          padding: '0.28rem 0.65rem',
+                          borderRadius: '8px',
+                          whiteSpace: 'nowrap',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                          flexShrink: 0
+                        }}>
+                          {sec.qs} · {sec.marks}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Anti-Cheating & Proctoring Notice */}
+              <div style={{
+                marginTop: '1.5rem',
+                padding: '0.9rem 1.1rem',
+                backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                border: '1px solid rgba(245, 158, 11, 0.3)',
+                borderRadius: '12px',
+                fontSize: '0.82rem',
+                color: '#FDE68A',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.65rem'
+              }}>
+                <ShieldAlert size={18} color="#F59E0B" style={{ flexShrink: 0 }} />
+                <span>
+                  <strong>Anti-Cheating Proctoring:</strong> Full-screen enforcement, active tab-switch monitoring (Max 5 warnings before auto-submission).
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

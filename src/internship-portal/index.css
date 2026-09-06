@@ -1,0 +1,557 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* AVP FutureTech LLP Design System Variables */
+:root {
+  /* Brand Palette */
+  --primary-navy: #0B1E3D;
+  --primary-navy-hover: #07152B;
+  --primary-navy-light: #162C52;
+
+  --electric-blue: #1E63D6;
+  --electric-blue-hover: #1551B5;
+  --electric-blue-light: #3D7DF5;
+  --electric-blue-glow: rgba(30, 99, 214, 0.25);
+
+  --bg-page: #F7F9FC;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F0F4FA;
+
+  --text-primary: #0B1E3D;
+  --text-body: #3C4658;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+
+  --badge-blue-bg: #DCEBFF;
+  --badge-blue-text: #1E63D6;
+  --badge-blue-border: #BFDBFE;
+
+  --border-light: #E2E8F0;
+  --border-focus: #1E63D6;
+
+  --success: #059669;
+  --success-bg: #ECFDF5;
+  --warning: #D97706;
+  --warning-bg: #FFFBEB;
+  --danger: #DC2626;
+  --danger-bg: #FEF2F2;
+
+  /* Gradients */
+  --grad-navy-blue: linear-gradient(135deg, #0B1E3D 0%, #1E63D6 100%);
+  --grad-blue-sky: linear-gradient(135deg, #1E63D6 0%, #38BDF8 100%);
+  --grad-hero-radial: radial-gradient(circle at top right, rgba(30, 99, 214, 0.08) 0%, rgba(247, 249, 252, 0) 70%);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(11, 30, 61, 0.05);
+  --shadow-md: 0 4px 16px -2px rgba(11, 30, 61, 0.08), 0 2px 6px -1px rgba(11, 30, 61, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(11, 30, 61, 0.1), 0 4px 10px -2px rgba(11, 30, 61, 0.04);
+  --shadow-xl: 0 20px 35px -5px rgba(11, 30, 61, 0.12), 0 8px 16px -4px rgba(11, 30, 61, 0.06);
+  --shadow-glow: 0 0 20px rgba(30, 99, 214, 0.22);
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* Scoped specifically to Internship Portal Container to prevent leaking into main website */
+.avp-internship-portal-app {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background-color: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.avp-internship-portal-app * {
+  box-sizing: border-box;
+}
+
+.avp-internship-portal-app h1,
+.avp-internship-portal-app h2,
+.avp-internship-portal-app h3,
+.avp-internship-portal-app h4,
+.avp-internship-portal-app h5,
+.avp-internship-portal-app h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.avp-internship-portal-app p {
+  line-height: 1.6;
+}
+
+.avp-internship-portal-app a {
+  color: var(--electric-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.avp-internship-portal-app a:hover {
+  color: var(--electric-blue-hover);
+}
+
+/* Layout Utilities Scoped */
+.avp-internship-portal-app .container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.avp-internship-portal-app .container-wide {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.avp-internship-portal-app .section-py {
+  padding: 5rem 0;
+}
+
+.avp-internship-portal-app .section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.avp-internship-portal-app .section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.avp-internship-portal-app .section-title {
+  font-size: 2.35rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.avp-internship-portal-app .section-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Buttons Scoped */
+.avp-internship-portal-app .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-normal);
+  text-align: center;
+}
+
+.avp-internship-portal-app .btn-primary {
+  background-color: var(--electric-blue);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px var(--electric-blue-glow);
+}
+
+.avp-internship-portal-app .btn-primary:hover {
+  background-color: var(--electric-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(30, 99, 214, 0.35);
+}
+
+.avp-internship-portal-app .btn-navy {
+  background-color: var(--primary-navy);
+  color: #FFFFFF !important;
+}
+
+.avp-internship-portal-app .btn-navy:hover {
+  background-color: var(--primary-navy-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(11, 30, 61, 0.2);
+}
+
+.avp-internship-portal-app .btn-outline {
+  background-color: transparent;
+  color: var(--primary-navy);
+  border: 1.5px solid var(--primary-navy);
+}
+
+.avp-internship-portal-app .btn-outline:hover {
+  background-color: var(--primary-navy);
+  color: #FFFFFF !important;
+}
+
+.avp-internship-portal-app .btn-outline-blue {
+  background-color: transparent;
+  color: var(--electric-blue);
+  border: 1.5px solid var(--electric-blue);
+}
+
+.avp-internship-portal-app .btn-outline-blue:hover {
+  background-color: var(--electric-blue);
+  color: #FFFFFF !important;
+}
+
+.avp-internship-portal-app .btn-ghost {
+  background-color: transparent;
+  color: var(--text-body);
+}
+
+.avp-internship-portal-app .btn-ghost:hover {
+  background-color: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.avp-internship-portal-app .btn-badge {
+  background-color: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+}
+
+.avp-internship-portal-app .btn-badge:hover {
+  background-color: #c9e1ff;
+}
+
+.avp-internship-portal-app .btn-lg {
+  padding: 0.9rem 2rem;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.avp-internship-portal-app .btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.avp-internship-portal-app .btn-block {
+  width: 100%;
+}
+
+/* Cards Scoped */
+.avp-internship-portal-app .card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.avp-internship-portal-app .card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: #CBD5E1;
+}
+
+.avp-internship-portal-app .card-hover-up:hover {
+  transform: translateY(-4px);
+}
+
+/* Badges Scoped */
+.avp-internship-portal-app .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.avp-internship-portal-app .badge-blue {
+  background: var(--badge-blue-bg);
+  color: var(--badge-blue-text);
+  border: 1px solid var(--badge-blue-border);
+}
+
+.avp-internship-portal-app .badge-navy {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+}
+
+.avp-internship-portal-app .badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid #A7F3D0;
+}
+
+.avp-internship-portal-app .badge-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid #FDE68A;
+}
+
+.avp-internship-portal-app .badge-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid #FECACA;
+}
+
+/* Form Controls Scoped */
+.avp-internship-portal-app .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.avp-internship-portal-app .form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.avp-internship-portal-app .form-input,
+.avp-internship-portal-app .form-select,
+.avp-internship-portal-app .form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background-color: #FFFFFF;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.avp-internship-portal-app .form-input:focus,
+.avp-internship-portal-app .form-select:focus,
+.avp-internship-portal-app .form-textarea:focus {
+  outline: none;
+  border-color: var(--electric-blue);
+  box-shadow: 0 0 0 3px rgba(30, 99, 214, 0.15);
+}
+
+.avp-internship-portal-app .form-input::placeholder,
+.avp-internship-portal-app .form-textarea::placeholder {
+  color: var(--text-light);
+}
+
+.avp-internship-portal-app .form-error {
+  font-size: 0.8rem;
+  color: var(--danger);
+  margin-top: 0.35rem;
+}
+
+/* Modals Scoped */
+.avp-internship-portal-app .modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 30, 61, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.avp-internship-portal-app .modal-content {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.25s ease-out;
+}
+
+.avp-internship-portal-app .modal-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avp-internship-portal-app .modal-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+.avp-internship-portal-app .modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avp-internship-portal-app .modal-close:hover {
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+}
+
+.avp-internship-portal-app .modal-body {
+  padding: 2rem;
+}
+
+.avp-internship-portal-app .modal-footer {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-page);
+  border-bottom-left-radius: var(--radius-xl);
+  border-bottom-right-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(30, 99, 214, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(30, 99, 214, 0.5); }
+}
+
+/* Custom Utilities Scoped */
+.avp-internship-portal-app .animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.avp-internship-portal-app .text-navy {
+  color: var(--primary-navy);
+}
+
+.avp-internship-portal-app .text-blue {
+  color: var(--electric-blue);
+}
+
+.avp-internship-portal-app .bg-navy {
+  background-color: var(--primary-navy);
+}
+
+.avp-internship-portal-app .bg-blue {
+  background-color: var(--electric-blue);
+}
+
+.avp-internship-portal-app .bg-blue-badge {
+  background-color: var(--badge-blue-bg);
+}
+
+.avp-internship-portal-app .domain-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.avp-internship-portal-app .domain-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 1100px) {
+  .avp-internship-portal-app .domain-admin-grid,
+  .avp-internship-portal-app .domain-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .avp-internship-portal-app .domain-admin-grid,
+  .avp-internship-portal-app .domain-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.avp-internship-portal-app .otp-digit-input {
+  width: 44px;
+  height: 52px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid var(--border-light);
+  background-color: #FFFFFF;
+  color: var(--primary-navy);
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Outfit', sans-serif;
+}
+
+.avp-internship-portal-app .otp-digit-input:focus {
+  border-color: var(--electric-blue);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  background-color: rgba(30, 99, 214, 0.02);
+}
+
+@media (max-width: 480px) {
+  .avp-internship-portal-app .otp-digit-input {
+    width: 38px;
+    height: 46px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .avp-internship-portal-app .section-py {
+    padding: 3.5rem 0;
+  }
+
+  .avp-internship-portal-app .section-title {
+    font-size: 1.85rem;
+  }
+
+  .avp-internship-portal-app .card {
+    padding: 1.5rem;
+  }
+}

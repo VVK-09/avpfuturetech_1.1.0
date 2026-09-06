@@ -1,26 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-navy: #0B1E3D;
+  --color-navy-dark: #07152B;
+  --color-navy-light: #162C52;
+  --color-blue-accent: #1E63D6;
+  --color-blue-hover: #1551B5;
+  --color-blue-light: #DCEBFF;
+  --color-tint: #F7F9FC;
+  --color-tint-alt: #F0F4FA;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Palette */
+  --primary-navy: #0B1E3D;
+  --primary-navy-hover: #07152B;
+  --primary-navy-light: #162C52;
+
+  --electric-blue: #1E63D6;
+  --electric-blue-hover: #1551B5;
+  --electric-blue-light: #3D7DF5;
+  --electric-blue-glow: rgba(30, 99, 214, 0.25);
+
+  --bg-page: #F7F9FC;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F0F4FA;
+
+  --text-primary: #0B1E3D;
+  --text-body: #3C4658;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+
+  --badge-blue-bg: #DCEBFF;
+  --badge-blue-text: #1E63D6;
+  --badge-blue-border: #BFDBFE;
+
+  --border-light: #E2E8F0;
+  --border-focus: #1E63D6;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: var(--text-body);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Outfit', sans-serif !important;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.8);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-blue);
+  background-clip: content-box;
+}
+
+/* Card hover lift effect */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -4px rgba(11, 30, 61, 0.1), 0 4px 12px -2px rgba(11, 30, 61, 0.05);
+}
+
+/* Subtle circuit grid pattern overlay */
+.bg-circuit-pattern {
+  background-image: radial-gradient(#1E63D6 0.75px, transparent 0.75px), radial-gradient(#0B1E3D 0.75px, #ffffff 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.04;
+}
+
+.bg-circuit-lines {
+  background-image: linear-gradient(to right, rgba(30, 99, 214, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(30, 99, 214, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
