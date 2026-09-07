@@ -331,7 +331,7 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Curriculum & Teaching Approach Bento Grid */}
-      <section className="py-16 sm:py-24 bg-white relative">
+      <section className="py-12 sm:py-16 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Pedagogical Standard"
@@ -340,7 +340,7 @@ export default function OurCompanyPage() {
             subtitle="Engineered to turn young students from passive consumers of technology into active inventors and creators."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 sm:mt-10">
             {PEDAGOGY_CARDS.map((item, idx) => {
               const Icon = item.icon;
               return (
@@ -378,7 +378,7 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Why You Need AVP FutureTech / Benefits Grid */}
-      <section className="py-16 sm:py-24 bg-[#F8FAFC] border-y border-[#E2E8F0]">
+      <section className="py-12 sm:py-16 bg-[#F8FAFC] border-y border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Measurable Impact"
@@ -387,7 +387,7 @@ export default function OurCompanyPage() {
             subtitle="Designed to maximize student growth while offering turnkey simplicity to schools and teachers."
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8 sm:mt-10">
             {/* Student Benefits Card */}
             <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#E2E8F0] shadow-sm hover:shadow-xl transition-all space-y-6 card-hover">
               <div className="flex items-center gap-3.5 pb-4 border-b border-slate-100">
@@ -468,7 +468,7 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Our Collaboration Approach (4-Step Process) */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Proven Methodology"
@@ -477,7 +477,7 @@ export default function OurCompanyPage() {
             subtitle="From initial discovery to continuous lab excellence, we handle every phase with structured precision."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 sm:mt-10">
             {COLLABORATION_STEPS.map((item, idx) => {
               const Icon = item.icon;
               return (
@@ -514,35 +514,41 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Meet Our Founders */}
-      <section className="py-20 sm:py-28 bg-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden">
-        {/* Subtle decorative background light */}
+      <section className="py-12 sm:py-16 bg-linear-to-b from-[#F8FAFC] via-white to-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden">
+        {/* Subtle decorative ambient lights */}
         <div
-          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full opacity-60"
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] rounded-full opacity-70"
           style={{
-            background: "radial-gradient(circle, rgba(30, 99, 214, 0.06) 0%, rgba(248, 250, 252, 0) 70%)",
+            background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(248, 250, 252, 0) 70%)",
           }}
         />
+        <div className="absolute inset-0 bg-circuit-lines opacity-20 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Executive Leadership"
             title="Meet the Minds Behind"
             titleHighlight="AVP FutureTech"
             subtitle="Engineered and led by passionate technologists committed to delivering equal-footing STEM & AI opportunities to every student."
           />
 
           {/* Leadership Pillars / Trust Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-8 mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200 shadow-xs">
-              <ShieldCheck className="w-4 h-4 text-[#1E63D6]" />
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl text-xs font-bold bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/90 shadow-xs hover:border-[#1E63D6]/40 hover:bg-white transition-all">
+              <div className="w-5 h-5 rounded-lg bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-3.5 h-3.5" />
+              </div>
               <span>Founder-Led Curriculum & Delivery</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200 shadow-xs">
-              <Cpu className="w-4 h-4 text-[#1E63D6]" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl text-xs font-bold bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/90 shadow-xs hover:border-[#1E63D6]/40 hover:bg-white transition-all">
+              <div className="w-5 h-5 rounded-lg bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0">
+                <Cpu className="w-3.5 h-3.5" />
+              </div>
               <span>In-House R&D & Hardware Architecture</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200 shadow-xs">
-              <HeartHandshake className="w-4 h-4 text-[#1E63D6]" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl text-xs font-bold bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/90 shadow-xs hover:border-[#1E63D6]/40 hover:bg-white transition-all">
+              <div className="w-5 h-5 rounded-lg bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0">
+                <HeartHandshake className="w-3.5 h-3.5" />
+              </div>
               <span>Direct Institutional Mentorship</span>
             </div>
           </div>
@@ -556,7 +562,7 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Get In Touch Block + Contact Form */}
-      <section id="contact" className="py-16 sm:py-24 bg-white border-t border-[#E2E8F0] scroll-mt-20">
+      <section id="contact" className="py-12 sm:py-16 bg-white border-t border-[#E2E8F0] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Reach Out"
@@ -565,7 +571,7 @@ export default function OurCompanyPage() {
             subtitle="Whether you're a school principal, college coordinator, student, or partner — we'd love to connect."
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-6xl mx-auto mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-6xl mx-auto mt-8 sm:mt-10">
             {/* Left Contact Information Card */}
             <div className="lg:col-span-5 bg-[#0B1E3D] text-white rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#1E63D6]/20 rounded-full blur-3xl pointer-events-none" />
@@ -594,10 +600,10 @@ export default function OurCompanyPage() {
                   <Phone className="w-5 h-5 text-[#38BDF8] shrink-0" />
                   <div className="flex flex-col sm:flex-row sm:gap-2 text-xs sm:text-sm">
                     <a
-                      href="tel:7517238914"
+                      href="tel:9307076962"
                       className="text-slate-200 hover:text-white transition-colors"
                     >
-                      +91 7517238914
+                      +91 9307076962
                     </a>
                     <span className="hidden sm:inline text-slate-500">/</span>
                     <a
@@ -634,8 +640,8 @@ export default function OurCompanyPage() {
 
               <div className="pt-6 border-t border-white/10">
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs font-bold text-[#38BDF8] block mb-1">
-                    🌟 Request an On-Campus Demo
+                  <span className="text-xs font-bold text-[#38BDF8] flex items-center gap-1.5 mb-1">
+                    <Sparkles size={13} /> Request an On-Campus Demo
                   </span>
                   <p className="text-xs text-slate-300 leading-relaxed">
                     Prefer a hands-on live demonstration at your school or college campus? Contact our team to schedule an on-site visit and live robotics display.

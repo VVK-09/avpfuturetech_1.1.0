@@ -33,8 +33,8 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
   const VALID_ADMINS = [
     {
       id: "admin-1",
-      email: "admin@avpfuturetech.com",
-      password: "Admin@2026",
+      email: "vaishnavkubade@gmail.com",
+      password: "Admin@123",
       name: "Vaishnav Kubade",
       role: "Super Admin",
       designation: "CTO & Co-Founder"
@@ -42,7 +42,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
     {
       id: "admin-2",
       email: "avishkar@avpfuturetech.com",
-      password: "Admin@2026",
+      password: "Admin@123",
       name: "Avishkar Kamble",
       role: "Super Admin",
       designation: "Co-Founder & CEO"
@@ -98,8 +98,8 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
   };
 
   const handleQuickDemoFill = () => {
-    setEmail("admin@avpfuturetech.com");
-    setPassword("Admin@2026");
+    setEmail("vaishnavkubade@gmail.com");
+    setPassword("Admin@123");
     setError("");
   };
 
@@ -161,7 +161,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@avpfuturetech.com"
+                    placeholder="vaishnavkubade@gmail.com"
                     className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-500 text-sm focus:outline-hidden focus:ring-2 focus:ring-[#1E63D6] focus:border-transparent transition-all"
                   />
                 </div>

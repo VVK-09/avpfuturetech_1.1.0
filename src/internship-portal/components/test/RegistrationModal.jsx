@@ -349,31 +349,12 @@ export default function RegistrationModal() {
   return (
     <div className="modal-backdrop" onClick={closeModal} style={{ zIndex: 1050 }}>
       <div 
-        className="modal-content" 
-        style={{ 
-          maxWidth: '520px',
-          width: '92%',
-          borderRadius: '20px',
-          overflow: 'hidden',
-          boxShadow: '0 25px 60px -15px rgba(11, 30, 61, 0.35)',
-          maxHeight: '94vh',
-          display: 'flex',
-          flexDirection: 'column'
-        }} 
+        className="modal-content reg-modal-container" 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Sleek Modal Header */}
-        <div style={{
-          background: 'linear-gradient(135deg, #07152B 0%, #0B1E3D 55%, #173B7A 100%)',
-          color: '#FFFFFF',
-          padding: '1.15rem 1.45rem',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.12)'
-        }}>
-          {/* Ambient Top Glow */}
+        <div className="reg-modal-header">
+          {/* Ambient Top Glow Line */}
           <div style={{
             position: 'absolute',
             top: 0,
@@ -383,27 +364,23 @@ export default function RegistrationModal() {
             background: 'linear-gradient(90deg, #1E63D6 0%, #38BDF8 50%, #4F46E5 100%)'
           }} />
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
             <div style={{
-              width: '38px',
-              height: '38px',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
               background: 'linear-gradient(135deg, #1E63D6 0%, #38BDF8 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 4px 12px rgba(30, 99, 214, 0.35)',
+              boxShadow: '0 4px 14px rgba(30, 99, 214, 0.4)',
               flexShrink: 0
             }}>
-              {currentStep === 'otp' ? <KeyRound size={18} color="#FFFFFF" /> : <UserPlus size={18} color="#FFFFFF" />}
+              {currentStep === 'otp' ? <KeyRound size={20} color="#FFFFFF" /> : <UserPlus size={20} color="#FFFFFF" />}
             </div>
-            <div>
-              <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.2px' }}>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.2px', lineHeight: 1.25 }}>
                 {currentStep === 'otp' ? 'Verify Email Address' : 'Aptitude Test 2026 — Registration'}
-              </div>
-              <div style={{ fontSize: '0.74rem', color: '#93C5FD', marginTop: '0.1rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                <Sparkles size={11} color="#38BDF8" />
-                <span>6-Digit Email OTP • ₹699 Merit Pricing</span>
               </div>
             </div>
           </div>
@@ -415,14 +392,16 @@ export default function RegistrationModal() {
               color: '#94A3B8', 
               background: 'rgba(255, 255, 255, 0.08)',
               borderRadius: '50%',
-              width: '30px',
-              height: '30px',
+              width: '32px',
+              height: '32px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               border: 'none',
               cursor: 'pointer',
-              transition: 'all 0.2s ease'
+              transition: 'all 0.2s ease',
+              flexShrink: 0,
+              marginLeft: '0.5rem'
             }} 
             aria-label="Close modal"
           >
@@ -431,24 +410,19 @@ export default function RegistrationModal() {
         </div>
 
         {/* Modal Body */}
-        <div style={{ 
-          padding: '1.25rem 1.45rem',
-          overflowY: 'auto',
-          backgroundColor: '#FFFFFF',
-          flex: 1
-        }}>
+        <div className="reg-modal-body">
           {/* Duplicate Error Banner */}
           {duplicateError && (
             <div style={{
               backgroundColor: '#FEF2F2',
               border: '1px solid #FCA5A5',
-              borderRadius: '10px',
-              padding: '0.75rem 0.9rem',
+              borderRadius: '12px',
+              padding: '0.8rem 0.95rem',
               marginBottom: '1rem',
               display: 'flex',
               alignItems: 'flex-start',
               gap: '0.65rem',
-              boxShadow: '0 3px 10px rgba(239, 68, 68, 0.08)'
+              boxShadow: '0 3px 12px rgba(239, 68, 68, 0.08)'
             }}>
               <AlertCircle size={18} color="#DC2626" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div style={{ flex: 1 }}>
@@ -466,18 +440,19 @@ export default function RegistrationModal() {
                       backgroundColor: '#DC2626',
                       color: '#FFFFFF',
                       border: 'none',
-                      borderRadius: '6px',
-                      padding: '0.35rem 0.75rem',
-                      fontSize: '0.76rem',
+                      borderRadius: '7px',
+                      padding: '0.38rem 0.85rem',
+                      fontSize: '0.78rem',
                       fontWeight: 700,
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.3rem'
+                      gap: '0.35rem',
+                      boxShadow: '0 2px 8px rgba(220, 38, 38, 0.25)'
                     }}
                   >
                     Login to Your Account
-                    <ArrowRight size={12} />
+                    <ArrowRight size={13} />
                   </button>
                 </div>
               </div>
@@ -488,18 +463,21 @@ export default function RegistrationModal() {
           {currentStep === 'details' && (
             <form onSubmit={handleProceedToOtp}>
               {/* ROW 1: Full Name & Email ID (2-Column Grid) */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label" style={{ fontSize: '0.78rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600 }}>
-                    <User size={12} color="var(--electric-blue)" />
-                    <span>Full Name *</span>
+              <div className="reg-grid-2col">
+                <div className="reg-field-group">
+                  <label className="reg-label">
+                    <span className="reg-label-left">
+                      <span className="reg-icon-badge">
+                        <User size={11} />
+                      </span>
+                      <span>Full Name *</span>
+                    </span>
                   </label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Aryan Sharma"
-                    className="form-input"
-                    style={{ fontSize: '0.84rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
+                    className="reg-input"
                     value={formData.name}
                     onChange={(e) => {
                       setFormData({ ...formData, name: e.target.value });
@@ -508,17 +486,20 @@ export default function RegistrationModal() {
                   />
                 </div>
 
-                <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label" style={{ fontSize: '0.78rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600 }}>
-                    <Mail size={12} color="var(--electric-blue)" />
-                    <span>Email ID (for OTP) *</span>
+                <div className="reg-field-group">
+                  <label className="reg-label">
+                    <span className="reg-label-left">
+                      <span className="reg-icon-badge">
+                        <Mail size={11} />
+                      </span>
+                      <span>Email ID (for OTP) *</span>
+                    </span>
                   </label>
                   <input
                     type="email"
                     required
                     placeholder="e.g. aryan.sharma@example.com"
-                    className="form-input"
-                    style={{ fontSize: '0.84rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
+                    className="reg-input"
                     value={formData.email}
                     onChange={(e) => {
                       setFormData({ ...formData, email: e.target.value });
@@ -526,24 +507,27 @@ export default function RegistrationModal() {
                       if (duplicateError) setDuplicateError('');
                     }}
                   />
-                  {emailError && <div className="form-error" style={{ fontSize: '0.72rem', marginTop: '0.15rem' }}>{emailError}</div>}
+                  {emailError && <div className="form-error" style={{ fontSize: '0.72rem', marginTop: '0.2rem' }}>{emailError}</div>}
                 </div>
               </div>
 
               {/* ROW 2: Mobile Number & Academic Branch */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label" style={{ fontSize: '0.78rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600 }}>
-                    <Phone size={12} color="var(--electric-blue)" />
-                    <span>Mobile Number *</span>
+              <div className="reg-grid-2col">
+                <div className="reg-field-group">
+                  <label className="reg-label">
+                    <span className="reg-label-left">
+                      <span className="reg-icon-badge">
+                        <Phone size={11} />
+                      </span>
+                      <span>Mobile Number *</span>
+                    </span>
                   </label>
                   <input
                     type="tel"
                     required
                     placeholder="e.g. 9876543210"
                     maxLength={10}
-                    className="form-input"
-                    style={{ fontSize: '0.84rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
+                    className="reg-input"
                     value={formData.phone}
                     onChange={(e) => {
                       const digits = e.target.value.replace(/\D/g, '');
@@ -551,17 +535,20 @@ export default function RegistrationModal() {
                       if (phoneError) setPhoneError('');
                     }}
                   />
-                  {phoneError && <div className="form-error" style={{ fontSize: '0.72rem', marginTop: '0.15rem' }}>{phoneError}</div>}
+                  {phoneError && <div className="form-error" style={{ fontSize: '0.72rem', marginTop: '0.2rem' }}>{phoneError}</div>}
                 </div>
 
-                <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label className="form-label" style={{ fontSize: '0.78rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600 }}>
-                    <BookOpen size={12} color="var(--electric-blue)" />
-                    <span>Academic Branch *</span>
+                <div className="reg-field-group">
+                  <label className="reg-label">
+                    <span className="reg-label-left">
+                      <span className="reg-icon-badge">
+                        <BookOpen size={11} />
+                      </span>
+                      <span>Academic Branch *</span>
+                    </span>
                   </label>
                   <select
-                    className="form-select"
-                    style={{ fontSize: '0.82rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
+                    className="reg-select"
                     value={formData.branch}
                     onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
                   >
@@ -578,14 +565,17 @@ export default function RegistrationModal() {
               </div>
 
               {/* ROW 3: College Year */}
-              <div className="form-group" style={{ marginBottom: '0.75rem' }}>
-                <label className="form-label" style={{ fontSize: '0.78rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600 }}>
-                  <GraduationCap size={12} color="var(--electric-blue)" />
-                  <span>Current College Year *</span>
+              <div className="reg-field-group" style={{ marginBottom: '0.85rem' }}>
+                <label className="reg-label">
+                  <span className="reg-label-left">
+                    <span className="reg-icon-badge">
+                      <GraduationCap size={11} />
+                    </span>
+                    <span>Current College Year *</span>
+                  </span>
                 </label>
                 <select
-                  className="form-select"
-                  style={{ fontSize: '0.82rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
+                  className="reg-select"
                   value={formData.collegeYear}
                   onChange={(e) => setFormData({ ...formData, collegeYear: e.target.value })}
                 >
@@ -599,20 +589,28 @@ export default function RegistrationModal() {
               </div>
 
               {/* ROW 4: Password Field with Live Strength */}
-              <div className="form-group" style={{ marginBottom: '0.85rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                  <label className="form-label" style={{ marginBottom: 0, fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600 }}>
-                    <Lock size={12} color="var(--electric-blue)" />
-                    <span>Create Account Password *</span>
+              <div className="reg-field-group" style={{ marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <label className="reg-label" style={{ marginBottom: 0 }}>
+                    <span className="reg-label-left">
+                      <span className="reg-icon-badge">
+                        <Lock size={11} />
+                      </span>
+                      <span>Create Account Password *</span>
+                    </span>
                   </label>
 
                   {formData.password && (
                     <span style={{
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      color: passwordStrengthScore === 3 ? '#059669' : passwordStrengthScore === 2 ? '#D97706' : '#DC2626'
+                      fontSize: '0.72rem',
+                      fontWeight: 800,
+                      padding: '1px 8px',
+                      borderRadius: '6px',
+                      backgroundColor: passwordStrengthScore === 3 ? '#ECFDF5' : passwordStrengthScore === 2 ? '#FFFBEB' : '#FEF2F2',
+                      color: passwordStrengthScore === 3 ? '#059669' : passwordStrengthScore === 2 ? '#D97706' : '#DC2626',
+                      border: `1px solid ${passwordStrengthScore === 3 ? '#A7F3D0' : passwordStrengthScore === 2 ? '#FDE68A' : '#FECACA'}`
                     }}>
-                      {passwordStrengthScore === 3 ? '✓ Strong' : passwordStrengthScore === 2 ? '⚡ Moderate' : 'Weak'}
+                      {passwordStrengthScore === 3 ? 'Strong' : passwordStrengthScore === 2 ? 'Moderate' : 'Weak'}
                     </span>
                   )}
                 </div>
@@ -622,8 +620,8 @@ export default function RegistrationModal() {
                     type={showPassword ? 'text' : 'password'}
                     required
                     placeholder="8+ chars with 1 uppercase & 1 symbol (e.g. Pass@2026)"
-                    className="form-input"
-                    style={{ paddingRight: '2.3rem', fontSize: '0.84rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
+                    className="reg-input"
+                    style={{ paddingRight: '2.5rem' }}
                     value={formData.password}
                     onChange={(e) => {
                       setFormData({ ...formData, password: e.target.value });
@@ -635,55 +633,50 @@ export default function RegistrationModal() {
                     onClick={() => setShowPassword(!showPassword)}
                     style={{
                       position: 'absolute',
-                      right: '8px',
+                      right: '9px',
                       top: '50%',
                       transform: 'translateY(-50%)',
                       background: 'none',
                       border: 'none',
                       cursor: 'pointer',
-                      color: 'var(--text-muted)',
-                      padding: '3px',
+                      color: '#64748B',
+                      padding: '4px',
                       display: 'flex',
-                      alignItems: 'center'
+                      alignItems: 'center',
+                      borderRadius: '6px',
+                      transition: 'color 0.2s ease'
                     }}
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
-                    {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
 
                 {/* Password Strength Progress Line */}
                 {formData.password && (
-                  <div style={{ width: '100%', height: '3px', backgroundColor: '#E2E8F0', borderRadius: '3px', marginTop: '0.35rem', overflow: 'hidden' }}>
+                  <div style={{ width: '100%', height: '4px', backgroundColor: '#E2E8F0', borderRadius: '4px', marginTop: '0.45rem', overflow: 'hidden' }}>
                     <div style={{
                       width: `${(passwordStrengthScore / 3) * 100}%`,
                       height: '100%',
                       backgroundColor: passwordStrengthScore === 3 ? '#10B981' : passwordStrengthScore === 2 ? '#F59E0B' : '#EF4444',
+                      borderRadius: '4px',
                       transition: 'all 0.3s ease'
                     }} />
                   </div>
                 )}
 
-                {passwordError && <div className="form-error" style={{ fontSize: '0.72rem', marginTop: '0.2rem' }}>{passwordError}</div>}
+                {passwordError && <div className="form-error" style={{ fontSize: '0.72rem', marginTop: '0.25rem' }}>{passwordError}</div>}
 
-                {/* Compact Requirements Hints */}
-                <div style={{
-                  display: 'flex',
-                  gap: '0.6rem',
-                  marginTop: '0.35rem',
-                  fontSize: '0.7rem',
-                  color: 'var(--text-muted)'
-                }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: hasMinLength ? '#059669' : undefined, fontWeight: hasMinLength ? 700 : 500 }}>
-                    <Check size={10} color={hasMinLength ? '#059669' : '#94A3B8'} /> 8+ chars
+                {/* Requirements Chips */}
+                <div className="reg-rules-wrap">
+                  <span className={`reg-rule-chip ${hasMinLength ? 'valid' : ''}`}>
+                    <Check size={11} color={hasMinLength ? '#059669' : '#94A3B8'} /> 8+ Characters
                   </span>
-                  <span>•</span>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: hasUppercase ? '#059669' : undefined, fontWeight: hasUppercase ? 700 : 500 }}>
-                    <Check size={10} color={hasUppercase ? '#059669' : '#94A3B8'} /> 1 Uppercase (A-Z)
+                  <span className={`reg-rule-chip ${hasUppercase ? 'valid' : ''}`}>
+                    <Check size={11} color={hasUppercase ? '#059669' : '#94A3B8'} /> 1 Uppercase (A-Z)
                   </span>
-                  <span>•</span>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: hasSpecialChar ? '#059669' : undefined, fontWeight: hasSpecialChar ? 700 : 500 }}>
-                    <Check size={10} color={hasSpecialChar ? '#059669' : '#94A3B8'} /> 1 Symbol (!@#$)
+                  <span className={`reg-rule-chip ${hasSpecialChar ? 'valid' : ''}`}>
+                    <Check size={11} color={hasSpecialChar ? '#059669' : '#94A3B8'} /> 1 Symbol (!@#$)
                   </span>
                 </div>
               </div>
@@ -692,28 +685,18 @@ export default function RegistrationModal() {
               <button
                 type="submit"
                 disabled={isSendingOtp}
-                className="btn btn-primary btn-block"
-                style={{
-                  padding: '0.75rem 1.4rem',
-                  fontSize: '0.94rem',
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  marginTop: '0.85rem'
-                }}
+                className="reg-submit-btn"
               >
                 {isSendingOtp ? (
                   <>
-                    <Loader2 size={16} className="animate-spin" />
+                    <Loader2 size={17} className="animate-spin" />
                     <span>Sending 6-Digit Code...</span>
                   </>
                 ) : (
                   <>
-                    <Mail size={16} />
+                    <Mail size={17} />
                     <span>Continue with 6-Digit Email OTP</span>
-                    <ArrowRight size={15} />
+                    <ArrowRight size={16} />
                   </>
                 )}
               </button>
@@ -728,24 +711,24 @@ export default function RegistrationModal() {
                 padding: '0.5rem 0 1rem 0'
               }}>
                 <div style={{
-                  width: '52px',
-                  height: '52px',
-                  borderRadius: '14px',
-                  background: 'linear-gradient(135deg, rgba(30, 99, 214, 0.12) 0%, rgba(56, 189, 248, 0.2) 100%)',
+                  width: '54px',
+                  height: '54px',
+                  borderRadius: '16px',
+                  background: 'linear-gradient(135deg, rgba(30, 99, 214, 0.12) 0%, rgba(56, 189, 248, 0.22) 100%)',
                   color: 'var(--electric-blue)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem auto',
-                  boxShadow: '0 4px 12px rgba(30, 99, 214, 0.12)'
+                  boxShadow: '0 4px 14px rgba(30, 99, 214, 0.15)'
                 }}>
                   <Mail size={26} />
                 </div>
 
-                <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--primary-navy)' }}>
+                <div style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--primary-navy)' }}>
                   Enter 6-Digit Verification Code
                 </div>
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
                   We sent a 6-digit OTP to{' '}
                   <strong style={{ color: 'var(--primary-navy)' }}>{formData.email}</strong>
                 </div>
@@ -757,63 +740,24 @@ export default function RegistrationModal() {
                     background: 'none',
                     border: 'none',
                     color: 'var(--electric-blue)',
-                    fontSize: '0.76rem',
-                    fontWeight: 600,
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
                     cursor: 'pointer',
-                    marginTop: '0.25rem',
+                    marginTop: '0.4rem',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.25rem'
+                    gap: '0.3rem',
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: '6px'
                   }}
                 >
-                  <ArrowLeft size={12} /> Edit Email Address
+                  <ArrowLeft size={13} /> Edit Email Address
                 </button>
               </div>
 
-              {/* Demo Helper Banner with One-Click Fill */}
-              {lastDispatchedOtp && (
-                <div style={{
-                  backgroundColor: 'rgba(30, 99, 214, 0.05)',
-                  border: '1px dashed rgba(56, 189, 248, 0.5)',
-                  borderRadius: '10px',
-                  padding: '0.65rem 0.85rem',
-                  marginBottom: '1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '0.5rem'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', color: 'var(--primary-navy)' }}>
-                    <Sparkles size={14} color="var(--electric-blue)" />
-                    <span>Demo OTP: <strong style={{ letterSpacing: '1px', fontFamily: 'monospace', fontSize: '0.92rem', color: 'var(--electric-blue)' }}>{lastDispatchedOtp}</strong></span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleQuickFillCode}
-                    style={{
-                      background: 'var(--electric-blue)',
-                      color: '#FFFFFF',
-                      border: 'none',
-                      borderRadius: '6px',
-                      padding: '0.25rem 0.6rem',
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Auto-Fill
-                  </button>
-                </div>
-              )}
-
               {/* 6 Individual Digit Input Boxes */}
               <div 
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: '0.45rem',
-                  marginBottom: '1rem'
-                }}
+                className="reg-otp-grid"
                 onPaste={handlePaste}
               >
                 {otpDigits.map((digit, index) => (
@@ -826,31 +770,7 @@ export default function RegistrationModal() {
                     value={digit}
                     onChange={(e) => handleDigitChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    style={{
-                      width: '44px',
-                      height: '52px',
-                      fontSize: '1.35rem',
-                      fontWeight: 800,
-                      textAlign: 'center',
-                      borderRadius: '10px',
-                      border: digit ? '2px solid var(--electric-blue)' : '2px solid #E2E8F0',
-                      backgroundColor: digit ? 'rgba(30, 99, 214, 0.04)' : '#FFFFFF',
-                      color: 'var(--primary-navy)',
-                      outline: 'none',
-                      transition: 'all 0.2s ease',
-                      boxShadow: digit ? '0 0 0 3px rgba(56, 189, 248, 0.15)' : 'none',
-                      fontFamily: 'Outfit, sans-serif'
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--electric-blue)';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(56, 189, 248, 0.2)';
-                    }}
-                    onBlur={(e) => {
-                      if (!otpDigits[index]) {
-                        e.target.style.borderColor = '#E2E8F0';
-                        e.target.style.boxShadow = 'none';
-                      }
-                    }}
+                    className={`reg-otp-box ${digit ? 'filled' : ''}`}
                   />
                 ))}
               </div>
@@ -903,20 +823,11 @@ export default function RegistrationModal() {
               <button
                 type="submit"
                 disabled={isVerifying || otpDigits.join('').length < 6}
-                className="btn btn-primary btn-block"
-                style={{
-                  padding: '0.8rem 1.4rem',
-                  fontSize: '0.96rem',
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem'
-                }}
+                className="reg-submit-btn"
               >
                 {isVerifying ? (
                   <>
-                    <Loader2 size={16} className="animate-spin" />
+                    <Loader2 size={17} className="animate-spin" />
                     <span>Verifying & Launching Test...</span>
                   </>
                 ) : (
@@ -933,8 +844,10 @@ export default function RegistrationModal() {
           {/* Bottom Login Link */}
           <div style={{
             textAlign: 'center',
-            marginTop: '0.85rem',
-            fontSize: '0.78rem',
+            marginTop: '1.15rem',
+            paddingTop: '0.95rem',
+            borderTop: '1px solid #F1F5F9',
+            fontSize: '0.8rem',
             color: 'var(--text-muted)'
           }}>
             Already registered?{' '}
@@ -958,6 +871,250 @@ export default function RegistrationModal() {
           </div>
         </div>
       </div>
+
+      {/* Embedded High-Performance Responsive Modal Styles */}
+      <style>{`
+        .reg-modal-container {
+          max-width: 550px;
+          width: 94%;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 25px 60px -15px rgba(11, 30, 61, 0.45);
+          max-height: 94vh;
+          display: flex;
+          flex-direction: column;
+          background-color: #FFFFFF;
+        }
+
+        .reg-modal-header {
+          background: linear-gradient(135deg, #07152B 0%, #0B1E3D 55%, #173B7A 100%);
+          color: #FFFFFF;
+          padding: 1.15rem 1.4rem;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .reg-modal-body {
+          padding: 1.35rem 1.45rem 1.15rem 1.45rem;
+          overflow-y: auto;
+          background-color: #FFFFFF;
+          flex: 1;
+        }
+
+        .reg-grid-2col {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.85rem;
+          margin-bottom: 0.85rem;
+        }
+
+        .reg-field-group {
+          margin-bottom: 0;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .reg-label {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: 0.35rem;
+        }
+
+        .reg-label-left {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+
+        .reg-icon-badge {
+          width: 20px;
+          height: 20px;
+          border-radius: 6px;
+          background-color: rgba(30, 99, 214, 0.08);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--electric-blue);
+          flex-shrink: 0;
+        }
+
+        .reg-input {
+          width: 100%;
+          background-color: #F8FAFC;
+          border: 1.5px solid #E2E8F0;
+          border-radius: 10px;
+          padding: 0.65rem 0.85rem;
+          font-size: 0.88rem;
+          color: var(--primary-navy);
+          font-family: inherit;
+          outline: none;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          box-sizing: border-box;
+        }
+
+        .reg-input:focus {
+          background-color: #FFFFFF;
+          border-color: var(--electric-blue);
+          box-shadow: 0 0 0 3.5px rgba(30, 99, 214, 0.12);
+        }
+
+        .reg-input::placeholder {
+          color: #94A3B8;
+        }
+
+        .reg-select {
+          width: 100%;
+          background-color: #F8FAFC;
+          border: 1.5px solid #E2E8F0;
+          border-radius: 10px;
+          padding: 0.65rem 2.2rem 0.65rem 0.85rem;
+          font-size: 0.86rem;
+          color: var(--primary-navy);
+          font-family: inherit;
+          outline: none;
+          cursor: pointer;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          box-sizing: border-box;
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+        }
+
+        .reg-select:focus {
+          background-color: #FFFFFF;
+          border-color: var(--electric-blue);
+          box-shadow: 0 0 0 3.5px rgba(30, 99, 214, 0.12);
+        }
+
+        .reg-submit-btn {
+          width: 100%;
+          padding: 0.8rem 1.4rem;
+          font-size: 0.95rem;
+          font-weight: 800;
+          border-radius: 12px;
+          background: linear-gradient(135deg, #1E63D6 0%, #154AB4 100%);
+          color: #FFFFFF;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          box-shadow: 0 4px 16px rgba(30, 99, 214, 0.35);
+          transition: all 0.2s ease;
+          margin-top: 0.95rem;
+        }
+
+        .reg-submit-btn:hover:not(:disabled) {
+          box-shadow: 0 8px 24px rgba(30, 99, 214, 0.45);
+          transform: translateY(-1px);
+        }
+
+        .reg-submit-btn:active:not(:disabled) {
+          transform: translateY(0);
+        }
+
+        .reg-submit-btn:disabled {
+          opacity: 0.65;
+          cursor: not-allowed;
+        }
+
+        .reg-rules-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.45rem;
+          margin-top: 0.45rem;
+        }
+
+        .reg-rule-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          padding: 0.18rem 0.55rem;
+          border-radius: 6px;
+          font-size: 0.72rem;
+          font-weight: 600;
+          background-color: #F1F5F9;
+          color: #64748B;
+          border: 1px solid #E2E8F0;
+          transition: all 0.2s ease;
+        }
+
+        .reg-rule-chip.valid {
+          background-color: #ECFDF5;
+          color: #059669;
+          border-color: #A7F3D0;
+          font-weight: 700;
+        }
+
+        .reg-otp-grid {
+          display: flex;
+          justify-content: center;
+          gap: clamp(0.3rem, 1.8vw, 0.55rem);
+          margin-bottom: 1rem;
+        }
+
+        .reg-otp-box {
+          width: clamp(38px, 12.5vw, 48px);
+          height: clamp(48px, 14vw, 54px);
+          font-size: clamp(1.2rem, 4vw, 1.4rem);
+          font-weight: 800;
+          text-align: center;
+          border-radius: 10px;
+          border: 2px solid #E2E8F0;
+          background-color: #FFFFFF;
+          color: var(--primary-navy);
+          outline: none;
+          transition: all 0.2s ease;
+          font-family: 'Outfit', sans-serif;
+        }
+
+        .reg-otp-box.filled {
+          border-color: var(--electric-blue);
+          background-color: rgba(30, 99, 214, 0.04);
+          box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+
+        .reg-otp-box:focus {
+          border-color: var(--electric-blue);
+          box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 580px) {
+          .reg-modal-container {
+            width: 95%;
+            max-height: 92vh;
+            border-radius: 16px;
+          }
+          .reg-modal-header {
+            padding: 1rem 1.15rem;
+          }
+          .reg-modal-body {
+            padding: 1.15rem 1.15rem 1rem 1.15rem;
+          }
+          .reg-grid-2col {
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+          }
+          .reg-input, .reg-select {
+            padding: 0.62rem 0.8rem;
+            font-size: 0.9rem;
+          }
+          .reg-rules-wrap {
+            gap: 0.35rem;
+          }
+        }
+      `}</style>
     </div>
   );
 }

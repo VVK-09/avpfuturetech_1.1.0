@@ -60,5 +60,46 @@ export const initialTestimonials = [
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
     quote: 'Cross-platform app development with state management and Firebase authentication. I submitted my capstone app to the Play Store and received my completion certificate right on time!'
+  },
+  {
+    id: 'test-07',
+    name: 'Divya Ranganathan',
+    college: 'National Institute of Technology, Tiruchirappalli (NIT Trichy)',
+    domain: 'Cloud & DevOps Engineering',
+    placedAt: 'AWS Cloud Support',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
+    quote: 'Hands-on CI/CD pipelines with GitHub Actions, Docker container orchestration, and AWS EC2/S3 deployment gave me the exact skills demanded in cloud infra interviews. Mentorship was top-notch!'
+  },
+  {
+    id: 'test-08',
+    name: 'Meera Krishnan',
+    college: 'PSG College of Technology, Coimbatore',
+    domain: 'UI/UX & Product Design',
+    placedAt: 'Zoho Design Studio',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
+    quote: 'The design systems, Figma component architectures, and user empathy workshops transformed my portfolio. Mentors reviewed every micro-interaction and UX case study with great attention.'
+  },
+  {
+    id: 'test-09',
+    name: 'Siddharth Joshi',
+    college: 'Delhi Technological University (DTU)',
+    domain: 'Blockchain & Web3',
+    placedAt: 'Polygon Labs Ecosystem',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80',
+    quote: 'Writing Solidity smart contracts, testing with Hardhat, and building decentralized dApps connected with Ethers.js gave me hands-on Web3 depth that set me apart from other applicants.'
+  },
+  {
+    id: 'test-10',
+    name: 'Tarun Reddy',
+    college: 'International Institute of Information Technology (IIIT Hyderabad)',
+    domain: 'Embedded Systems & IoT',
+    placedAt: 'Qualcomm India',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80',
+    quote: 'Real-time firmware programming on ESP32 and MQTT broker telemetry with AWS IoT Core. The industry-aligned weekly milestones helped me land an embedded software role at Qualcomm!'
   }
 ];
+

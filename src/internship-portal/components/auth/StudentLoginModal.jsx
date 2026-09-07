@@ -21,8 +21,8 @@ import { sendEmailOtp } from '../../services/emailOtpService';
 export default function StudentLoginModal() {
   const { modal, closeModal, loginStudent, loginStudentWithOtp, openModal, showToast } = useApp();
   
-  // Login Mode: 'otp' | 'password'
-  const [loginMode, setLoginMode] = useState('otp');
+  // Login Mode: 'password' | 'otp'
+  const [loginMode, setLoginMode] = useState('password');
 
   // Password Mode Form State
   const [identifier, setIdentifier] = useState(() => (modal.data?.identifier || ''));
@@ -49,6 +49,7 @@ export default function StudentLoginModal() {
       if (initId.includes('@')) {
         setOtpEmail(initId);
       }
+      setLoginMode('password');
       setOtpStep('input-email');
       setOtpDigits(['', '', '', '', '', '']);
       setOtpError('');
@@ -319,7 +320,7 @@ export default function StudentLoginModal() {
           </button>
         </div>
 
-        {/* Tab Switcher: 6-Digit Email OTP vs Password */}
+        {/* Tab Switcher: Password vs 6-Digit Email OTP */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -328,30 +329,6 @@ export default function StudentLoginModal() {
           margin: '1.15rem 1.45rem 0 1.45rem',
           borderRadius: '10px'
         }}>
-          <button
-            type="button"
-            onClick={() => setLoginMode('otp')}
-            style={{
-              padding: '0.55rem',
-              borderRadius: '8px',
-              border: 'none',
-              backgroundColor: loginMode === 'otp' ? '#FFFFFF' : 'transparent',
-              color: loginMode === 'otp' ? 'var(--primary-navy)' : 'var(--text-muted)',
-              fontWeight: loginMode === 'otp' ? 700 : 500,
-              fontSize: '0.82rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.35rem',
-              boxShadow: loginMode === 'otp' ? '0 2px 6px rgba(0, 0, 0, 0.08)' : 'none',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            <Mail size={14} color={loginMode === 'otp' ? 'var(--electric-blue)' : '#94A3B8'} />
-            6-Digit Email OTP
-          </button>
-
           <button
             type="button"
             onClick={() => setLoginMode('password')}
@@ -375,6 +352,30 @@ export default function StudentLoginModal() {
             <Lock size={14} color={loginMode === 'password' ? 'var(--electric-blue)' : '#94A3B8'} />
             Password
           </button>
+
+          <button
+            type="button"
+            onClick={() => setLoginMode('otp')}
+            style={{
+              padding: '0.55rem',
+              borderRadius: '8px',
+              border: 'none',
+              backgroundColor: loginMode === 'otp' ? '#FFFFFF' : 'transparent',
+              color: loginMode === 'otp' ? 'var(--primary-navy)' : 'var(--text-muted)',
+              fontWeight: loginMode === 'otp' ? 700 : 500,
+              fontSize: '0.82rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.35rem',
+              boxShadow: loginMode === 'otp' ? '0 2px 6px rgba(0, 0, 0, 0.08)' : 'none',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <Mail size={14} color={loginMode === 'otp' ? 'var(--electric-blue)' : '#94A3B8'} />
+            Login With OTP
+          </button>
         </div>
 
         {/* Modal Body */}
@@ -384,54 +385,6 @@ export default function StudentLoginModal() {
           backgroundColor: '#FFFFFF',
           flex: 1
         }}>
-          {/* Quick Demo Fill Pill */}
-          <div style={{
-            backgroundColor: 'rgba(30, 99, 214, 0.04)',
-            border: '1px solid rgba(56, 189, 248, 0.25)',
-            borderRadius: '10px',
-            padding: '0.65rem 0.85rem',
-            marginBottom: '1.15rem',
-            fontSize: '0.78rem'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, color: 'var(--primary-navy)', marginBottom: '0.35rem' }}>
-              <Sparkles size={13} color="var(--electric-blue)" /> Demo Accounts:
-            </div>
-            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-              <button 
-                type="button" 
-                onClick={() => handleFillDemoStudent('aarav.sharma@example.com', 'password123')}
-                style={{
-                  background: '#FFFFFF',
-                  border: '1px solid #CBD5E1',
-                  borderRadius: '6px',
-                  padding: '0.2rem 0.5rem',
-                  fontSize: '0.74rem',
-                  cursor: 'pointer',
-                  color: 'var(--primary-navy)',
-                  fontWeight: 600
-                }}
-              >
-                Aarav (Enrolled Intern)
-              </button>
-              <button 
-                type="button" 
-                onClick={() => handleFillDemoStudent('diya.patel@example.com', 'password123')}
-                style={{
-                  background: '#FFFFFF',
-                  border: '1px solid #CBD5E1',
-                  borderRadius: '6px',
-                  padding: '0.2rem 0.5rem',
-                  fontSize: '0.74rem',
-                  cursor: 'pointer',
-                  color: 'var(--primary-navy)',
-                  fontWeight: 600
-                }}
-              >
-                Diya (Merit Ranker)
-              </button>
-            </div>
-          </div>
-
           {/* TAB 1: 6-DIGIT EMAIL OTP LOGIN */}
           {loginMode === 'otp' && (
             <div>
@@ -663,7 +616,7 @@ export default function StudentLoginModal() {
                 </div>
               </div>
 
-              <div className="form-group" style={{ marginBottom: '1rem' }}>
+              <div className="form-group" style={{ marginBottom: '0.65rem' }}>
                 <label className="form-label" style={{ fontSize: '0.8rem', fontWeight: 600 }}>
                   Account Password
                 </label>
@@ -697,6 +650,35 @@ export default function StudentLoginModal() {
                     {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
                   </button>
                 </div>
+              </div>
+
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'flex-end', 
+                alignItems: 'center',
+                marginBottom: '1rem' 
+              }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (identifier && identifier.includes('@')) {
+                      setOtpEmail(identifier);
+                    }
+                    setLoginMode('otp');
+                  }}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'var(--electric-blue)',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    padding: 0,
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  Forgot your password? Log in with OTP →
+                </button>
               </div>
 
               <button

@@ -193,10 +193,10 @@ export default function WorkshopsPage() {
               Book Workshop Dates
             </Link>
             <a
-              href="tel:7517238914"
+              href="tel:9307076962"
               className="px-8 py-3.5 rounded-xl text-sm font-bold text-white border-2 border-white hover:bg-white/10 transition-colors"
             >
-              Call +91 7517238914
+              Call +91 9307076962
             </a>
           </div>
         </div>

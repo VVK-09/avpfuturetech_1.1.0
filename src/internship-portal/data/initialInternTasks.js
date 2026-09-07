@@ -313,18 +313,18 @@ export const initialStudents = [
 export const initialAdmins = [
   {
     id: 'adm-01',
-    name: 'Dr. Vikram Pradhan',
-    email: 'admin@avpfuturetech.com',
-    password: 'Admin@2026',
+    name: 'Vaishnav Kubade',
+    email: 'vaishnavkubade@gmail.com',
+    password: 'Admin@123',
     role: 'superadmin',
-    department: 'Academic Operations'
+    department: 'Executive Leadership'
   },
   {
     id: 'adm-02',
-    name: 'Priya Mukherjee',
-    email: 'mentor@avpfuturetech.com',
-    password: 'Mentor@2026',
-    role: 'staffadmin',
-    department: 'Software Engineering Mentorship'
+    name: 'Avishkar Kamble',
+    email: 'avishkar@avpfuturetech.com',
+    password: 'Admin@123',
+    role: 'superadmin',
+    department: 'Executive Leadership'
   }
 ];

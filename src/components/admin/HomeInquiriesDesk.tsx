@@ -170,7 +170,7 @@ export default function HomeInquiriesDesk({ onShowToast }: HomeInquiriesDeskProp
     setNotesForm({
       status: inq.status || "Pending",
       notes: inq.counselorNotes || "",
-      replyDraft: `Hi ${inq.name},\n\nThank you for contacting AVP FutureTech regarding "${inq.inquiryType || 'our institutional programs'}".\n\nRegarding your requirements:\n\n\nBest regards,\nExecutive Desk\nAVP FutureTech LLP\nPh: +91 7517238914`
+      replyDraft: `Hi ${inq.name},\n\nThank you for contacting AVP FutureTech regarding "${inq.inquiryType || 'our institutional programs'}".\n\nRegarding your requirements:\n\n\nBest regards,\nExecutive Desk\nAVP FutureTech LLP\nPh: +91 9307076962 / +91 7744001079\nEmail: contact@avpfuturetech.com`
     });
   };
 
@@ -451,9 +451,9 @@ export default function HomeInquiriesDesk({ onShowToast }: HomeInquiriesDeskProp
                           : "bg-green-50 text-green-800 border-green-200"
                       }`}
                     >
-                      <option value="Pending">🟡 Pending</option>
-                      <option value="Contacted">🔵 Contacted</option>
-                      <option value="Resolved">🟢 Resolved</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Contacted">Contacted</option>
+                      <option value="Resolved">Resolved</option>
                     </select>
 
                     {/* Counselor Notes */}
@@ -533,9 +533,9 @@ export default function HomeInquiriesDesk({ onShowToast }: HomeInquiriesDeskProp
                   onChange={(e) => setNotesForm({ ...notesForm, status: e.target.value })}
                   className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-[#1E63D6] focus:outline-hidden"
                 >
-                  <option value="Pending">🟡 Pending</option>
-                  <option value="Contacted">🔵 Contacted / In Discussion</option>
-                  <option value="Resolved">🟢 Resolved / Converted</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Contacted">Contacted / In Discussion</option>
+                  <option value="Resolved">Resolved / Converted</option>
                 </select>
               </div>
 

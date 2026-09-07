@@ -59,7 +59,7 @@ export default function InquiryManagement() {
     setNotesForm({
       status: inq.status || 'Pending',
       notes: inq.counselorNotes || '',
-      replyDraft: `Hi ${inq.name},\n\nThank you for reaching out to the AVP FutureTech Admissions Desk regarding our Internship & Aptitude Test 2026.\n\nIn response to your query:\n\n\nBest regards,\nAdmissions & Mentorship Desk\nAVP FutureTech LLP`
+      replyDraft: `Hi ${inq.name},\n\nThank you for reaching out to the AVP FutureTech Admissions Desk regarding our Internship & Aptitude Test 2026.\n\nIn response to your query:\n\n\nBest regards,\nAdmissions & Mentorship Desk\nAVP FutureTech LLP\nPh: +91 9307076962 / +91 7744001079\nEmail: contact@avpfuturetech.com`
     });
   };
 
@@ -392,9 +392,9 @@ export default function InquiryManagement() {
                         outline: 'none'
                       }}
                     >
-                      <option value="Pending">🟡 Pending</option>
-                      <option value="Contacted">🔵 Contacted</option>
-                      <option value="Resolved">🟢 Resolved</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Contacted">Contacted</option>
+                      <option value="Resolved">Resolved</option>
                     </select>
 
                     <button
@@ -543,9 +543,9 @@ export default function InquiryManagement() {
                   value={notesForm.status}
                   onChange={(e) => setNotesForm({ ...notesForm, status: e.target.value })}
                 >
-                  <option value="Pending">🟡 Pending (Awaiting Counselor Action)</option>
-                  <option value="Contacted">🔵 Contacted (In-Progress Counseling)</option>
-                  <option value="Resolved">🟢 Resolved (Query Answered & Closed)</option>
+                  <option value="Pending">Pending (Awaiting Counselor Action)</option>
+                  <option value="Contacted">Contacted (In-Progress Counseling)</option>
+                  <option value="Resolved">Resolved (Query Answered & Closed)</option>
                 </select>
               </div>
 

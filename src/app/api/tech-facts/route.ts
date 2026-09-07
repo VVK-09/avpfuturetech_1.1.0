@@ -147,15 +147,135 @@ export const TECH_FACTS: TechFact[] = [
   }
 ];
 
+export interface TechNewsItem {
+  id: string;
+  title: string;
+  url?: string;
+  source: string;
+  category: string;
+  timeAgo: string;
+  points?: number;
+}
+
+const FALLBACK_TECH_NEWS: TechNewsItem[] = [
+  {
+    id: "tn-1",
+    title: "Next-Gen Edge AI: 3nm Neuromorphic Chips Enable Real-Time Vision on Sub-5W Drones",
+    source: "IEEE Spectrum",
+    category: "AI & Hardware",
+    timeAgo: "1h ago",
+    url: "https://spectrum.ieee.org"
+  },
+  {
+    id: "tn-2",
+    title: "Open-Source RISC-V Architecture Surges Past 10 Billion Embedded Cores Worldwide",
+    source: "RISC-V International",
+    category: "Semiconductors",
+    timeAgo: "2h ago",
+    url: "https://riscv.org"
+  },
+  {
+    id: "tn-3",
+    title: "Autonomous RAG Agents & Local LLMs Transform Enterprise Engineering Workflows",
+    source: "Hacker News",
+    category: "Software Engineering",
+    timeAgo: "3h ago",
+    url: "https://news.ycombinator.com"
+  },
+  {
+    id: "tn-4",
+    title: "Quantum Supercomputing: 1,000-Qubit Processor Simulates Complex Molecule Bonding",
+    source: "Nature Physics",
+    category: "Quantum",
+    timeAgo: "4h ago",
+    url: "https://nature.com"
+  },
+  {
+    id: "tn-5",
+    title: "WebAssembly 3.0 Finalized: Ultra-Low Latency C++ and Rust Execution in All Browsers",
+    source: "W3C Standards",
+    category: "Web Tech",
+    timeAgo: "5h ago",
+    url: "https://webassembly.org"
+  },
+  {
+    id: "tn-6",
+    title: "ISRO & Space Agencies Deploy Edge AI for Real-Time Satellite Earth Observation",
+    source: "ISRO News",
+    category: "Space & AI",
+    timeAgo: "6h ago",
+    url: "https://isro.gov.in"
+  }
+];
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category");
   const random = searchParams.get("random");
+  const fetchNews = searchParams.get("news") !== "false";
 
   let filtered = TECH_FACTS;
   if (category && category !== "all") {
     filtered = TECH_FACTS.filter((f) => f.category === category);
     if (filtered.length === 0) filtered = TECH_FACTS;
+  }
+
+  // Live Tech News from Free Public API (HackerNews / Dev.to)
+  let liveNews: TechNewsItem[] = FALLBACK_TECH_NEWS;
+  if (fetchNews) {
+    try {
+      // Fetch top tech stories from Hacker News official free JSON API (5 stories) with 2.5s timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+      const topStoriesRes = await fetch("https://hacker-news.firebaseio.com/v0/topstories.json", {
+        signal: controller.signal,
+        next: { revalidate: 300 } // cache for 5 minutes
+      });
+
+      if (topStoriesRes.ok) {
+        const storyIds: number[] = await topStoriesRes.json();
+        const top5Ids = (storyIds || []).slice(0, 5);
+
+        const storyPromises = top5Ids.map(async (id) => {
+          const itemRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
+            signal: controller.signal,
+            next: { revalidate: 300 }
+          });
+          if (itemRes.ok) {
+            return itemRes.json();
+          }
+          return null;
+        });
+
+        const fetchedStories = await Promise.all(storyPromises);
+        clearTimeout(timeoutId);
+
+        const parsedNews: TechNewsItem[] = fetchedStories
+          .filter((s) => s && s.title)
+          .map((s) => {
+            const timeDiffHours = Math.max(1, Math.floor((Date.now() / 1000 - s.time) / 3600));
+            return {
+              id: `hn-${s.id}`,
+              title: s.title,
+              url: s.url || `https://news.ycombinator.com/item?id=${s.id}`,
+              source: "Hacker News",
+              category: s.score > 200 ? "Trending" : "Tech News",
+              timeAgo: `${timeDiffHours}h ago`,
+              points: s.score || 0
+            };
+          });
+
+        if (parsedNews.length > 0) {
+          liveNews = parsedNews;
+        }
+      } else {
+        clearTimeout(timeoutId);
+      }
+    } catch {
+      // Use FALLBACK_TECH_NEWS seamlessly if network is slow/offline
+      liveNews = FALLBACK_TECH_NEWS;
+    }
   }
 
   // Also try to optionally pull a fresh random general fact from open API for live variability
@@ -172,7 +292,7 @@ export async function GET(request: Request) {
         }
       }
     } catch {
-      // Gracefully fall back to internal curated list
+      // Gracefully fall back
     }
   }
 
@@ -181,6 +301,8 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     fact: selectedFact,
+    allFacts: TECH_FACTS,
+    news: liveNews,
     totalCount: filtered.length,
     allCategories: [
       { id: "all", label: "All Topics" },

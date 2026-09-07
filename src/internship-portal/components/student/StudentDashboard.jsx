@@ -224,7 +224,7 @@ export default function StudentDashboard() {
                         Total Score: {student.scoreData.percentage}% ({student.scoreData.totalScore}/50)
                       </div>
                       <div style={{ fontSize: '0.82rem', color: isMerit ? 'var(--electric-blue)' : 'var(--text-muted)', fontWeight: 600 }}>
-                        {isMerit ? '★ Merit Reward: ₹699 Special Fee Tier' : 'Standard Fee Tier: ₹5,999'}
+                        {isMerit ? 'Merit Reward: ₹699 Special Fee Tier' : 'Standard Fee Tier: ₹5,999'}
                       </div>
                     </div>
 

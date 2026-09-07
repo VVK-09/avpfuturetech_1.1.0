@@ -16,10 +16,13 @@ import {
   HelpCircle,
   TrendingUp,
   Tag,
-  Layers,
   Check,
   Briefcase,
-  Code2
+  Code2,
+  Laptop,
+  Brain,
+  Cpu,
+  Megaphone
 } from 'lucide-react';
 
 const DOMAIN_METRICS = {
@@ -70,13 +73,13 @@ export default function AllDomainsView() {
   // 6 Official Categories with dynamic counts
   const categories = useMemo(() => {
     const categoryDefs = [
-      { id: 'All', label: '🌟 All Specializations', icon: '🌟' },
-      { id: 'Computer Science & IT', label: '💻 Computer Science & IT', icon: '💻' },
-      { id: 'Artificial Intelligence & Data', label: '🧠 AI & Data Science', icon: '🧠' },
-      { id: 'Cybersecurity', label: '🛡️ Cybersecurity', icon: '🛡️' },
-      { id: 'Electronics, IoT & Embedded', label: '⚡ Electronics, IoT & Embedded', icon: '⚡' },
-      { id: 'Business & Management', label: '📊 Business & Management', icon: '📊' },
-      { id: 'Marketing & Media', label: '📢 Marketing & Media', icon: '📢' }
+      { id: 'All', label: 'All Specializations', icon: Sparkles },
+      { id: 'Computer Science & IT', label: 'Computer Science & IT', icon: Laptop },
+      { id: 'Artificial Intelligence & Data', label: 'AI & Data Science', icon: Brain },
+      { id: 'Cybersecurity', label: 'Cybersecurity', icon: Shield },
+      { id: 'Electronics, IoT & Embedded', label: 'Electronics, IoT & Embedded', icon: Cpu },
+      { id: 'Business & Management', label: 'Business & Management', icon: Briefcase },
+      { id: 'Marketing & Media', label: 'Marketing & Media', icon: Megaphone }
     ];
 
     return categoryDefs.map(cat => {
@@ -85,7 +88,6 @@ export default function AllDomainsView() {
         : domains.filter(d => (d.category || 'Computer Science & IT') === cat.id).length;
       return {
         ...cat,
-        labelWithCount: `${cat.label} (${count})`,
         count
       };
     });
@@ -110,6 +112,14 @@ export default function AllDomainsView() {
 
   const handleEnrollClick = (domain) => {
     openModal('register', { domainId: domain.id, domainName: domain.name });
+  };
+
+  const handleBackToHome = () => {
+    if (typeof window !== 'undefined' && window.location.pathname.includes('/domains')) {
+      window.location.href = '/internships';
+    } else {
+      setCurrentView('landing');
+    }
   };
 
   return (
@@ -151,7 +161,7 @@ export default function AllDomainsView() {
           {/* Navigation Bar: Back to Home Button & Breadcrumbs */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
             <button
-              onClick={() => setCurrentView('landing')}
+              onClick={handleBackToHome}
               className="btn btn-ghost"
               style={{
                 color: '#FFFFFF',
@@ -170,11 +180,11 @@ export default function AllDomainsView() {
               }}
             >
               <ArrowLeft size={16} />
-              Back to Home
+              Back to Internship Home
             </button>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: '#93C5FD' }}>
-              <span style={{ cursor: 'pointer', color: '#CBD5E1' }} onClick={() => setCurrentView('landing')}>Home</span>
+              <span style={{ cursor: 'pointer', color: '#CBD5E1' }} onClick={handleBackToHome}>Home</span>
               <span>/</span>
               <span style={{ color: '#FFFFFF', fontWeight: 700 }}>Internship Domains Catalog</span>
             </div>
@@ -264,12 +274,16 @@ export default function AllDomainsView() {
           {/* Category Filter Tabs */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {categories.map((cat) => {
+              const Icon = cat.icon;
               const isActive = selectedCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
                     padding: '0.45rem 1.05rem',
                     borderRadius: '9999px',
                     fontSize: '0.86rem',
@@ -282,7 +296,8 @@ export default function AllDomainsView() {
                     transition: 'all 0.2s ease'
                   }}
                 >
-                  {cat.labelWithCount || cat.label}
+                  <Icon size={14} style={{ color: isActive ? 'var(--electric-blue)' : '#64748b' }} />
+                  <span>{cat.label} ({cat.count})</span>
                 </button>
               );
             })}
@@ -310,7 +325,7 @@ export default function AllDomainsView() {
       </div>
 
       {/* Main Domains Detailed Cards Grid */}
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1480px' }}>
         {filteredDomains.length === 0 ? (
           <div style={{
             backgroundColor: '#FFFFFF',
@@ -363,7 +378,7 @@ export default function AllDomainsView() {
                   onMouseLeave={() => setHoveredDomainId(null)}
                   style={{
                     backgroundColor: '#FFFFFF',
-                    borderRadius: '22px',
+                    borderRadius: '20px',
                     border: isHovered ? '1.5px solid var(--electric-blue)' : '1.5px solid var(--border-light)',
                     overflow: 'hidden',
                     display: 'flex',
@@ -377,7 +392,7 @@ export default function AllDomainsView() {
                   }}
                 >
                   {/* Domain Image Banner Header */}
-                  <div style={{ position: 'relative', height: '190px', width: '100%', overflow: 'hidden', backgroundColor: '#0B1E3D' }}>
+                  <div style={{ position: 'relative', height: '170px', width: '100%', overflow: 'hidden', backgroundColor: '#0B1E3D' }}>
                     <img
                       src={displayImage}
                       alt={domain.name}
@@ -401,15 +416,11 @@ export default function AllDomainsView() {
                       background: 'linear-gradient(180deg, rgba(11,30,61,0.2) 0%, rgba(11,30,61,0.75) 100%)'
                     }} />
 
-                    {/* Top Badges on Image */}
+                    {/* Top Duration Badge on Image */}
                     <div style={{
                       position: 'absolute',
                       top: '12px',
                       left: '12px',
-                      right: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
                       zIndex: 2
                     }}>
                       <span style={{
@@ -428,49 +439,17 @@ export default function AllDomainsView() {
                         <Clock size={12} color="#38BDF8" />
                         {domain.duration ? domain.duration.split('(')[0].trim() : '3 Months'}
                       </span>
-
-                      <span style={{
-                        backgroundColor: 'rgba(30, 99, 214, 0.95)',
-                        backdropFilter: 'blur(8px)',
-                        color: '#FFFFFF',
-                        padding: '0.3rem 0.7rem',
-                        borderRadius: '8px',
-                        fontSize: '0.74rem',
-                        fontWeight: 700,
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.25)'
-                      }}>
-                        {domain.badge || 'Open Track'}
-                      </span>
                     </div>
 
-                    {/* Bottom Image Overlay: Placement CTC & Rating */}
+                    {/* Bottom Image Overlay: Rating */}
                     <div style={{
                       position: 'absolute',
                       bottom: '10px',
-                      left: '12px',
                       right: '12px',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
                       zIndex: 2
                     }}>
-                      <span style={{
-                        backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                        backdropFilter: 'blur(8px)',
-                        color: '#38BDF8',
-                        padding: '0.25rem 0.65rem',
-                        borderRadius: '6px',
-                        fontSize: '0.72rem',
-                        fontWeight: 700,
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.35rem',
-                        border: '1px solid rgba(56, 189, 248, 0.3)'
-                      }}>
-                        <TrendingUp size={12} />
-                        CTC: {metric.ctc}
-                      </span>
-
                       <div style={{
                         backgroundColor: 'rgba(255, 255, 255, 0.95)',
                         padding: '0.22rem 0.55rem',
@@ -491,10 +470,10 @@ export default function AllDomainsView() {
                   </div>
 
                   {/* Card Body */}
-                  <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <div style={{ padding: '1.35rem 1.25rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div style={{ marginBottom: '0.75rem' }}>
                       <h2 style={{
-                        fontSize: '1.38rem',
+                        fontSize: '1.22rem',
                         fontWeight: 800,
                         color: 'var(--primary-navy)',
                         lineHeight: 1.25,
@@ -504,7 +483,7 @@ export default function AllDomainsView() {
                         {domain.name}
                       </h2>
                       <div style={{
-                        fontSize: '0.84rem',
+                        fontSize: '0.82rem',
                         fontWeight: 600,
                         color: 'var(--electric-blue)',
                         lineHeight: 1.35
@@ -513,28 +492,78 @@ export default function AllDomainsView() {
                       </div>
                     </div>
 
-                    {/* Short Description */}
-                    <p style={{
-                      fontSize: '0.88rem',
-                      color: 'var(--text-body)',
-                      lineHeight: 1.55,
-                      marginBottom: '1rem'
+                    {/* Core Deliverable Highlights with Micro-Card Badges */}
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.4rem',
+                      backgroundColor: '#F8FAFC',
+                      borderRadius: '12px',
+                      padding: '0.7rem 0.85rem',
+                      border: '1px solid rgba(226, 232, 240, 0.8)',
+                      marginBottom: '0.9rem'
                     }}>
-                      {domain.shortDescription}
-                    </p>
+                      {[
+                        { label: 'Internship Certificate', icon: Award, color: '#2563EB', bg: 'rgba(37, 99, 235, 0.1)' },
+                        { label: 'Placement Assistance', icon: Briefcase, color: '#059669', bg: 'rgba(16, 185, 129, 0.1)' },
+                        { label: 'Letter of Recommendation', icon: FileText, color: '#7C3AED', bg: 'rgba(124, 58, 237, 0.1)' }
+                      ].map((item, idx) => {
+                        const ItemIcon = item.icon;
+                        return (
+                          <div
+                            key={idx}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.6rem',
+                              fontSize: '0.82rem',
+                              fontWeight: 650,
+                              color: '#1E293B',
+                              lineHeight: 1.3
+                            }}
+                          >
+                            <div style={{
+                              width: '24px',
+                              height: '24px',
+                              borderRadius: '6px',
+                              backgroundColor: item.bg,
+                              color: item.color,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flexShrink: 0
+                            }}>
+                              <ItemIcon size={13} strokeWidth={2.4} />
+                            </div>
+                            <span>{item.label}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
 
                     {/* Key Capstone Deliverable Highlight Box */}
                     <div style={{
-                      backgroundColor: 'var(--bg-subtle)',
+                      background: 'linear-gradient(135deg, rgba(30, 99, 214, 0.05) 0%, rgba(56, 189, 248, 0.08) 100%)',
                       borderRadius: '10px',
                       padding: '0.65rem 0.85rem',
-                      border: '1px solid var(--border-light)',
-                      marginBottom: '1rem'
+                      border: '1px solid rgba(30, 99, 214, 0.15)',
+                      borderLeft: '3.5px solid var(--electric-blue)',
+                      marginBottom: '0.9rem'
                     }}>
-                      <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '0.15rem' }}>
-                        ⭐ Key Production Capstone
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                        fontSize: '0.66rem',
+                        fontWeight: 800,
+                        color: 'var(--electric-blue)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.4px',
+                        marginBottom: '0.15rem'
+                      }}>
+                        <Sparkles size={11} /> Production Capstone
                       </div>
-                      <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--primary-navy)', lineHeight: 1.35 }}>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 750, color: 'var(--primary-navy)', lineHeight: 1.35 }}>
                         {metric.capstone}
                       </div>
                     </div>
@@ -545,7 +574,7 @@ export default function AllDomainsView() {
                         display: 'flex',
                         flexWrap: 'wrap',
                         gap: '0.35rem',
-                        marginBottom: '1.25rem'
+                        marginBottom: '1rem'
                       }}>
                         {domain.tools.slice(0, 5).map((tool, idx) => (
                           <span
@@ -553,18 +582,18 @@ export default function AllDomainsView() {
                             style={{
                               fontSize: '0.72rem',
                               padding: '0.2rem 0.5rem',
-                              backgroundColor: '#FFFFFF',
+                              backgroundColor: '#F1F5F9',
                               borderRadius: '6px',
-                              border: '1px solid var(--border-light)',
-                              color: 'var(--primary-navy)',
-                              fontWeight: 600
+                              border: '1px solid #E2E8F0',
+                              color: '#334155',
+                              fontWeight: 650
                             }}
                           >
                             {tool}
                           </span>
                         ))}
                         {domain.tools.length > 5 && (
-                          <span style={{ fontSize: '0.72rem', padding: '0.2rem 0.4rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                          <span style={{ fontSize: '0.72rem', padding: '0.2rem 0.4rem', color: '#64748B', fontWeight: 600 }}>
                             +{domain.tools.length - 5} more
                           </span>
                         )}
@@ -641,7 +670,7 @@ export default function AllDomainsView() {
                           textAlign: 'right',
                           border: '1px solid #BBF7D0'
                         }}>
-                          ★ 88% Merit Subsidy
+                          88% Merit Subsidy
                         </div>
                       </div>
                       <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>

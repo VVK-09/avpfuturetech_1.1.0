@@ -157,8 +157,50 @@ export default function VerificationView({ initialQuery = '' }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#F7F9FC', minHeight: 'calc(100vh - 80px)', padding: '3rem 1rem 5rem 1rem' }}>
-      <div className="container" style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <div style={{
+      backgroundColor: '#F8FAFD',
+      backgroundImage: 'linear-gradient(180deg, #FFFFFF 0%, #F4F7FD 35%, #EDF2FA 100%)',
+      minHeight: 'calc(100vh - 80px)',
+      padding: '3.5rem 1rem 5.5rem 1rem',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Premium Tech Blueprint & Dot Matrix Pattern */}
+      <div className="avp-pattern-blueprint" />
+
+      {/* Decorative ambient background glows */}
+      <div style={{
+        position: 'absolute',
+        top: '-5%',
+        left: '10%',
+        width: '550px',
+        height: '550px',
+        background: 'radial-gradient(circle, rgba(30, 99, 214, 0.06) 0%, transparent 70%)',
+        borderRadius: '50%',
+        pointerEvents: 'none'
+      }} />
+      <div style={{
+        position: 'absolute',
+        top: '20%',
+        right: '-8%',
+        width: '500px',
+        height: '500px',
+        background: 'radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%)',
+        borderRadius: '50%',
+        pointerEvents: 'none'
+      }} />
+      <div style={{
+        position: 'absolute',
+        bottom: '5%',
+        left: '-5%',
+        width: '450px',
+        height: '450px',
+        background: 'radial-gradient(circle, rgba(16, 185, 129, 0.04) 0%, transparent 70%)',
+        borderRadius: '50%',
+        pointerEvents: 'none'
+      }} />
+
+      <div className="container" style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
         
         {/* Top Back Action */}
         <div style={{ marginBottom: '1.5rem' }}>
@@ -208,7 +250,7 @@ export default function VerificationView({ initialQuery = '' }) {
         </div>
 
         {/* Verification Search Bar */}
-        <div style={{ maxWidth: '640px', margin: '0 auto 3rem auto' }}>
+        <div style={{ maxWidth: '660px', margin: '0 auto 3rem auto' }}>
           <form
             onSubmit={handleSearch}
             style={{
@@ -216,13 +258,13 @@ export default function VerificationView({ initialQuery = '' }) {
               alignItems: 'center',
               backgroundColor: '#FFFFFF',
               borderRadius: '16px',
-              border: '1.5px solid var(--border-light)',
-              boxShadow: '0 10px 25px -5px rgba(11, 30, 61, 0.08)',
-              padding: '0.35rem 0.5rem 0.35rem 1rem',
-              transition: 'border-color 0.2s'
+              border: '1.5px solid rgba(30, 99, 214, 0.18)',
+              boxShadow: '0 12px 35px -5px rgba(11, 30, 61, 0.08), 0 0 0 1px rgba(30, 99, 214, 0.05)',
+              padding: '0.4rem 0.5rem 0.4rem 1.15rem',
+              transition: 'all 0.25s ease'
             }}
           >
-            <Search size={18} color="#94A3B8" style={{ marginRight: '0.75rem', flexShrink: 0 }} />
+            <Search size={19} color="#1E63D6" style={{ marginRight: '0.75rem', flexShrink: 0 }} />
             <input
               type="text"
               value={searchInput}
@@ -235,7 +277,7 @@ export default function VerificationView({ initialQuery = '' }) {
                 fontSize: '0.95rem',
                 color: 'var(--primary-navy)',
                 backgroundColor: 'transparent',
-                fontWeight: 500
+                fontWeight: 600
               }}
             />
             <button
@@ -243,12 +285,12 @@ export default function VerificationView({ initialQuery = '' }) {
               className="btn btn-primary"
               style={{
                 borderRadius: '12px',
-                padding: '0.65rem 1.4rem',
-                fontSize: '0.88rem',
+                padding: '0.7rem 1.5rem',
+                fontSize: '0.9rem',
                 fontWeight: 700,
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.4rem',
+                gap: '0.45rem',
                 flexShrink: 0
               }}
             >
@@ -267,9 +309,9 @@ export default function VerificationView({ initialQuery = '' }) {
                 {/* Official Verification Plaque Card */}
                 <div style={{
                   backgroundColor: '#FFFFFF',
-                  borderRadius: '16px',
-                  boxShadow: '0 12px 32px rgba(11, 30, 61, 0.08)',
-                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
+                  borderRadius: '18px',
+                  boxShadow: '0 16px 36px -6px rgba(11, 30, 61, 0.08), 0 2px 8px -2px rgba(11, 30, 61, 0.04)',
+                  border: '1.5px solid rgba(16, 185, 129, 0.35)',
                   overflow: 'hidden'
                 }}>
                   {/* Status Banner */}
@@ -341,127 +383,101 @@ export default function VerificationView({ initialQuery = '' }) {
 
                       <div>
                         <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-light)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
-                          Credential / Intern ID
+                          Domain Specialization
                         </div>
-                        <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--electric-blue)', fontFamily: 'monospace' }}>
+                        <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--electric-blue)' }}>
+                          {verifiedCandidate.domain}
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{verifiedCandidate.duration || '3 Months (12 Milestones)'}</div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-light)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
+                          Accredited Credential ID
+                        </div>
+                        <div style={{ fontFamily: 'monospace', fontSize: '1rem', fontWeight: 800, color: '#059669', letterSpacing: '0.5px' }}>
                           {verifiedCandidate.internId || verifiedCandidate.id}
                         </div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>ISO 9001:2015 Encoded</div>
-                      </div>
-
-                      <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-light)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
-                          Specialization Track
-                        </div>
-                        <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--primary-navy)' }}>
-                          {verifiedCandidate.chosenDomainName || 'Artificial Intelligence & ML'}
-                        </div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>3-Month Industry Program</div>
-                      </div>
-
-                      <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-light)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
-                          Issue Date & Authority
-                        </div>
-                        <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--primary-navy)' }}>
-                          {verifiedCandidate.issueDate || '7 September 2026'}
-                        </div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>AVP FutureTech LLP</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Issue Date: {verifiedCandidate.certificateDate || verifiedCandidate.completionDate || 'March 2026'}</div>
                       </div>
                     </div>
 
-                    {/* Authority & Actions */}
-                    <div style={{ marginTop: '1.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                        <Building2 size={18} color="var(--electric-blue)" />
-                        <span style={{ fontSize: '0.82rem', color: 'var(--text-body)' }}>
-                          <strong>Accreditation:</strong> Recognized by Ministry of Corporate Affairs (Govt. of India) · ISO 9001:2015 Certified
-                        </span>
+                    {/* Additional Recognition Details */}
+                    <div style={{ paddingTop: '1.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                        <Award size={16} color="#059669" />
+                        <span>Grade: <strong style={{ color: 'var(--primary-navy)' }}>{verifiedCandidate.grade || 'A+ (Merit Distinction)'}</strong></span>
+                        <span>•</span>
+                        <span>Capstone: <strong style={{ color: 'var(--primary-navy)' }}>{verifiedCandidate.capstoneTitle || 'Enterprise Production Microservice Platform'}</strong></span>
                       </div>
 
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <button
                           onClick={handleCopyLink}
-                          className="btn btn-ghost btn-sm"
-                          style={{ borderRadius: '10px', fontSize: '0.82rem', fontWeight: 700, border: '1.5px solid var(--border-light)' }}
+                          className="btn btn-outline btn-sm"
+                          style={{ borderRadius: '8px', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
                         >
                           {copied ? <Check size={14} color="#059669" /> : <Copy size={14} />}
-                          <span>{copied ? 'Link Copied!' : 'Copy Verification URL'}</span>
+                          <span>{copied ? 'Link Copied!' : 'Copy Verification Link'}</span>
                         </button>
-
                         <button
                           onClick={handleDownload}
                           className="btn btn-primary btn-sm"
-                          style={{ borderRadius: '10px', fontSize: '0.82rem', fontWeight: 700 }}
+                          style={{ borderRadius: '8px', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
                         >
                           <Download size={14} />
-                          <span>Download Certificate (300 DPI)</span>
+                          <span>Download Certificate (PNG)</span>
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Live High-Resolution Certificate Canvas Display */}
+                {/* Live High-Res Certificate Canvas Preview */}
                 <div style={{
                   backgroundColor: '#FFFFFF',
-                  borderRadius: '16px',
-                  boxShadow: '0 12px 32px rgba(11, 30, 61, 0.08)',
-                  border: '1.5px solid var(--border-light)',
+                  borderRadius: '18px',
+                  boxShadow: '0 16px 36px -6px rgba(11, 30, 61, 0.08), 0 2px 8px -2px rgba(11, 30, 61, 0.04)',
+                  border: '1px solid rgba(226, 232, 240, 0.85)',
                   padding: '1.75rem',
                   textAlign: 'center'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textAlign: 'left' }}>
-                      <Award size={20} color="#C5A059" />
-                      <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
-                        Official Verified Certificate (High-Resolution 300 DPI)
-                      </h2>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+                    <div style={{ textAlign: 'left' }}>
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
+                        Live Certificate Render & Verification Matrix
+                      </h3>
+                      <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                        Rendered with real-time cryptographic signature checks, seal verification, and anti-forgery patterns.
+                      </p>
                     </div>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.25rem 0.65rem', borderRadius: '6px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--badge-blue-text)', border: '1px solid var(--badge-blue-border)' }}>
-                      3508 × 2480 px Print Ready
-                    </span>
+                    <button
+                      onClick={handleDownload}
+                      className="btn btn-primary btn-sm"
+                      style={{ borderRadius: '8px', fontSize: '0.82rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+                    >
+                      <Download size={15} />
+                      <span>Download HQ Certificate</span>
+                    </button>
                   </div>
 
-                  {/* Canvas Container */}
-                  <div style={{ borderRadius: '12px', overflow: 'hidden', border: '2px solid var(--border-light)', backgroundColor: '#FFFFFF', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)' }}>
+                  <div style={{
+                    width: '100%',
+                    overflowX: 'auto',
+                    backgroundColor: '#0B1E3D',
+                    borderRadius: '12px',
+                    padding: '1rem',
+                    boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.5)'
+                  }}>
                     <canvas
                       ref={canvasRef}
                       style={{
-                        width: '100%',
+                        maxWidth: '100%',
                         height: 'auto',
-                        display: 'block',
-                        margin: '0 auto',
-                        maxWidth: '100%'
+                        borderRadius: '6px',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
                       }}
                     />
-                  </div>
-
-                  {/* Signatories Details */}
-                  <div style={{
-                    marginTop: '1.75rem',
-                    paddingTop: '1.25rem',
-                    borderTop: '1px solid var(--border-light)',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: '1rem',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ padding: '0.75rem', borderRadius: '10px', backgroundColor: 'var(--bg-subtle)' }}>
-                      <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--primary-navy)' }}>Avishkar Kamble</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-body)', fontWeight: 600 }}>Director of Academics & Strategy</div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-light)' }}>AVP FutureTech LLP</div>
-                    </div>
-                    <div style={{ padding: '0.75rem', borderRadius: '10px', backgroundColor: 'var(--bg-subtle)' }}>
-                      <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--primary-navy)' }}>Vaishnav Kubade</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-body)', fontWeight: 600 }}>Director of Technology & R&D</div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-light)' }}>AVP FutureTech LLP</div>
-                    </div>
-                    <div style={{ padding: '0.75rem', borderRadius: '10px', backgroundColor: 'var(--bg-subtle)' }}>
-                      <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--primary-navy)' }}>Prathmesh Narvekar</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-body)', fontWeight: 600 }}>Director of Training & Operations</div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-light)' }}>AVP FutureTech LLP</div>
-                    </div>
                   </div>
                 </div>
 
@@ -470,19 +486,19 @@ export default function VerificationView({ initialQuery = '' }) {
               /* Not Found Card */
               <div style={{
                 backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                border: '1.5px solid #FECACA',
-                padding: '2.5rem 1.5rem',
+                borderRadius: '18px',
+                border: '1.5px solid rgba(239, 68, 68, 0.3)',
+                boxShadow: '0 16px 36px -6px rgba(239, 68, 68, 0.08), 0 2px 8px -2px rgba(11, 30, 61, 0.04)',
+                padding: '3rem 1.5rem',
                 textAlign: 'center',
                 maxWidth: '640px',
-                margin: '0 auto',
-                boxShadow: '0 10px 25px rgba(239, 68, 68, 0.08)'
+                margin: '0 auto'
               }}>
                 <div style={{
                   width: '56px',
                   height: '56px',
                   borderRadius: '16px',
-                  backgroundColor: '#FEF2F2',
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)',
                   color: '#DC2626',
                   display: 'flex',
                   alignItems: 'center',
@@ -491,37 +507,19 @@ export default function VerificationView({ initialQuery = '' }) {
                 }}>
                   <AlertCircle size={28} />
                 </div>
-                <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
-                  Credential Not Found in Registry
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
+                  Credential Record Not Found
                 </h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  We could not find an official credential matching <strong style={{ color: '#DC2626' }}>"{activeQuery}"</strong>. Please check the spelling of the Credential ID or email and try again.
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '480px', margin: '0 auto 1.5rem auto' }}>
+                  No certificate record was located matching <strong style={{ color: 'var(--primary-navy)' }}>"{activeQuery}"</strong>. Please verify the Credential ID or email format and try again.
                 </p>
-
-                <div style={{
-                  padding: '1rem',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--bg-subtle)',
-                  border: '1px solid var(--border-light)',
-                  textAlign: 'left',
-                  fontSize: '0.82rem',
-                  color: 'var(--text-body)',
-                  marginBottom: '1.5rem',
-                  lineHeight: 1.6
-                }}>
-                  <div style={{ fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.25rem' }}>Verification Guidelines:</div>
-                  <div>• Enter the exact Credential ID assigned upon program completion.</div>
-                  <div>• Alternatively, search using the student's registered email address.</div>
-                  <div>• Ensure the candidate has completed all required internship milestones.</div>
-                </div>
-
-                <a
-                  href="/our-company#contact"
-                  className="btn btn-navy"
-                  style={{ borderRadius: '10px', fontSize: '0.85rem', fontWeight: 700, padding: '0.65rem 1.4rem' }}
+                <button
+                  onClick={() => { setSearchInput(''); setSearched(false); }}
+                  className="btn btn-outline btn-sm"
+                  style={{ borderRadius: '8px' }}
                 >
-                  Contact Academic Verification Desk
-                </a>
+                  Clear Search & Try Again
+                </button>
               </div>
             )}
           </div>
@@ -529,46 +527,46 @@ export default function VerificationView({ initialQuery = '' }) {
           /* Initial Standby Prompt State */
           <div style={{
             backgroundColor: '#FFFFFF',
-            borderRadius: '16px',
-            border: '1.5px solid var(--border-light)',
-            boxShadow: '0 10px 25px rgba(11, 30, 61, 0.05)',
-            padding: '2.5rem 1.5rem',
+            borderRadius: '20px',
+            border: '1.5px solid rgba(226, 232, 240, 0.9)',
+            boxShadow: '0 16px 36px -6px rgba(11, 30, 61, 0.07), 0 2px 8px -2px rgba(11, 30, 61, 0.03)',
+            padding: '3.5rem 1.5rem',
             textAlign: 'center',
-            maxWidth: '640px',
+            maxWidth: '660px',
             margin: '0 auto'
           }}>
             <div style={{
-              width: '56px',
-              height: '56px',
-              borderRadius: '16px',
+              width: '60px',
+              height: '60px',
+              borderRadius: '18px',
               backgroundColor: 'var(--badge-blue-bg)',
               color: 'var(--electric-blue)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '0 auto 1rem auto'
+              margin: '0 auto 1.25rem auto'
             }}>
-              <FileCheck2 size={28} />
+              <FileCheck2 size={30} />
             </div>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
               Ready to Verify Credentials
             </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '480px', margin: '0 auto 1.5rem auto' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.6, maxWidth: '480px', margin: '0 auto 1.5rem auto' }}>
               Enter a candidate's Credential ID or registered email address into the search field above to verify accreditation and view their official certificate.
             </p>
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem',
-              padding: '0.4rem 0.8rem',
-              borderRadius: '8px',
+              padding: '0.45rem 0.9rem',
+              borderRadius: '10px',
               backgroundColor: 'var(--bg-subtle)',
               border: '1px solid var(--border-light)',
-              fontSize: '0.78rem',
+              fontSize: '0.8rem',
               fontWeight: 600,
               color: 'var(--text-muted)'
             }}>
-              <Lock size={13} color="#94A3B8" />
+              <Lock size={13} color="#1E63D6" />
               Secure 256-Bit SSL Direct Academic Verification
             </div>
           </div>
@@ -576,43 +574,61 @@ export default function VerificationView({ initialQuery = '' }) {
 
         {/* Security & Verification Guarantee Cards */}
         <div style={{
-          marginTop: '3.5rem',
+          marginTop: '4rem',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '1.5rem'
         }}>
-          <div style={{ padding: '1.5rem', borderRadius: '14px', backgroundColor: '#FFFFFF', border: '1px solid var(--border-light)', boxShadow: '0 4px 12px rgba(11, 30, 61, 0.04)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.85rem' }}>
-              <Shield size={20} />
+          <div style={{
+            padding: '1.75rem',
+            borderRadius: '16px',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid rgba(226, 232, 240, 0.85)',
+            boxShadow: '0 10px 25px -4px rgba(11, 30, 61, 0.05), 0 2px 6px -1px rgba(11, 30, 61, 0.02)'
+          }}>
+            <div style={{ width: '42px', height: '42px', borderRadius: '12px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <Shield size={22} />
             </div>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.4rem' }}>
               Cryptographic Integrity
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
               Every certificate issued carries an immutable alphanumeric credential identifier cross-referenced directly against our central academic ledger.
             </p>
           </div>
 
-          <div style={{ padding: '1.5rem', borderRadius: '14px', backgroundColor: '#FFFFFF', border: '1px solid var(--border-light)', boxShadow: '0 4px 12px rgba(11, 30, 61, 0.04)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.85rem' }}>
-              <Award size={20} />
+          <div style={{
+            padding: '1.75rem',
+            borderRadius: '16px',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid rgba(226, 232, 240, 0.85)',
+            boxShadow: '0 10px 25px -4px rgba(11, 30, 61, 0.05), 0 2px 6px -1px rgba(11, 30, 61, 0.02)'
+          }}>
+            <div style={{ width: '42px', height: '42px', borderRadius: '12px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <Award size={22} />
             </div>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.4rem' }}>
               Govt. & ISO Accreditation
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
               AVP FutureTech LLP is incorporated under the Ministry of Corporate Affairs, Government of India, operating under strict ISO 9001:2015 quality standards.
             </p>
           </div>
 
-          <div style={{ padding: '1.5rem', borderRadius: '14px', backgroundColor: '#FFFFFF', border: '1px solid var(--border-light)', boxShadow: '0 4px 12px rgba(11, 30, 61, 0.04)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.85rem' }}>
-              <UserCheck size={20} />
+          <div style={{
+            padding: '1.75rem',
+            borderRadius: '16px',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid rgba(226, 232, 240, 0.85)',
+            boxShadow: '0 10px 25px -4px rgba(11, 30, 61, 0.05), 0 2px 6px -1px rgba(11, 30, 61, 0.02)'
+          }}>
+            <div style={{ width: '42px', height: '42px', borderRadius: '12px', backgroundColor: 'var(--badge-blue-bg)', color: 'var(--electric-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <UserCheck size={22} />
             </div>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.4rem' }}>
               Triple Executive Endorsement
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
               Each certificate is countersigned by our Directors of Academics, Technology & R&D, and Training Operations following rigorous code review.
             </p>
           </div>

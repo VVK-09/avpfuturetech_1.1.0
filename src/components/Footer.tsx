@@ -134,6 +134,14 @@ export default function Footer() {
               ))}
               <li>
                 <Link
+                  href="/internships/domains"
+                  className="text-slate-300 hover:text-[#38BDF8] hover:translate-x-1 inline-flex items-center gap-1 transition-all duration-200"
+                >
+                  <span>Internship Domains</span>
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/internships/verify"
                   className="text-slate-300 hover:text-[#38BDF8] hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200"
                 >
@@ -182,42 +190,36 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-[#38BDF8] shrink-0 mt-1" />
                 <span className="leading-snug">{SITE_CONFIG.contact.address}</span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#38BDF8] shrink-0" />
-                <div className="flex flex-col sm:flex-row sm:gap-2">
-                  <a
-                    href="tel:7517238914"
-                    className="hover:text-white transition-colors"
-                  >
-                    7517238914
-                  </a>
-                  <span className="hidden sm:inline text-slate-500">/</span>
-                  <a
-                    href="tel:7744001079"
-                    className="hover:text-white transition-colors"
-                  >
-                    7744001079
-                  </a>
+              <li className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 text-[#38BDF8] shrink-0 mt-1" />
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-2 flex-wrap text-sm">
+                    <a
+                      href="tel:9307076962"
+                      className="text-slate-100 font-medium hover:text-[#38BDF8] transition-colors"
+                    >
+                      +91 9307076962
+                    </a>
+                    <span className="text-slate-500">•</span>
+                    <a
+                      href="tel:7744001079"
+                      className="text-slate-100 font-medium hover:text-[#38BDF8] transition-colors"
+                    >
+                      +91 7744001079
+                    </a>
+                  </div>
+                  <span className="text-xs text-slate-400">
+                    Mon – Sat, 9:00 AM – 6:00 PM IST
+                  </span>
                 </div>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#38BDF8] shrink-0" />
                 <a
                   href={`mailto:${SITE_CONFIG.contact.email}`}
-                  className="hover:text-white transition-colors"
+                  className="text-slate-100 font-medium hover:text-[#38BDF8] transition-colors"
                 >
                   {SITE_CONFIG.contact.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Globe className="w-4 h-4 text-[#38BDF8] shrink-0" />
-                <a
-                  href={`https://${SITE_CONFIG.contact.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  {SITE_CONFIG.contact.website}
                 </a>
               </li>
             </ul>
@@ -226,10 +228,20 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {currentYear} AVP FutureTech. All rights reserved.</p>
-          <p className="text-slate-300 font-medium">
-            Empowering Young Minds. Building a Future-Ready India.
-          </p>
+          <div className="flex flex-col gap-1 text-center md:text-left">
+            <p>© {currentYear} AVP FutureTech LLP. All rights reserved.</p>
+            <p className="text-slate-400 text-xs flex items-center gap-1 justify-center md:justify-start">
+              <span>Made with ❤️ in Kokan</span> • <span>Empowering Future Innovators</span>
+            </p>
+          </div>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy-policy" className="hover:text-[#38BDF8] transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-of-service" className="hover:text-[#38BDF8] transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

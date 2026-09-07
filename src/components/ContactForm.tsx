@@ -92,14 +92,14 @@ export default function ContactForm() {
     } catch (err: any) {
       console.error("Submission error:", err);
       setStatus("error");
-      setErrorMessage("Failed to send inquiry. Please call us directly at 7517238914.");
+      setErrorMessage("Failed to send inquiry. Please call us directly at 9307076962.");
     }
   };
 
   const waMessage = submittedInquiry 
     ? encodeURIComponent(`Hi AVP FutureTech Team, my name is ${submittedInquiry.name} (${submittedInquiry.organization || 'Institution'}). I have submitted Inquiry #${submittedInquiry.id} regarding "${submittedInquiry.inquiryType}".\n\nRequirements: ${submittedInquiry.message || 'General consultation'}`)
     : "";
-  const whatsappUrl = `https://wa.me/917517238914?text=${waMessage}`;
+  const whatsappUrl = `https://wa.me/919307076962?text=${waMessage}`;
 
   return (
     <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-6 sm:p-8">
@@ -133,11 +133,11 @@ export default function ContactForm() {
             </a>
 
             <a
-              href="tel:7517238914"
+              href="tel:9307076962"
               className="w-full sm:w-auto px-5 py-3 rounded-xl text-xs font-bold text-[#0B1E3D] bg-[#F1F5F9] hover:bg-[#E2E8F0] border border-[#CBD5E1] transition-all flex items-center justify-center gap-2"
             >
               <Phone className="w-4 h-4 text-[#1E63D6]" />
-              <span>Call Founder: +91 7517238914</span>
+              <span>Call Founder: +91 9307076962</span>
             </a>
           </div>
 

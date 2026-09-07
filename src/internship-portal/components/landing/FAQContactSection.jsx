@@ -117,10 +117,14 @@ export default function FAQContactSection() {
 
   return (
     <section id="contact" className="section-py" style={{ 
-      backgroundColor: 'var(--bg-page)', 
+      backgroundColor: 'var(--bg-page)',
+      backgroundImage: 'linear-gradient(180deg, #FFFFFF 0%, #F5F8FD 50%, #EEF3FA 100%)',
       position: 'relative',
       overflow: 'hidden'
     }}>
+      {/* Minimal Tech Dot Pattern */}
+      <div className="avp-pattern-dots" />
+
       {/* Background ambient lighting */}
       <div style={{
         position: 'absolute',
@@ -128,7 +132,7 @@ export default function FAQContactSection() {
         left: '-8%',
         width: '450px',
         height: '450px',
-        background: 'radial-gradient(circle, rgba(30, 99, 214, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
+        background: 'radial-gradient(circle, rgba(30, 99, 214, 0.05) 0%, transparent 70%)',
         borderRadius: '50%',
         pointerEvents: 'none'
       }} />
@@ -137,9 +141,6 @@ export default function FAQContactSection() {
         
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}>
-            <HelpCircle size={14} color="var(--electric-blue)" /> ADMISSIONS & COUNSELING DESK
-          </div>
           <h2 className="section-title" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', letterSpacing: '-0.5px', marginBottom: '0.6rem' }}>
             Frequently Asked Questions & Support
           </h2>
@@ -317,60 +318,6 @@ export default function FAQContactSection() {
                 );
               })}
             </div>
-
-            {/* Direct Support Helpline Callout */}
-            <div style={{
-              marginTop: '1.75rem',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '16px',
-              border: '1px solid var(--border-light)',
-              padding: '1.25rem 1.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '1rem'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '12px',
-                  backgroundColor: 'var(--badge-blue-bg)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--electric-blue)'
-                }}>
-                  <Headphones size={22} />
-                </div>
-                <div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
-                    Need Direct Counseling Help?
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                    Call or WhatsApp our admissions desk directly
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <a
-                  href="tel:+917517532914"
-                  className="btn btn-outline btn-sm"
-                  style={{
-                    borderRadius: '8px',
-                    fontSize: '0.8rem',
-                    padding: '0.45rem 0.85rem',
-                    gap: '0.35rem',
-                    color: 'var(--primary-navy)'
-                  }}
-                >
-                  <Phone size={13} color="var(--electric-blue)" />
-                  +91 7517532914
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: High-Tech Admissions Inquiry Form */}
@@ -398,25 +345,9 @@ export default function FAQContactSection() {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-end',
                 marginBottom: '1rem'
               }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: 'var(--electric-blue)',
-                  backgroundColor: 'var(--badge-blue-bg)',
-                  padding: '0.25rem 0.75rem',
-                  borderRadius: '9999px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.3px'
-                }}>
-                  <Sparkles size={13} /> Admissions Desk
-                </div>
-
                 <div style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -535,6 +466,74 @@ export default function FAQContactSection() {
                   <span>Send Inquiry to Admissions Desk</span>
                 </button>
               </form>
+            </div>
+
+            {/* Direct Support Helpline Callout */}
+            <div style={{
+              marginTop: '1.25rem',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '18px',
+              border: '1.5px solid var(--border-light)',
+              boxShadow: '0 8px 25px -5px rgba(11, 30, 61, 0.06)',
+              padding: '1.25rem 1.4rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                <div style={{
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '12px',
+                  backgroundColor: 'var(--badge-blue-bg)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--electric-blue)',
+                  flexShrink: 0
+                }}>
+                  <Headphones size={22} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
+                    Need Direct Counseling Help?
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
+                    Call or WhatsApp our admissions desk directly
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <a
+                  href="tel:+919307076962"
+                  className="btn btn-outline btn-sm"
+                  style={{
+                    borderRadius: '10px',
+                    fontSize: '0.86rem',
+                    padding: '0.55rem 1.1rem',
+                    fontWeight: 700,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    color: 'var(--primary-navy)',
+                    borderColor: 'var(--border-light)',
+                    backgroundColor: '#FFFFFF',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--electric-blue)';
+                    e.currentTarget.style.color = 'var(--electric-blue)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border-light)';
+                    e.currentTarget.style.color = 'var(--primary-navy)';
+                  }}
+                >
+                  <Phone size={14} color="var(--electric-blue)" />
+                  +91 9307076962
+                </a>
+              </div>
             </div>
           </div>
         </div>

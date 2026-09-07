@@ -75,12 +75,12 @@ export default function Navbar() {
           {/* Action CTAs */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="tel:7517238914"
+              href="tel:9307076962"
               className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold !text-slate-600 hover:!text-[#1E63D6] transition-colors"
               title="Call AVP FutureTech"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#1E63D6]" />
-              <span>+91 7517238914</span>
+              <span>+91 9307076962</span>
             </Link>
             <Link
               href="/internships"
@@ -156,7 +156,7 @@ export default function Navbar() {
             </Link>
             <div className="flex items-center justify-center gap-2 text-xs text-slate-500 pt-2">
               <PhoneCall className="w-3.5 h-3.5 text-[#1E63D6]" />
-              <span>+91 7517238914 / +91 7744001079</span>
+              <span>+91 9307076962 / +91 7744001079</span>
             </div>
           </div>
         </div>

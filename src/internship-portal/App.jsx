@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useApp } from './context/AppContext';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
@@ -41,6 +41,19 @@ import AdminLayout from './components/admin/AdminLayout';
 
 export default function App() {
   const { currentView, verifyQueryId } = useApp();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentView]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>

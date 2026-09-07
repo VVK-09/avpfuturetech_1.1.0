@@ -34,6 +34,7 @@ export interface Founder {
   credentials: string;
   phone: string;
   email: string;
+  linkedin?: string;
   image: string;
   bio: string;
   responsibilities: string[];
@@ -65,7 +66,7 @@ export const SITE_CONFIG = {
     "A future where every student from rural India has equal access to futuristic technology education as students in metro cities — not by comparison, but by building equal-footing opportunities, taking rural communities to global levels through education, research and innovation.",
   contact: {
     address: "Nirmiti Lakshminarayan Tower, Kudal, Sindhudurg, Maharashtra – 416520",
-    phoneNumbers: ["+91 7517238914", "+91 7744001079"],
+    phoneNumbers: ["+91 9307076962", "+91 7744001079"],
     email: "contact@avpfuturetech.com",
     website: "www.avpfuturetech.com",
     googleMapsQuery: "Nirmiti+Lakshminarayan+Tower+Kudal+Sindhudurg+Maharashtra",
@@ -234,7 +235,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How do we contact support or schedule a free demo session?",
     answer:
-      "You can submit an inquiry via our contact form, send an email to contact@avpfuturetech.com, or call our founders directly at +91 7517238914 or +91 7744001079. We will gladly arrange an on-campus demonstration or virtual discovery call.",
+      "You can submit an inquiry via our contact form, send an email to contact@avpfuturetech.com, or call our founders directly at +91 9307076962 or +91 7744001079. We will gladly arrange an on-campus demonstration or virtual discovery call.",
   },
 ];
 
@@ -243,8 +244,9 @@ export const FOUNDERS: Founder[] = [
     name: "Avishkar Kamble",
     role: "Co-Founder",
     credentials: "AI & ML Graduate | MBA in Data Science & Business Analytics",
-    phone: "+91 7517238914",
+    phone: "+91 9307076962",
     email: "avishkar@avpfuturetech.com",
+    linkedin: "https://www.linkedin.com/in/avishkarkamble",
     image: "/images/avishkar_kamble.jpg",
     bio: "Passionate about democratizing futuristic technology education in rural communities, Avishkar blends machine learning expertise with strategic educational administration to build impactful, scalable STEM curricula and institutional alliances.",
     responsibilities: [
@@ -267,6 +269,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "AI & ML Graduate",
     phone: "+91 7744001079",
     email: "vaishnav@avpfuturetech.com",
+    linkedin: "https://www.linkedin.com/in/vaishnavkubade",
     image: "/images/vaishnav_kubade.jpg",
     bio: "Driving the technology core of AVP FutureTech, Vaishnav spearheads hardware-software synergy, student kit prototyping, robotics architecture, and technical workshops that transform complex robotics into intuitive, hands-on learning.",
     responsibilities: [
@@ -290,6 +293,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "Computer Engineering Graduate",
     phone: "+91 7744001079",
     email: "prathmesh@avpfuturetech.com",
+    linkedin: "https://www.linkedin.com/in/prathmeshnarvekar",
     image: "/images/prathmesh_narvekar.jpg",
     bio: "A dedicated computer engineer and educator, Prathmesh focuses on interactive training delivery, student engagement, school relations, and empowering every child with the confidence to code and build functional innovations.",
     responsibilities: [

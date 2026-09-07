@@ -129,9 +129,9 @@ export default function EnrolledInternDashboard() {
 
   const handleMonthTabClick = (tabId) => {
     if (tabId === '2' && !isMonth2Unlocked) {
-      showToast(`🔒 Month 2 is locked. Complete all ${month1Total} milestones in Month 1 to unlock.`, 'warning');
+      showToast(`Month 2 is locked. Complete all ${month1Total} milestones in Month 1 to unlock.`, 'warning');
     } else if (tabId === '3' && !isMonth3Unlocked) {
-      showToast(`🔒 Month 3 is locked. Complete all ${month2Total} milestones in Month 2 to unlock.`, 'warning');
+      showToast(`Month 3 is locked. Complete all ${month2Total} milestones in Month 2 to unlock.`, 'warning');
     }
     setSelectedMonth(tabId);
   };
@@ -429,11 +429,12 @@ export default function EnrolledInternDashboard() {
           marginBottom: '1.75rem'
         }}>
           {[
-            { id: 'all', label: `🌟 All 3 Months (${approvedTasksCount}/${totalTasksCount} Approved)` },
-            { id: '1', label: `📅 Month 1: Weeks 1–4 (${month1Approved}/${month1Total} Approved)` },
-            { id: '2', label: `${isMonth2Unlocked ? '📅' : '🔒'} Month 2: Weeks 5–8 (${isMonth2Unlocked ? `${month2Approved}/${month2Total} Approved` : 'Locked'})` },
-            { id: '3', label: `${isMonth3Unlocked ? '📅' : '🔒'} Month 3: Weeks 9–12 (${isMonth3Unlocked ? `${month3Approved}/${month3Total} Approved` : 'Locked'})` }
+            { id: 'all', label: `All 3 Months (${approvedTasksCount}/${totalTasksCount} Approved)`, icon: Sparkles },
+            { id: '1', label: `Month 1: Weeks 1–4 (${month1Approved}/${month1Total} Approved)`, icon: Calendar },
+            { id: '2', label: `Month 2: Weeks 5–8 (${isMonth2Unlocked ? `${month2Approved}/${month2Total} Approved` : 'Locked'})`, icon: isMonth2Unlocked ? Calendar : Lock },
+            { id: '3', label: `Month 3: Weeks 9–12 (${isMonth3Unlocked ? `${month3Approved}/${month3Total} Approved` : 'Locked'})`, icon: isMonth3Unlocked ? Calendar : Lock }
           ].map((tab) => {
+            const Icon = tab.icon;
             const isActive = selectedMonth === tab.id;
             return (
               <button
@@ -453,10 +454,11 @@ export default function EnrolledInternDashboard() {
                   transition: 'all 0.2s ease',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.35rem'
+                  gap: '0.45rem'
                 }}
               >
-                {tab.label}
+                <Icon size={14} />
+                <span>{tab.label}</span>
               </button>
             );
           })}

@@ -32,9 +32,9 @@ import {
   Search,
   Zap,
   Info,
-  ListPlus,
-  TrendingUp,
-  AlertCircle
+  AlertCircle,
+  Laptop,
+  Shield
 } from 'lucide-react';
 import { DOMAIN_CATEGORIES } from '../../data/initialDomains';
 
@@ -402,10 +402,11 @@ export default function DomainManagement() {
             transition: 'all 0.2s ease',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.35rem'
+            gap: '0.45rem'
           }}
         >
-          🌟 All Categories ({categoryCounts['All'] || 0})
+          <Sparkles size={14} />
+          <span>All Categories ({categoryCounts['All'] || 0})</span>
         </button>
 
         {DOMAIN_CATEGORIES.map((cat) => {
@@ -429,16 +430,16 @@ export default function DomainManagement() {
                 transition: 'all 0.2s ease',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.35rem'
+                gap: '0.45rem'
               }}
             >
-              {cat === 'Computer Science & IT' && '💻'}
-              {cat === 'Artificial Intelligence & Data' && '🧠'}
-              {cat === 'Cybersecurity' && '🛡️'}
-              {cat === 'Electronics, IoT & Embedded' && '⚡'}
-              {cat === 'Business & Management' && '📊'}
-              {cat === 'Marketing & Media' && '📢'}
-              {' '}{cat} ({count})
+              {cat === 'Computer Science & IT' && <Laptop size={14} />}
+              {cat === 'Artificial Intelligence & Data' && <Brain size={14} />}
+              {cat === 'Cybersecurity' && <Shield size={14} />}
+              {cat === 'Electronics, IoT & Embedded' && <Cpu size={14} />}
+              {cat === 'Business & Management' && <Briefcase size={14} />}
+              {cat === 'Marketing & Media' && <Megaphone size={14} />}
+              <span>{cat} ({count})</span>
             </button>
           );
         })}
@@ -739,12 +740,12 @@ export default function DomainManagement() {
               padding: '0 1rem'
             }}>
               {[
-                { id: 'general', label: '1. 📋 General & Category' },
-                { id: 'media', label: '2. 🖼️ Media & Presets' },
-                { id: 'pricing', label: '3. 💰 Pricing & Seats' },
-                { id: 'skills', label: '4. 🛠️ Tools & Skills' },
-                { id: 'perks', label: '5. ⭐ Perks & Highlights' },
-                { id: 'syllabus', label: `6. 📚 12-Week Syllabus (${formState.modules?.length || 12})` }
+                { id: 'general', label: '1. General & Category' },
+                { id: 'media', label: '2. Media & Presets' },
+                { id: 'pricing', label: '3. Pricing & Seats' },
+                { id: 'skills', label: '4. Tools & Skills' },
+                { id: 'perks', label: '5. Perks & Highlights' },
+                { id: 'syllabus', label: `6. 12-Week Syllabus (${formState.modules?.length || 12})` }
               ].map((tab) => {
                 const isActive = modalActiveTab === tab.id;
                 return (
@@ -942,8 +943,8 @@ export default function DomainManagement() {
 
                       {/* Curated Presets for Current Category */}
                       <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '1rem' }}>
-                        <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
-                          ⚡ 1-Click Curated Presets for "{formState.category}":
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
+                          <Zap size={14} color="var(--electric-blue)" /> 1-Click Curated Presets for "{formState.category}":
                         </div>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                           {presetImages.map((preset, idx) => (
@@ -1019,7 +1020,7 @@ export default function DomainManagement() {
                         className={`btn btn-sm ${formState.isOpen ? 'btn-primary' : 'btn-outline'}`}
                         style={{ borderRadius: '8px' }}
                       >
-                        {formState.isOpen ? '🟢 Open for Enrollment' : '🔴 Closed / Waitlist'}
+                        {formState.isOpen ? 'Open for Enrollment' : 'Closed / Waitlist'}
                       </button>
                     </div>
 
@@ -1175,8 +1176,9 @@ export default function DomainManagement() {
                           type="button"
                           onClick={handleLoadDefaultTemplate}
                           className="btn btn-outline btn-sm"
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
                         >
-                          ⚡ Reset to 12-Week Template
+                          <Zap size={13} /> Reset to 12-Week Template
                         </button>
                         <button
                           type="button"

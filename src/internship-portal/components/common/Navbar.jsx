@@ -19,7 +19,9 @@ import {
   Phone,
   Home,
   ChevronRight,
-  GraduationCap
+  GraduationCap,
+  Globe,
+  ArrowUpRight
 } from 'lucide-react';
 
 export default function Navbar() {
@@ -52,22 +54,112 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
+  // Dynamic Scroll Spy to track active section in viewport
+  useEffect(() => {
+    if (currentView !== 'landing') {
+      if (currentView === 'verify') {
+        setActiveSection('verify');
+      } else if (currentView === 'all-domains') {
+        setActiveSection('domains');
+      }
+      return;
+    }
+
+    const sectionMapping = [
+      { id: 'hero', elementIds: ['hero', 'test-banner'] },
+      { id: 'what-we-offer', elementIds: ['what-we-offer'] },
+      { id: 'domains', elementIds: ['domains'] },
+      { id: 'students-placed', elementIds: ['students-placed', 'testimonials'] },
+      { id: 'contact', elementIds: ['contact'] }
+    ];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY || window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // At the top of the page
+      if (scrollPosition < 150) {
+        setActiveSection('hero');
+        return;
+      }
+
+      // At the bottom of the page
+      if (windowHeight + scrollPosition >= documentHeight - 120) {
+        setActiveSection('contact');
+        return;
+      }
+
+      // Trigger line positioned ~30% into the viewport (below the sticky navbar)
+      const triggerY = scrollPosition + Math.min(windowHeight * 0.32, 250);
+
+      let matchedSection = 'hero';
+
+      for (const group of sectionMapping) {
+        for (const elId of group.elementIds) {
+          const el = document.getElementById(elId);
+          if (el) {
+            const top = el.offsetTop;
+            const height = el.offsetHeight;
+            if (triggerY >= top && triggerY < top + height) {
+              matchedSection = group.id;
+              break;
+            } else if (triggerY >= top) {
+              matchedSection = group.id;
+            }
+          }
+        }
+      }
+
+      setActiveSection(matchedSection);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+
+    // Initial check after DOM paint
+    const timer = setTimeout(handleScroll, 120);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [currentView]);
+
   const handleNavClick = (sectionId) => {
     setMobileMenuOpen(false);
     if (sectionId === 'verify') {
-      window.location.href = '/verify';
+      if (typeof window !== 'undefined' && window.location.pathname.startsWith('/internships')) {
+        setActiveSection('verify');
+        setCurrentView('verify');
+        window.history.pushState(null, '', '/internships/verify');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.location.href = '/internships/verify';
+      }
       return;
     }
     setActiveSection(sectionId);
-    if (currentView !== 'landing') {
-      setCurrentView('landing');
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
+
+    const scrollToTarget = () => {
       const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) {
+        const headerOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    };
+
+    if (currentView !== 'landing') {
+      if (typeof window !== 'undefined' && (window.location.pathname.includes('/verify') || window.location.pathname.includes('/domains'))) {
+        window.history.pushState(null, '', '/internships');
+      }
+      setCurrentView('landing');
+      setTimeout(scrollToTarget, 100);
+    } else {
+      scrollToTarget();
     }
   };
 
@@ -81,8 +173,8 @@ export default function Navbar() {
     { id: 'what-we-offer', label: 'What We Offer', icon: Sparkles },
     { id: 'domains', label: 'Domains', badge: '6 Tracks', icon: Compass },
     { id: 'students-placed', label: 'Our Students', icon: Users },
-    { id: 'verify', label: 'Certification Verify', icon: ShieldCheck, href: '/verify' },
-    { id: 'contact', label: 'Contact', icon: Phone }
+    { id: 'contact', label: 'Contact', icon: Phone },
+    { id: 'verify', label: 'Certification Verify', icon: ShieldCheck, href: '/internships/verify' }
   ];
 
   return (
@@ -167,6 +259,27 @@ export default function Navbar() {
           <div className="desktop-actions-wrap">
             {currentUser ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                {/* Main Website Link */}
+                <a
+                  href="/"
+                  className="btn btn-outline btn-sm"
+                  style={{
+                    borderRadius: '10px',
+                    padding: '0.52rem 0.9rem',
+                    fontSize: '0.84rem',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    color: 'var(--text-primary)',
+                    border: '1.5px solid var(--border-light)'
+                  }}
+                >
+                  <Globe size={14} color="var(--electric-blue)" />
+                  <span>Main Website</span>
+                </a>
+
                 {userRole === 'student' ? (
                   <button
                     onClick={() => setCurrentView(currentUser.isEnrolled ? 'intern-dashboard' : 'student-dashboard')}
@@ -249,7 +362,7 @@ export default function Navbar() {
                     border: '1.5px solid var(--border-light)'
                   }}
                 >
-                  <Home size={14} color="var(--electric-blue)" />
+                  <Globe size={14} color="var(--electric-blue)" />
                   <span>Main Website</span>
                 </a>
 
@@ -458,6 +571,24 @@ export default function Navbar() {
 
             {/* Navigation Links */}
             <div className="drawer-links-scroll">
+              {/* Dedicated Main Website Link in Navigation */}
+              <a
+                href="/"
+                className="drawer-link-row drawer-link-external"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <div className="drawer-link-icon" style={{ color: 'var(--electric-blue)' }}>
+                  <Globe size={18} />
+                </div>
+                <span className="drawer-link-label" style={{ fontWeight: 700, color: 'var(--primary-navy)' }}>
+                  Main Website
+                </span>
+                <span className="drawer-ext-badge">
+                  avpfuturetech.com
+                </span>
+                <ArrowUpRight size={15} className="drawer-chevron" />
+              </a>
+
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 const isActive = activeSection === item.id && currentView === 'landing';
@@ -486,7 +617,7 @@ export default function Navbar() {
             <div className="drawer-footer-bar">
               <div className="drawer-phone-help">
                 <Phone size={14} color="var(--electric-blue)" />
-                <span>Admissions Desk: <strong>+91 98765 43210</strong></span>
+                <span>Admissions Desk: <strong>+91 9307076962 / +91 7744001079</strong></span>
               </div>
             </div>
 
@@ -839,6 +970,79 @@ export default function Navbar() {
         }
         .drawer-close-circle:active {
           background-color: #E2E8F0;
+        }
+
+        .drawer-main-site-banner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.75rem 0.95rem;
+          background: linear-gradient(135deg, rgba(30, 99, 214, 0.08) 0%, rgba(56, 189, 248, 0.12) 100%);
+          border: 1.5px solid rgba(30, 99, 214, 0.22);
+          border-radius: 12px;
+          text-decoration: none;
+          color: var(--primary-navy);
+          box-shadow: 0 2px 8px rgba(30, 99, 214, 0.06);
+          transition: all 0.2s ease;
+        }
+        .drawer-main-site-banner:hover,
+        .drawer-main-site-banner:active {
+          background: linear-gradient(135deg, rgba(30, 99, 214, 0.14) 0%, rgba(56, 189, 248, 0.2) 100%);
+          border-color: var(--electric-blue);
+          transform: translateY(-1px);
+        }
+
+        .drawer-main-site-icon {
+          width: 34px;
+          height: 34px;
+          border-radius: 10px;
+          background-color: #FFFFFF;
+          color: var(--electric-blue);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 6px rgba(30, 99, 214, 0.12);
+          flex-shrink: 0;
+        }
+
+        .drawer-main-site-title {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--primary-navy);
+          line-height: 1.25;
+        }
+
+        .drawer-main-site-sub {
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: var(--electric-blue);
+        }
+
+        .drawer-main-site-arrow {
+          color: var(--electric-blue);
+          transition: transform 0.2s ease;
+          flex-shrink: 0;
+        }
+        .drawer-main-site-banner:hover .drawer-main-site-arrow {
+          transform: translateX(3px);
+        }
+
+        .drawer-link-external {
+          text-decoration: none;
+        }
+        .drawer-link-external:hover {
+          color: var(--electric-blue);
+        }
+
+        .drawer-ext-badge {
+          font-size: 0.65rem;
+          font-weight: 800;
+          background-color: var(--badge-blue-bg);
+          color: var(--electric-blue);
+          padding: 0.15rem 0.45rem;
+          border-radius: 9999px;
+          line-height: 1;
+          white-space: nowrap;
         }
 
         .drawer-account-section {

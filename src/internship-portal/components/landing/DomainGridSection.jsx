@@ -12,7 +12,13 @@ import {
   Zap,
   CheckCircle2,
   Layers,
-  Award
+  Award,
+  Laptop,
+  Brain,
+  Shield,
+  Cpu,
+  Briefcase,
+  Megaphone
 } from 'lucide-react';
 
 const DOMAIN_METRICS = {
@@ -50,7 +56,7 @@ const DOMAIN_METRICS = {
 
 export default function DomainGridSection() {
   const { domains, openModal, setCurrentView } = useApp();
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(4);
   const [offsetIndex, setOffsetIndex] = useState(() => domains.length);
   const [withTransition, setWithTransition] = useState(true);
   const [touchStart, setTouchStart] = useState(null);
@@ -61,15 +67,17 @@ export default function DomainGridSection() {
   // Triple the list to enable continuous infinite rotational sliding
   const extendedDomains = [...domains, ...domains, ...domains];
 
-  // Responsive visible count (1 on mobile, 2 on tablet, 3 on desktop)
+  // Responsive visible count (1 on mobile, 2 on tablet, 3 on small laptop, 4 on desktop)
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 640) {
         setVisibleCount(1);
-      } else if (window.innerWidth < 1140) {
+      } else if (window.innerWidth < 900) {
         setVisibleCount(2);
-      } else {
+      } else if (window.innerWidth < 1140) {
         setVisibleCount(3);
+      } else {
+        setVisibleCount(4);
       }
     };
     handleResize();
@@ -160,11 +168,14 @@ export default function DomainGridSection() {
   };
 
   const handleShowAll = () => {
-    setCurrentView('all-domains');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.location.href = '/internships/domains';
+    } else {
+      setCurrentView('all-domains');
+    }
   };
 
-  const gap = 24; // 1.5rem in px
+  const gap = 20; // in px
   const activeDotIndex = domains.length > 0
     ? ((offsetIndex % domains.length) + domains.length) % domains.length
     : 0;
@@ -173,17 +184,35 @@ export default function DomainGridSection() {
     <section
       id="domains"
       className="section-py"
-      style={{ backgroundColor: 'var(--bg-page)', outline: 'none' }}
+      style={{
+        backgroundColor: 'var(--bg-page)',
+        backgroundImage: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 50%, #F1F5FA 100%)',
+        position: 'relative',
+        overflow: 'hidden',
+        outline: 'none'
+      }}
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
-      <div className="container" style={{ position: 'relative' }}>
+      {/* Minimal Tech Grid Pattern */}
+      <div className="avp-pattern-grid" />
+
+      {/* Decorative ambient background glows */}
+      <div style={{
+        position: 'absolute',
+        top: '5%',
+        right: '-5%',
+        width: '500px',
+        height: '500px',
+        background: 'radial-gradient(circle, rgba(30, 99, 214, 0.05) 0%, transparent 70%)',
+        borderRadius: '50%',
+        pointerEvents: 'none'
+      }} />
+
+      <div className="container-wide" style={{ position: 'relative', zIndex: 2 }}>
 
         {/* Section Header */}
         <div className="section-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div className="section-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.6rem' }}>
-            <Sparkles size={14} color="var(--electric-blue)" /> IN-DEMAND SPECIALIZATIONS
-          </div>
           <h2 className="section-title" style={{ marginBottom: '0.6rem' }}>
             Explore Internship Domains
           </h2>
@@ -202,14 +231,15 @@ export default function DomainGridSection() {
           marginBottom: '2.5rem'
         }}>
           {[
-            { id: 'All', label: `🌟 All Tracks (${domains.length})` },
-            { id: 'Computer Science & IT', label: `💻 Computer Science & IT (${domains.filter(d => (d.category || 'Computer Science & IT') === 'Computer Science & IT').length})` },
-            { id: 'Artificial Intelligence & Data', label: `🧠 AI & Data (${domains.filter(d => d.category === 'Artificial Intelligence & Data').length})` },
-            { id: 'Cybersecurity', label: `🛡️ Cybersecurity (${domains.filter(d => d.category === 'Cybersecurity').length})` },
-            { id: 'Electronics, IoT & Embedded', label: `⚡ Electronics & IoT (${domains.filter(d => d.category === 'Electronics, IoT & Embedded').length})` },
-            { id: 'Business & Management', label: `📊 Business & Mgmt (${domains.filter(d => d.category === 'Business & Management').length})` },
-            { id: 'Marketing & Media', label: `📢 Marketing & Media (${domains.filter(d => d.category === 'Marketing & Media').length})` }
+            { id: 'All', label: 'All Tracks', count: domains.length, icon: Sparkles },
+            { id: 'Computer Science & IT', label: 'Computer Science & IT', count: domains.filter(d => (d.category || 'Computer Science & IT') === 'Computer Science & IT').length, icon: Laptop },
+            { id: 'Artificial Intelligence & Data', label: 'AI & Data', count: domains.filter(d => d.category === 'Artificial Intelligence & Data').length, icon: Brain },
+            { id: 'Cybersecurity', label: 'Cybersecurity', count: domains.filter(d => d.category === 'Cybersecurity').length, icon: Shield },
+            { id: 'Electronics, IoT & Embedded', label: 'Electronics & IoT', count: domains.filter(d => d.category === 'Electronics, IoT & Embedded').length, icon: Cpu },
+            { id: 'Business & Management', label: 'Business & Mgmt', count: domains.filter(d => d.category === 'Business & Management').length, icon: Briefcase },
+            { id: 'Marketing & Media', label: 'Marketing & Media', count: domains.filter(d => d.category === 'Marketing & Media').length, icon: Megaphone }
           ].map((tab) => {
+            const Icon = tab.icon;
             const isActive = categoryFilter === tab.id;
             return (
               <button
@@ -225,6 +255,9 @@ export default function DomainGridSection() {
                   }
                 }}
                 style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
                   padding: '0.45rem 1rem',
                   borderRadius: '9999px',
                   border: isActive ? '1.5px solid var(--electric-blue)' : '1px solid var(--border-light)',
@@ -237,7 +270,8 @@ export default function DomainGridSection() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                {tab.label}
+                <Icon size={14} style={{ color: isActive ? 'var(--electric-blue)' : '#64748b' }} />
+                <span>{tab.label} ({tab.count})</span>
               </button>
             );
           })}
@@ -388,7 +422,7 @@ export default function DomainGridSection() {
                     }}
                   >
                     {/* Domain Display Image Header */}
-                    <div style={{ position: 'relative', height: '185px', width: '100%', overflow: 'hidden', backgroundColor: '#0B1E3D' }}>
+                    <div style={{ position: 'relative', height: '170px', width: '100%', overflow: 'hidden', backgroundColor: '#0B1E3D' }}>
                       <img
                         src={displayImage}
                         alt={domain.name}
@@ -411,89 +445,53 @@ export default function DomainGridSection() {
                         background: 'linear-gradient(180deg, rgba(11,30,61,0.2) 0%, rgba(11,30,61,0.75) 100%)'
                       }} />
 
-                      {/* Top Badges on Image */}
+                      {/* Top Duration Badge on Image */}
                       <div style={{
                         position: 'absolute',
-                        top: '12px',
-                        left: '12px',
-                        right: '12px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
+                        top: '10px',
+                        left: '10px',
                         zIndex: 2
                       }}>
                         <span style={{
                           backgroundColor: 'rgba(11, 30, 61, 0.85)',
                           backdropFilter: 'blur(8px)',
                           color: '#FFFFFF',
-                          padding: '0.3rem 0.65rem',
-                          borderRadius: '8px',
-                          fontSize: '0.74rem',
-                          fontWeight: 700,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '0.35rem',
-                          border: '1px solid rgba(255, 255, 255, 0.15)'
-                        }}>
-                          <Clock size={12} color="#38BDF8" />
-                          {domain.duration ? domain.duration.split('(')[0].trim() : '3 Months'}
-                        </span>
-
-                        <span style={{
-                          backgroundColor: 'rgba(30, 99, 214, 0.95)',
-                          backdropFilter: 'blur(8px)',
-                          color: '#FFFFFF',
-                          padding: '0.3rem 0.7rem',
-                          borderRadius: '8px',
-                          fontSize: '0.74rem',
-                          fontWeight: 700,
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.25)'
-                        }}>
-                          {domain.badge || 'Open Track'}
-                        </span>
-                      </div>
-
-                      {/* Bottom Image Overlay: Average Placement CTC & Rating */}
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '10px',
-                        left: '12px',
-                        right: '12px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        zIndex: 2
-                      }}>
-                        <span style={{
-                          backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                          backdropFilter: 'blur(8px)',
-                          color: '#38BDF8',
-                          padding: '0.25rem 0.65rem',
-                          borderRadius: '6px',
+                          padding: '0.25rem 0.55rem',
+                          borderRadius: '7px',
                           fontSize: '0.72rem',
                           fontWeight: 700,
                           display: 'inline-flex',
                           alignItems: 'center',
-                          gap: '0.35rem',
-                          border: '1px solid rgba(56, 189, 248, 0.3)'
+                          gap: '0.3rem',
+                          border: '1px solid rgba(255, 255, 255, 0.15)'
                         }}>
-                          <TrendingUp size={12} />
-                          CTC: {metric.ctc}
+                          <Clock size={11} color="#38BDF8" />
+                          {domain.duration ? domain.duration.split('(')[0].trim() : '3 Months'}
                         </span>
+                      </div>
 
+                      {/* Bottom Image Overlay: Rating */}
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        right: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        zIndex: 2
+                      }}>
                         <div style={{
                           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                          padding: '0.22rem 0.55rem',
+                          padding: '0.2rem 0.45rem',
                           borderRadius: '6px',
-                          fontSize: '0.74rem',
+                          fontSize: '0.72rem',
                           fontWeight: 700,
                           color: 'var(--primary-navy)',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '0.25rem',
+                          gap: '0.2rem',
                           boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
                         }}>
-                          <Star size={12} fill="#F59E0B" color="#F59E0B" />
+                          <Star size={11} fill="#F59E0B" color="#F59E0B" />
                           <span>{domain.rating || '4.9'}</span>
                           <span style={{ color: '#64748B', fontWeight: 500 }}>({domain.reviewsCount || '120+'})</span>
                         </div>
@@ -501,20 +499,20 @@ export default function DomainGridSection() {
                     </div>
 
                     {/* Card Body */}
-                    <div style={{ padding: '1.6rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                      <div style={{ marginBottom: '0.65rem' }}>
+                    <div style={{ padding: '1.25rem 1.15rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                      <div style={{ marginBottom: '0.5rem' }}>
                         <h3 style={{
-                          fontSize: '1.3rem',
+                          fontSize: '1.16rem',
                           fontWeight: 800,
                           color: 'var(--primary-navy)',
                           lineHeight: 1.25,
-                          marginBottom: '0.25rem',
+                          marginBottom: '0.2rem',
                           letterSpacing: '-0.3px'
                         }}>
                           {domain.name}
                         </h3>
                         <div style={{
-                          fontSize: '0.82rem',
+                          fontSize: '0.78rem',
                           fontWeight: 600,
                           color: 'var(--electric-blue)',
                           lineHeight: 1.35
@@ -523,28 +521,78 @@ export default function DomainGridSection() {
                         </div>
                       </div>
 
-                      <p style={{
-                        fontSize: '0.88rem',
-                        color: 'var(--text-body)',
-                        lineHeight: 1.55,
-                        marginBottom: '1rem',
-                        flex: 1
+                      {/* Core Deliverable Highlights with Micro-Card Badges */}
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.35rem',
+                        backgroundColor: '#F8FAFC',
+                        borderRadius: '12px',
+                        padding: '0.6rem 0.75rem',
+                        border: '1px solid rgba(226, 232, 240, 0.8)',
+                        marginBottom: '0.75rem'
                       }}>
-                        {domain.shortDescription}
-                      </p>
+                        {[
+                          { label: 'Internship Certificate', icon: Award, color: '#2563EB', bg: 'rgba(37, 99, 235, 0.1)' },
+                          { label: 'Placement Assistance', icon: Briefcase, color: '#059669', bg: 'rgba(16, 185, 129, 0.1)' },
+                          { label: 'Letter of Recommendation', icon: FileText, color: '#7C3AED', bg: 'rgba(124, 58, 237, 0.1)' }
+                        ].map((item, idx) => {
+                          const ItemIcon = item.icon;
+                          return (
+                            <div
+                              key={idx}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.55rem',
+                                fontSize: '0.79rem',
+                                fontWeight: 650,
+                                color: '#1E293B',
+                                lineHeight: 1.3
+                              }}
+                            >
+                              <div style={{
+                                width: '22px',
+                                height: '22px',
+                                borderRadius: '6px',
+                                backgroundColor: item.bg,
+                                color: item.color,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0
+                              }}>
+                                <ItemIcon size={12} strokeWidth={2.4} />
+                              </div>
+                              <span>{item.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
 
                       {/* Key Capstone Deliverable Highlight Box */}
                       <div style={{
-                        backgroundColor: 'var(--bg-subtle)',
+                        background: 'linear-gradient(135deg, rgba(30, 99, 214, 0.05) 0%, rgba(56, 189, 248, 0.08) 100%)',
                         borderRadius: '10px',
-                        padding: '0.65rem 0.85rem',
-                        border: '1px solid var(--border-light)',
-                        marginBottom: '1rem'
+                        padding: '0.55rem 0.75rem',
+                        border: '1px solid rgba(30, 99, 214, 0.15)',
+                        borderLeft: '3.5px solid var(--electric-blue)',
+                        marginBottom: '0.75rem'
                       }}>
-                        <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '0.15rem' }}>
-                          ⭐ Key Production Capstone
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.35rem',
+                          fontSize: '0.64rem',
+                          fontWeight: 800,
+                          color: 'var(--electric-blue)',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.4px',
+                          marginBottom: '0.15rem'
+                        }}>
+                          <Sparkles size={11} /> Production Capstone
                         </div>
-                        <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--primary-navy)', lineHeight: 1.35 }}>
+                        <div style={{ fontSize: '0.79rem', fontWeight: 750, color: 'var(--primary-navy)', lineHeight: 1.35 }}>
                           {metric.capstone}
                         </div>
                       </div>
@@ -554,76 +602,90 @@ export default function DomainGridSection() {
                         <div style={{
                           display: 'flex',
                           flexWrap: 'wrap',
-                          gap: '0.35rem',
-                          marginBottom: '1.25rem'
+                          gap: '0.3rem',
+                          marginBottom: '0.85rem'
                         }}>
                           {domain.tools.slice(0, 4).map((tool, idx) => (
                             <span
                               key={idx}
                               style={{
-                                fontSize: '0.72rem',
+                                fontSize: '0.69rem',
                                 padding: '0.2rem 0.5rem',
-                                backgroundColor: '#FFFFFF',
+                                backgroundColor: '#F1F5F9',
                                 borderRadius: '6px',
-                                border: '1px solid var(--border-light)',
-                                color: 'var(--primary-navy)',
-                                fontWeight: 600
+                                border: '1px solid #E2E8F0',
+                                color: '#334155',
+                                fontWeight: 650
                               }}
                             >
                               {tool}
                             </span>
                           ))}
                           {domain.tools.length > 4 && (
-                            <span style={{ fontSize: '0.72rem', padding: '0.2rem 0.4rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                            <span style={{ fontSize: '0.68rem', padding: '0.2rem 0.4rem', color: '#64748B', fontWeight: 600 }}>
                               +{domain.tools.length - 4} more
                             </span>
                           )}
                         </div>
                       )}
 
-                      {/* Price & Subsidized Status */}
+                      {/* Price Status */}
                       <div style={{
-                        paddingTop: '0.85rem',
-                        borderTop: '1px solid var(--border-light)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        marginBottom: '1rem'
+                        paddingTop: '0.75rem',
+                        borderTop: '1px solid var(--border-light)',
+                        marginBottom: '0.85rem'
                       }}>
                         <div>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 500 }}>Aptitude Merit Fee:</div>
-                          <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--electric-blue)' }}>
-                            ₹{domain.price?.merit || 699} <span style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontWeight: 500 }}>/ 3 mos</span>
+                          <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                            <span>Merit Fee:</span>
+                            <span style={{ textDecoration: 'line-through', color: '#94A3B8' }}>₹5,999</span>
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem' }}>
+                            <span style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--electric-blue)' }}>
+                              ₹{domain.price?.merit || 699}
+                            </span>
+                            <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600 }}>/ 3 mos</span>
                           </div>
                         </div>
-
-                        <span className="badge" style={{ backgroundColor: '#DCFCE7', color: '#15803D', border: '1px solid #BBF7D0', fontSize: '0.73rem', fontWeight: 700 }}>
-                          ★ Subsidized via Test
-                        </span>
+                        <div style={{
+                          backgroundColor: '#DCFCE7',
+                          color: '#15803D',
+                          padding: '0.25rem 0.55rem',
+                          borderRadius: '6px',
+                          fontSize: '0.7rem',
+                          fontWeight: 800,
+                          border: '1px solid #BBF7D0',
+                          letterSpacing: '0.2px'
+                        }}>
+                          88% OFF
+                        </div>
                       </div>
 
                       {/* UI/UX Optimized Action Buttons */}
                       <div style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.65rem',
-                        marginTop: '0.25rem'
+                        gap: '0.5rem',
+                        marginTop: '0.2rem'
                       }}>
                         <button
                           type="button"
                           onClick={() => openModal('syllabus', domain)}
                           className="btn btn-outline"
                           style={{
-                            padding: '0.65rem 0.85rem',
-                            fontSize: '0.82rem',
-                            borderRadius: '10px',
+                            padding: '0.6rem 0.75rem',
+                            fontSize: '0.78rem',
+                            borderRadius: '9px',
                             fontWeight: 600,
                             color: 'var(--text-body)',
                             backgroundColor: '#FFFFFF',
                             border: '1.5px solid var(--border-light)',
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.35rem',
+                            gap: '0.3rem',
                             flexShrink: 0,
                             transition: 'all 0.2s ease'
                           }}
@@ -639,7 +701,7 @@ export default function DomainGridSection() {
                           }}
                           title="View curriculum syllabus & roadmap"
                         >
-                          <FileText size={14} color="var(--electric-blue)" />
+                          <FileText size={13} color="var(--electric-blue)" />
                           Syllabus
                         </button>
 
@@ -649,20 +711,20 @@ export default function DomainGridSection() {
                           className="btn btn-primary"
                           style={{
                             flex: 1,
-                            padding: '0.75rem 1.25rem',
-                            fontSize: '0.94rem',
-                            borderRadius: '10px',
+                            padding: '0.68rem 1rem',
+                            fontSize: '0.88rem',
+                            borderRadius: '9px',
                             fontWeight: 800,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            gap: '0.5rem',
+                            gap: '0.4rem',
                             boxShadow: '0 4px 14px rgba(30, 99, 214, 0.3)',
                             transition: 'all 0.2s ease'
                           }}
                         >
                           <span>Enroll Now</span>
-                          <ArrowRight size={16} />
+                          <ArrowRight size={15} />
                         </button>
                       </div>
                     </div>
@@ -710,10 +772,6 @@ export default function DomainGridSection() {
               />
             ))}
           </div>
-
-          <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-            Domain <strong>{activeDotIndex + 1}</strong> of <strong>{domains.length}</strong> • Continuous Rotational Track
-          </div>
         </div>
 
         {/* Explore All Domains Detailed Catalog CTA */}
@@ -737,9 +795,8 @@ export default function DomainGridSection() {
             Visit our detailed domain catalog to compare full curriculum milestones, letter of recommendation (LOR) details, and capstone deliverables.
           </p>
 
-          <button
-            type="button"
-            onClick={handleShowAll}
+          <a
+            href="/internships/domains"
             className="btn btn-primary btn-lg"
             style={{
               padding: '0.85rem 2.25rem',
@@ -747,12 +804,15 @@ export default function DomainGridSection() {
               borderRadius: '12px',
               fontWeight: 700,
               gap: '0.6rem',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
               boxShadow: '0 8px 24px rgba(30, 99, 214, 0.25)'
             }}
           >
             Explore All 6 Domains Catalog
             <ArrowRight size={18} />
-          </button>
+          </a>
         </div>
       </div>
     </section>

@@ -198,11 +198,11 @@ export default function SchoolSolutionPage() {
               Contact Us Today
             </Link>
             <a
-              href="tel:7517238914"
+              href="tel:9307076962"
               className="px-7 py-3.5 rounded-xl text-sm font-bold text-white border border-white/30 hover:bg-white/10 transition-colors flex items-center gap-2"
             >
               <PhoneCall className="w-4 h-4 text-sky-400" />
-              <span>Call +91 7517238914</span>
+              <span>Call +91 9307076962</span>
             </a>
           </div>
         </div>

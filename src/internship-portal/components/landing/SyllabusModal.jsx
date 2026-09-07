@@ -64,25 +64,14 @@ export default function SyllabusModal() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
               <span style={{
-                backgroundColor: 'rgba(56, 189, 248, 0.25)',
-                color: '#38BDF8',
-                border: '1px solid rgba(56, 189, 248, 0.5)',
-                padding: '0.2rem 0.6rem',
-                borderRadius: '9999px',
-                fontSize: '0.74rem',
-                fontWeight: 700
-              }}>
-                {domain.duration || '3 Months Remote'}
-              </span>
-              <span style={{
-                backgroundColor: 'rgba(30, 99, 214, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 0.18)',
                 color: '#FFFFFF',
                 padding: '0.2rem 0.6rem',
                 borderRadius: '9999px',
                 fontSize: '0.74rem',
                 fontWeight: 700
               }}>
-                {domain.badge || 'Open Track'}
+                {domain.duration || '3 Months Remote'}
               </span>
             </div>
 

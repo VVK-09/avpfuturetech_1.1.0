@@ -95,16 +95,33 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   box-shadow: 0 16px 32px -4px rgba(11, 30, 61, 0.1), 0 4px 12px -2px rgba(11, 30, 61, 0.05);
 }
 
-/* Subtle circuit grid pattern overlay */
+/* Premium Tech Pattern Utilities */
+.bg-tech-grid {
+  background-image: 
+    radial-gradient(rgba(30, 99, 214, 0.08) 1.25px, transparent 1.25px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
+}
+
+.bg-dot-matrix {
+  background-image: radial-gradient(rgba(30, 99, 214, 0.09) 1.25px, transparent 1.25px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 50%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 50%, transparent 95%);
+}
+
 .bg-circuit-pattern {
-  background-image: radial-gradient(#1E63D6 0.75px, transparent 0.75px), radial-gradient(#0B1E3D 0.75px, #ffffff 0.75px);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
-  opacity: 0.04;
+  background-image: radial-gradient(#1E63D6 1px, transparent 1px), radial-gradient(#0B1E3D 0.85px, #ffffff 0.85px);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+  opacity: 0.065;
 }
 
 .bg-circuit-lines {
-  background-image: linear-gradient(to right, rgba(30, 99, 214, 0.06) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(30, 99, 214, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(30, 99, 214, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(30, 99, 214, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
 }

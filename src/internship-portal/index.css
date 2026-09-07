@@ -120,6 +120,11 @@
 
 .avp-internship-portal-app .section-py {
   padding: 5rem 0;
+  scroll-margin-top: 100px;
+}
+
+.avp-internship-portal-app section[id] {
+  scroll-margin-top: 100px;
 }
 
 .avp-internship-portal-app .section-header {
@@ -495,21 +500,30 @@
 
 .avp-internship-portal-app .domain-showcase-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
-@media (max-width: 1100px) {
-  .avp-internship-portal-app .domain-admin-grid,
+@media (max-width: 1380px) {
   .avp-internship-portal-app .domain-showcase-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 990px) {
+  .avp-internship-portal-app .domain-admin-grid,
+  .avp-internship-portal-app .domain-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
   .avp-internship-portal-app .domain-admin-grid,
   .avp-internship-portal-app .domain-showcase-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 
@@ -554,4 +568,67 @@
   .avp-internship-portal-app .card {
     padding: 1.5rem;
   }
+}
+
+/* Test Banner Metric Cards Grid & Mobile Layout */
+.avp-internship-portal-app .test-banner-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 768px) {
+  .avp-internship-portal-app .test-banner-metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .avp-internship-portal-app .test-banner-metric-merit {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 360px) {
+  .avp-internship-portal-app .test-banner-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .avp-internship-portal-app .test-banner-metric-merit {
+    grid-column: auto;
+  }
+}
+
+/* Minimal Professional Tech Background Patterns */
+.avp-internship-portal-app .avp-pattern-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(30, 99, 214, 0.08) 1.25px, transparent 1.25px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, #000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, #000 40%, transparent 95%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.avp-internship-portal-app .avp-pattern-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(30, 99, 214, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, #000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, #000 40%, transparent 95%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.avp-internship-portal-app .avp-pattern-blueprint {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(30, 99, 214, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }

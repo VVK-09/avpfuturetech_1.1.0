@@ -9,12 +9,16 @@ export default function CompanyMarqueeSection() {
   return (
     <section id="students-placed" style={{
       padding: '4.5rem 0',
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#F8FAFC',
+      backgroundImage: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 50%, #FFFFFF 100%)',
       borderTop: '1px solid var(--border-light)',
       borderBottom: '1px solid var(--border-light)',
+      position: 'relative',
       overflow: 'hidden'
     }}>
-      <div className="container" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+      {/* Minimal Tech Dot Pattern */}
+      <div className="avp-pattern-dots" />
+      <div className="container" style={{ textAlign: 'center', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',

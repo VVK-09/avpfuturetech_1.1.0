@@ -58,6 +58,9 @@ export function AppProvider({ children, initialView = 'landing', initialVerifyId
       if (url.pathname.includes('/verify') || url.searchParams.get('view') === 'verify' || url.searchParams.get('id')) {
         return 'verify';
       }
+      if (url.pathname.includes('/domains') || url.searchParams.get('view') === 'all-domains' || url.searchParams.get('view') === 'domains') {
+        return 'all-domains';
+      }
     }
     return initialView || 'landing';
   });
@@ -133,7 +136,11 @@ export function AppProvider({ children, initialView = 'landing', initialVerifyId
   });
 
   const [testimonials, setTestimonials] = useState(() => {
-    return safeGet('avp_testimonials', initialTestimonials);
+    const parsed = safeGet('avp_testimonials', null);
+    if (!parsed || !Array.isArray(parsed) || parsed.length === 0) return initialTestimonials;
+    const parsedIds = new Set(parsed.map(t => t.id));
+    const missingInitials = initialTestimonials.filter(t => !parsedIds.has(t.id));
+    return missingInitials.length > 0 ? [...parsed, ...missingInitials] : parsed;
   });
 
   const [companies, setCompanies] = useState(() => {
@@ -188,7 +195,20 @@ export function AppProvider({ children, initialView = 'landing', initialVerifyId
   });
 
   const [admins, setAdmins] = useState(() => {
-    return safeGet('avp_admins', initialAdmins);
+    const saved = safeGet('avp_admins', initialAdmins);
+    if (Array.isArray(saved)) {
+      const merged = [...saved];
+      initialAdmins.forEach(initAdm => {
+        const idx = merged.findIndex(a => a.email?.toLowerCase() === initAdm.email?.toLowerCase() || a.id === initAdm.id);
+        if (idx >= 0) {
+          merged[idx] = { ...merged[idx], ...initAdm };
+        } else {
+          merged.push(initAdm);
+        }
+      });
+      return merged;
+    }
+    return initialAdmins;
   });
 
   const [examSettings, setExamSettings] = useState(() => {
@@ -1352,7 +1372,7 @@ export function AppProvider({ children, initialView = 'landing', initialVerifyId
       id: `adm-${Date.now().toString().slice(-4)}`,
       name: adminData.name?.trim(),
       email: cleanEmail,
-      password: adminData.password || 'Admin@2026',
+      password: adminData.password || 'Admin@123',
       role: adminData.role || 'Staff Admin',
       department: adminData.department?.trim() || 'Academic Operations',
       phone: adminData.phone ? String(adminData.phone).replace(/\D/g, '') : '',

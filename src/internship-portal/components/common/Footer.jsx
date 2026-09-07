@@ -1,12 +1,20 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import Logo from './Logo';
-import { Mail, Phone, MapPin, ExternalLink, Shield, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, Shield, CheckCircle2, Globe } from 'lucide-react';
 
 export default function Footer() {
   const { setCurrentView, openModal } = useApp();
 
   const handleNavClick = (sectionId) => {
+    if (typeof window !== 'undefined') {
+      const isSub = window.location.hostname.startsWith('internship.') || window.location.hostname.startsWith('internships.');
+      const isInternshipPath = window.location.pathname === '/' || window.location.pathname === '/internships' || window.location.pathname === '/internship';
+      if (!isSub && !isInternshipPath) {
+        window.location.href = `/internships#${sectionId}`;
+        return;
+      }
+    }
     setCurrentView('landing');
     setTimeout(() => {
       const el = document.getElementById(sectionId);
@@ -61,14 +69,14 @@ export default function Footer() {
                 alignItems: 'center',
                 gap: '0.4rem',
                 padding: '0.35rem 0.75rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                border: '1px solid rgba(56, 189, 248, 0.35)',
                 borderRadius: '8px',
                 fontSize: '0.75rem',
                 fontWeight: 600,
-                color: '#CBD5E1'
+                color: '#38BDF8'
               }}>
-                <Shield size={13} color="#CBD5E1" /> ISO 9001:2015 Certified
+                <Shield size={13} color="#38BDF8" /> ISO 9001:2015
               </div>
             </div>
           </div>
@@ -80,6 +88,11 @@ export default function Footer() {
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.92rem' }}>
               <li>
+                <a href="https://www.avpfuturetech.com" style={{ color: '#94A3B8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#38BDF8'} onMouseLeave={(e) => e.currentTarget.style.color = '#94A3B8'}>
+                  <Globe size={14} color="#38BDF8" /> Main Company Website
+                </a>
+              </li>
+              <li>
                 <button onClick={() => handleNavClick('hero')} style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
                   Home & Overview
                 </button>
@@ -90,9 +103,9 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('domains')} style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
-                  Internship Domains
-                </button>
+                <a href="/internships/domains" style={{ color: '#94A3B8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#38BDF8'} onMouseLeave={(e) => e.currentTarget.style.color = '#94A3B8'}>
+                  Internship Domains Catalog
+                </a>
               </li>
               <li>
                 <button onClick={() => openModal('register')} style={{ background: 'none', border: 'none', color: '#38BDF8', fontWeight: 600, cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
@@ -100,7 +113,7 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <a href="/verify" style={{ color: '#38BDF8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                <a href="/internships/verify" style={{ color: '#38BDF8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
                   <Shield size={14} color="#38BDF8" /> Certification Verify
                 </a>
               </li>
@@ -115,15 +128,34 @@ export default function Footer() {
           {/* Column 3: Internship Domains */}
           <div>
             <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '1.25rem', letterSpacing: '-0.2px' }}>
-              6 Internship Tracks
+              Internship Domains
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.9rem', color: '#94A3B8' }}>
-              <li>AI & Machine Learning (GenAI & LLMs)</li>
-              <li>Data Science & Business Analytics</li>
-              <li>Cybersecurity & Ethical Hacking</li>
-              <li>Python Full Stack Development</li>
-              <li>Java Full Stack Development</li>
-              <li>Mobile App Development (Flutter/React Native)</li>
+              {[
+                'Computer Science & IT',
+                'AI & Data',
+                'Cybersecurity',
+                'Electronics & IoT',
+                'Business & Mgmt',
+                'Marketing & Media'
+              ].map((domainName) => (
+                <li key={domainName}>
+                  <a
+                    href="/internships/domains"
+                    style={{
+                      color: '#94A3B8',
+                      textDecoration: 'none',
+                      fontSize: 'inherit',
+                      display: 'inline-block',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#38BDF8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
+                  >
+                    {domainName}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -132,18 +164,48 @@ export default function Footer() {
             <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '1.25rem', letterSpacing: '-0.2px' }}>
               Headquarters & Support
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.9rem', color: '#94A3B8' }}>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
-                <MapPin size={18} color="#38BDF8" style={{ flexShrink: 0, marginTop: '3px' }} />
-                <span>AVP FutureTech LLP, Tech Innovation Hub, Bengaluru, Karnataka 560100</span>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.1rem', fontSize: '0.88rem', color: '#94A3B8' }}>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <MapPin size={17} color="#38BDF8" style={{ flexShrink: 0, marginTop: '3px' }} />
+                <span style={{ lineHeight: '1.45', color: '#CBD5E1' }}>Nirmiti Lakshminarayan Tower, Kudal, Sindhudurg, Maharashtra – 416520</span>
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Mail size={18} color="#38BDF8" style={{ flexShrink: 0 }} />
-                <span>admissions@avpfuturetech.com</span>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <Mail size={17} color="#38BDF8" style={{ flexShrink: 0 }} />
+                <a
+                  href="mailto:contact@avpfuturetech.com"
+                  style={{ color: '#F1F5F9', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#38BDF8'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#F1F5F9'; }}
+                >
+                  contact@avpfuturetech.com
+                </a>
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Phone size={18} color="#38BDF8" style={{ flexShrink: 0 }} />
-                <span>+91 98765 43210 (Mon-Sat, 9AM-6PM IST)</span>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <Phone size={17} color="#38BDF8" style={{ flexShrink: 0, marginTop: '3px' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <a
+                      href="tel:9307076962"
+                      style={{ color: '#F1F5F9', fontWeight: 600, textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#38BDF8'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = '#F1F5F9'; }}
+                    >
+                      +91 9307076962
+                    </a>
+                    <span style={{ color: '#64748B' }}>•</span>
+                    <a
+                      href="tel:7744001079"
+                      style={{ color: '#F1F5F9', fontWeight: 600, textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#38BDF8'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = '#F1F5F9'; }}
+                    >
+                      +91 7744001079
+                    </a>
+                  </div>
+                  <span style={{ fontSize: '0.76rem', color: '#94A3B8' }}>
+                    Mon – Sat, 9:00 AM – 6:00 PM IST
+                  </span>
+                </div>
               </li>
             </ul>
           </div>
@@ -161,14 +223,32 @@ export default function Footer() {
           fontSize: '0.82rem',
           color: '#64748B'
         }}>
-          <div>
-            © 2026 AVP FutureTech LLP. All rights reserved. Registered under Ministry of Corporate Affairs (MCA), Govt. of India.
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+            <div>
+              © 2026 AVP FutureTech LLP. All rights reserved.
+            </div>
+            <div style={{ color: '#94A3B8', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <span>Made with ❤️ in Kokan</span> • <span>Empowering Future Innovators</span>
+            </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Verification Desk</span>
+            <a 
+              href="/privacy-policy" 
+              style={{ color: '#64748B', textDecoration: 'none', transition: 'color 0.2s ease' }}
+              onMouseEnter={(e) => e.target.style.color = '#93C5FD'}
+              onMouseLeave={(e) => e.target.style.color = '#64748B'}
+            >
+              Privacy Policy
+            </a>
+            <a 
+              href="/terms-of-service" 
+              style={{ color: '#64748B', textDecoration: 'none', transition: 'color 0.2s ease' }}
+              onMouseEnter={(e) => e.target.style.color = '#93C5FD'}
+              onMouseLeave={(e) => e.target.style.color = '#64748B'}
+            >
+              Terms of Service
+            </a>
 
             {/* Discreet Admin Login Link */}
             <button

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Check } from 'lucide-react';
+import { Check, AlertCircle } from 'lucide-react';
 
 // Google Cloud reCAPTCHA Site Key provided for this application
 const CUSTOM_GOOGLE_SITE_KEY = '6Leop54tAAAAAJiVsagN5S_P05GK4JBJ9EIujB1s';
@@ -239,9 +239,10 @@ export default function GoogleCaptcha({ onVerify, verified, error }) {
           marginTop: '0.35rem',
           display: 'flex',
           alignItems: 'center',
-          gap: '0.25rem'
+          gap: '0.35rem'
         }}>
-          <span>⚠️ {error}</span>
+          <AlertCircle size={13} />
+          <span>{error}</span>
         </div>
       )}
     </div>

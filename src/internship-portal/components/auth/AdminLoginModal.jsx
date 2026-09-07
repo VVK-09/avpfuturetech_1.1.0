@@ -371,54 +371,6 @@ export default function AdminLoginModal() {
           {/* STEP 1: ADMIN CREDENTIALS */}
           {step === 'credentials' && (
             <div>
-              {/* Quick Demo Pill */}
-              <div style={{
-                backgroundColor: 'rgba(30, 99, 214, 0.04)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
-                borderRadius: '10px',
-                padding: '0.65rem 0.85rem',
-                marginBottom: '1.15rem',
-                fontSize: '0.78rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600, color: 'var(--primary-navy)', marginBottom: '0.35rem' }}>
-                  <Sparkles size={13} color="var(--electric-blue)" /> Demo Admin Keys:
-                </div>
-                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                  <button 
-                    type="button" 
-                    onClick={() => handleFillDemoAdmin('admin@avpfuturetech.com', 'Admin@2026')}
-                    style={{
-                      background: '#FFFFFF',
-                      border: '1px solid #CBD5E1',
-                      borderRadius: '6px',
-                      padding: '0.2rem 0.5rem',
-                      fontSize: '0.74rem',
-                      cursor: 'pointer',
-                      color: 'var(--primary-navy)',
-                      fontWeight: 600
-                    }}
-                  >
-                    Super Admin (Dr. Vikram)
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={() => handleFillDemoAdmin('mentor@avpfuturetech.com', 'Mentor@2026')}
-                    style={{
-                      background: '#FFFFFF',
-                      border: '1px solid #CBD5E1',
-                      borderRadius: '6px',
-                      padding: '0.2rem 0.5rem',
-                      fontSize: '0.74rem',
-                      cursor: 'pointer',
-                      color: 'var(--primary-navy)',
-                      fontWeight: 600
-                    }}
-                  >
-                    Staff Admin (Priya)
-                  </button>
-                </div>
-              </div>
-
               <form onSubmit={handleValidateCredentials}>
                 <div className="form-group" style={{ marginBottom: '0.9rem' }}>
                   <label className="form-label" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
@@ -428,7 +380,7 @@ export default function AdminLoginModal() {
                     <input
                       type="email"
                       required
-                      placeholder="admin@avpfuturetech.com"
+                      placeholder="vaishnavkubade@gmail.com"
                       className="form-input"
                       style={{ fontSize: '0.88rem', padding: '0.65rem 0.85rem', borderRadius: '8px' }}
                       value={email}

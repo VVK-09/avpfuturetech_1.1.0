@@ -124,10 +124,14 @@ export default function WhatWeOfferSection() {
 
   return (
     <section id="what-we-offer" className="section-py" style={{
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#F8FAFC',
+      backgroundImage: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 50%, #FFFFFF 100%)',
       position: 'relative',
       overflow: 'hidden'
     }}>
+      {/* Minimal Tech Grid Pattern */}
+      <div className="avp-pattern-grid" />
+
       {/* Decorative ambient background glows */}
       <div style={{
         position: 'absolute',

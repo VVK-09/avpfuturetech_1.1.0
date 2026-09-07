@@ -20,7 +20,8 @@ import {
   ShieldCheck,
   LogOut,
   ExternalLink,
-  ChevronRight
+  ChevronRight,
+  Globe
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -90,11 +91,19 @@ export default function AdminLayout() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <div style={{ textAlign: 'right' }} className="admin-user-info">
             <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF' }}>{currentUser.name}</div>
             <div style={{ fontSize: '0.74rem', color: '#93C5FD' }}>{currentUser.email}</div>
           </div>
+
+          <a
+            href="/"
+            className="btn btn-ghost btn-sm"
+            style={{ color: '#93C5FD', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px' }}
+          >
+            <Globe size={14} /> Main Website
+          </a>
 
           <button
             type="button"
