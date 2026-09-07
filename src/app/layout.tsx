@@ -68,20 +68,35 @@ export const metadata: Metadata = {
   },
 };
 
+import { headers } from "next/headers";
 import ConditionalLayout from "@/components/ConditionalLayout";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let isInternshipSubdomain = false;
+  try {
+    const headersList = await headers();
+    const host = headersList.get("host") || "";
+    isInternshipSubdomain =
+      host.startsWith("internship.") ||
+      host.startsWith("internships.") ||
+      headersList.get("x-subdomain-internship") === "1";
+  } catch {
+    // Fallback for static generation
+  }
+
   return (
     <html
       lang="en"
       className={`${outfit.variable} ${plusJakarta.variable} font-sans scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col bg-white text-[#3C4658] antialiased selection:bg-[#1E63D6]/20 selection:text-[#0B1E3D]">
-        <ConditionalLayout>{children}</ConditionalLayout>
+        <ConditionalLayout isSubdomainServer={isInternshipSubdomain}>
+          {children}
+        </ConditionalLayout>
       </body>
     </html>
   );

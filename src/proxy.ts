@@ -12,19 +12,28 @@ export function proxy(request: NextRequest) {
     request.nextUrl.searchParams.get('subdomain') === 'internship';
 
   if (isInternshipSubdomain) {
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-subdomain-internship', '1');
+
     // 1. Root of subdomain -> rewrite to /internships
     if (pathname === '/' || pathname === '') {
-      return NextResponse.rewrite(new URL('/internships', request.url));
+      return NextResponse.rewrite(new URL('/internships', request.url), {
+        request: { headers: requestHeaders }
+      });
     }
 
     // 2. /domains -> rewrite to /internships/domains
     if (pathname === '/domains' || pathname === '/domains/') {
-      return NextResponse.rewrite(new URL('/internships/domains', request.url));
+      return NextResponse.rewrite(new URL('/internships/domains', request.url), {
+        request: { headers: requestHeaders }
+      });
     }
 
     // 3. /verify -> rewrite to /internships/verify
     if (pathname === '/verify' || pathname === '/verify/') {
-      return NextResponse.rewrite(new URL('/internships/verify', request.url));
+      return NextResponse.rewrite(new URL('/internships/verify', request.url), {
+        request: { headers: requestHeaders }
+      });
     }
 
     // 4. If someone visits /internships directly on the subdomain, redirect to clean path

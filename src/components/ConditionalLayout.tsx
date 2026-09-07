@@ -7,11 +7,22 @@ import Footer from "./Footer";
 
 export default function ConditionalLayout({
   children,
+  isSubdomainServer = false,
 }: {
   children: React.ReactNode;
+  isSubdomainServer?: boolean;
 }) {
   const pathname = usePathname();
+
+  const isClientSubdomain =
+    typeof window !== "undefined" &&
+    (window.location.hostname.startsWith("internship.") ||
+      window.location.hostname.startsWith("internships."));
+
+  const isSubdomain = isSubdomainServer || isClientSubdomain;
+
   const isStandaloneRoute =
+    isSubdomain ||
     pathname.startsWith("/internship") ||
     pathname.startsWith("/internships") ||
     pathname.startsWith("/admin");
