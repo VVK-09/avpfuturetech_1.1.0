@@ -261,7 +261,7 @@ export default function Navbar() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {/* Main Website Link */}
                 <a
-                  href="/"
+                  href="https://www.avpfuturetech.com"
                   className="btn btn-outline btn-sm"
                   style={{
                     borderRadius: '10px',
@@ -347,7 +347,7 @@ export default function Navbar() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {/* Main Website Link */}
                 <a
-                  href="/"
+                  href="https://www.avpfuturetech.com"
                   className="btn btn-outline btn-sm"
                   style={{
                     borderRadius: '10px',
@@ -573,7 +573,7 @@ export default function Navbar() {
             <div className="drawer-links-scroll">
               {/* Dedicated Main Website Link in Navigation */}
               <a
-                href="/"
+                href="https://www.avpfuturetech.com"
                 className="drawer-link-row drawer-link-external"
                 onClick={() => setMobileMenuOpen(false)}
               >

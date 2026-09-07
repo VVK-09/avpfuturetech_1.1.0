@@ -98,7 +98,7 @@ export default function AdminLayout() {
           </div>
 
           <a
-            href="/"
+            href="https://www.avpfuturetech.com"
             className="btn btn-ghost btn-sm"
             style={{ color: '#93C5FD', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px' }}
           >
