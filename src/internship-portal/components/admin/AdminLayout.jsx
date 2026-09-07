@@ -9,23 +9,23 @@ import CompanyManagement from './CompanyManagement';
 import InquiryManagement from './InquiryManagement';
 import ContentManagement from './ContentManagement';
 import UserAccessManagement from './UserAccessManagement';
-import { 
-  Users, 
-  FileQuestion, 
-  Layers, 
-  CheckSquare, 
+import {
+  Users,
+  FileQuestion,
+  Layers,
+  CheckSquare,
   Building2,
   MessageSquare,
-  Quote, 
-  ShieldCheck, 
-  LogOut, 
+  Quote,
+  ShieldCheck,
+  LogOut,
   ExternalLink,
   ChevronRight
 } from 'lucide-react';
 
 export default function AdminLayout() {
   const { currentUser, userRole, logout, setCurrentView, companies, inquiries } = useApp();
-  const [adminTab, setAdminTab] = useState('candidates'); 
+  const [adminTab, setAdminTab] = useState('candidates');
   // 'candidates' | 'inquiries' | 'exam' | 'domains' | 'intern-tasks' | 'companies' | 'content' | 'access'
 
   const pendingInquiriesCount = useMemo(() => {
@@ -47,12 +47,12 @@ export default function AdminLayout() {
 
   const navItems = [
     { id: 'candidates', label: 'Candidates & Test Roster', icon: <Users size={18} /> },
-    { 
-      id: 'inquiries', 
-      label: 'Admissions Inquiries', 
-      icon: <MessageSquare size={18} />, 
+    {
+      id: 'inquiries',
+      label: 'Admissions Inquiries',
+      icon: <MessageSquare size={18} />,
       count: pendingInquiriesCount > 0 ? `${pendingInquiriesCount} new` : (inquiries?.length || 0),
-      isAlert: pendingInquiriesCount > 0 
+      isAlert: pendingInquiriesCount > 0
     },
     { id: 'exam', label: 'Exam & Question Bank', icon: <FileQuestion size={18} /> },
     { id: 'domains', label: 'Internship Domains', icon: <Layers size={18} /> },

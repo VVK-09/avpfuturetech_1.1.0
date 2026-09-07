@@ -33,11 +33,14 @@ import StudentDashboard from './components/student/StudentDashboard';
 import EnrolledInternDashboard from './components/student/EnrolledInternDashboard';
 import PaymentModal from './components/student/PaymentModal';
 
+// Verification View
+import VerificationView from './components/verify/VerificationView';
+
 // Admin Portal
 import AdminLayout from './components/admin/AdminLayout';
 
 export default function App() {
-  const { currentView } = useApp();
+  const { currentView, verifyQueryId } = useApp();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -97,6 +100,16 @@ export default function App() {
         <>
           <Navbar />
           <EnrolledInternDashboard />
+          <Footer />
+        </>
+      )}
+
+      {currentView === 'verify' && (
+        <>
+          <Navbar />
+          <main>
+            <VerificationView initialQuery={verifyQueryId} />
+          </main>
           <Footer />
         </>
       )}

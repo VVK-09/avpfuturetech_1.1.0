@@ -8,6 +8,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification
 } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // Web app's Firebase configuration for AVP FutureTech Internship Portal
 const getEnv = (key, fallback = '') => {
@@ -30,21 +31,25 @@ const firebaseConfig = {
 // Initialize Firebase safely
 let app;
 let auth;
+let db;
 
 try {
   app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
   auth = getAuth(app);
+  db = getFirestore(app);
 } catch (error) {
   console.warn('Firebase initialization notice:', error);
   if (!app) {
     app = initializeApp(firebaseConfig, 'avp-futuretech-app');
     auth = getAuth(app);
+    db = getFirestore(app);
   }
 }
 
 export { 
   app, 
   auth, 
+  db,
   firebaseConfig,
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
@@ -54,3 +59,4 @@ export {
   sendEmailVerification 
 };
 export default app;
+

@@ -53,8 +53,12 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const handleNavClick = (sectionId) => {
-    setActiveSection(sectionId);
     setMobileMenuOpen(false);
+    if (sectionId === 'verify') {
+      window.location.href = '/verify';
+      return;
+    }
+    setActiveSection(sectionId);
     if (currentView !== 'landing') {
       setCurrentView('landing');
       setTimeout(() => {
@@ -77,7 +81,7 @@ export default function Navbar() {
     { id: 'what-we-offer', label: 'What We Offer', icon: Sparkles },
     { id: 'domains', label: 'Domains', badge: '6 Tracks', icon: Compass },
     { id: 'students-placed', label: 'Our Students', icon: Users },
-    { id: 'testimonials', label: 'Testimonials', icon: Award },
+    { id: 'verify', label: 'Certification Verify', icon: ShieldCheck, href: '/verify' },
     { id: 'contact', label: 'Contact', icon: Phone }
   ];
 
@@ -603,14 +607,14 @@ export default function Navbar() {
         }
 
         .main-navbar-container {
-          max-width: 1320px;
+          max-width: 1440px;
           width: 100%;
           margin: 0 auto;
-          padding: 0 1.5rem;
+          padding: 0 1.25rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 74px;
+          height: 72px;
         }
 
         /* Brand Logo */
@@ -636,13 +640,15 @@ export default function Navbar() {
         .desktop-nav-menu {
           display: flex;
           align-items: center;
-          gap: 0.35rem;
+          gap: 0.25rem;
+          flex-wrap: nowrap;
+          flex-shrink: 0;
         }
 
         .desktop-nav-link {
           font-weight: 600;
-          font-size: 0.9rem;
-          padding: 0.5rem 0.85rem;
+          font-size: 0.88rem;
+          padding: 0.45rem 0.68rem;
           border-radius: 10px;
           border: none;
           cursor: pointer;
@@ -650,7 +656,9 @@ export default function Navbar() {
           color: var(--text-primary);
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
+          white-space: nowrap !important;
+          flex-shrink: 0;
           transition: all 0.2s ease;
         }
         .desktop-nav-link:hover {
@@ -664,13 +672,14 @@ export default function Navbar() {
         }
 
         .desktop-nav-badge {
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 800;
           background-color: rgba(30, 99, 214, 0.1);
           color: var(--electric-blue);
-          padding: 0.15rem 0.45rem;
+          padding: 0.12rem 0.4rem;
           border-radius: 9999px;
           line-height: 1;
+          white-space: nowrap !important;
         }
 
         /* Desktop Actions Wrap */
@@ -1064,7 +1073,7 @@ export default function Navbar() {
         }
 
         /* Responsive Breakpoints */
-        @media (max-width: 959px) {
+        @media (max-width: 1180px) {
           .desktop-nav-menu {
             display: none !important;
           }

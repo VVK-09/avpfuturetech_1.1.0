@@ -245,7 +245,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "AI & ML Graduate | MBA in Data Science & Business Analytics",
     phone: "+91 7517238914",
     email: "avishkar@avpfuturetech.com",
-    image: "/images/founder_avishkar.jpg",
+    image: "/images/avishkar_kamble.jpg",
     bio: "Passionate about democratizing futuristic technology education in rural communities, Avishkar blends machine learning expertise with strategic educational administration to build impactful, scalable STEM curricula and institutional alliances.",
     responsibilities: [
       "Curriculum Design & Content Strategy",
@@ -267,7 +267,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "AI & ML Graduate",
     phone: "+91 7744001079",
     email: "vaishnav@avpfuturetech.com",
-    image: "/images/founder_vaishnav.jpg",
+    image: "/images/vaishnav_kubade.jpg",
     bio: "Driving the technology core of AVP FutureTech, Vaishnav spearheads hardware-software synergy, student kit prototyping, robotics architecture, and technical workshops that transform complex robotics into intuitive, hands-on learning.",
     responsibilities: [
       "Technical Leadership & Systems Architecture",
@@ -290,7 +290,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "Computer Engineering Graduate",
     phone: "+91 7744001079",
     email: "prathmesh@avpfuturetech.com",
-    image: "/images/founder_prathmesh.jpg",
+    image: "/images/prathmesh_narvekar.jpg",
     bio: "A dedicated computer engineer and educator, Prathmesh focuses on interactive training delivery, student engagement, school relations, and empowering every child with the confidence to code and build functional innovations.",
     responsibilities: [
       "Interactive Content Delivery & Training",

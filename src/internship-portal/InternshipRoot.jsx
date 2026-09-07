@@ -5,7 +5,7 @@ import App from './App.jsx';
 import { AppProvider } from './context/AppContext.jsx';
 import './index.css';
 
-export default function InternshipRoot() {
+export default function InternshipRoot({ initialView = 'landing', initialId = '' }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function InternshipRoot() {
   }
 
   return (
-    <AppProvider>
+    <AppProvider initialView={initialView} initialVerifyId={initialId}>
       <div className="avp-internship-portal-app" style={{ minHeight: '100vh' }}>
         <App />
       </div>

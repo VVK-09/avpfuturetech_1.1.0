@@ -39,10 +39,6 @@ export default function Footer() {
                 />
               </div>
             </Link>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-[#38BDF8] border border-white/15">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{SITE_CONFIG.tagline}</span>
-            </div>
             <p className="text-slate-300 text-sm leading-relaxed max-w-sm">
               Bridging the opportunity gap by bringing world-class AI, IoT, Robotics, and STEM education to rural schools and colleges across India.
             </p>
@@ -136,6 +132,15 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/internships/verify"
+                  className="text-slate-300 hover:text-[#38BDF8] hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#38BDF8]" />
+                  <span>Verify Certificate</span>
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/our-company#contact"

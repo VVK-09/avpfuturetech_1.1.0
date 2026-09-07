@@ -3,37 +3,38 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sparkles, Cpu, CheckCircle2, ShieldCheck, Award } from "lucide-react";
+import { ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Award } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import InteractiveHeroBackground from "./InteractiveHeroBackground";
+import HeroTechFactsWidget from "./HeroTechFactsWidget";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white pt-8 pb-16 md:pt-14 md:pb-24 lg:pt-20 lg:pb-28">
+    <section className="relative overflow-hidden bg-white pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-18">
       {/* Interactive Minimal Canvas (Matches Internship Portal) */}
       <InteractiveHeroBackground />
 
       {/* Decorative ambient background glows (Matches Internship Portal) */}
       <div
-        className="pointer-events-none absolute -top-36 -right-36 w-[600px] h-[600px] rounded-full"
+        className="pointer-events-none absolute -top-36 -right-36 w-[500px] h-[500px] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(247, 249, 252, 0) 70%)",
+          background: "radial-gradient(circle, rgba(30, 99, 214, 0.07) 0%, rgba(247, 249, 252, 0) 70%)",
         }}
       />
       <div
-        className="pointer-events-none absolute -bottom-24 -left-24 w-[450px] h-[450px] rounded-full"
+        className="pointer-events-none absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, rgba(247, 249, 252, 0) 70%)",
+          background: "radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, rgba(247, 249, 252, 0) 70%)",
         }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Copy and CTAs */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-left">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DCEBFF] border border-[#BFDBFE] text-[#1E63D6] text-xs sm:text-sm font-bold shadow-xs">
-              <Sparkles className="w-4 h-4 text-[#1E63D6]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DCEBFF] border border-[#BFDBFE] text-[#1E63D6] text-xs sm:text-sm font-bold shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#1E63D6]" />
               <span>{SITE_CONFIG.tagline}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#1E63D6]" />
               <span className="text-[#0B1E3D] font-semibold hidden sm:inline">
@@ -42,7 +43,7 @@ export default function Hero() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-5xl/tight font-extrabold text-[#0B1E3D] tracking-tight font-heading">
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-5xl font-extrabold text-[#0B1E3D] tracking-tight leading-[1.16] font-heading">
               Bringing World-Class{" "}
               <span className="text-[#1E63D6] relative inline-block">
                 AI, IoT & Robotics
@@ -51,29 +52,24 @@ export default function Hero() {
             </h1>
 
             {/* Mission Subheadline */}
-            <p className="text-base sm:text-lg lg:text-xl text-[#64748B] leading-relaxed max-w-2xl font-normal">
+            <p className="text-sm sm:text-base lg:text-lg text-[#64748B] leading-relaxed max-w-2xl font-normal">
               Bridging the opportunity gap through hands-on, real-world learning. We empower school students (Grades 1–10) with the futuristic skills and confidence to compete shoulder-to-shoulder with their metro peers.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <Link
                 href="/workshops"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl text-base font-bold !text-white bg-[#1E63D6] hover:bg-[#1551B5] shadow-lg shadow-[#1E63D6]/25 hover:shadow-xl hover:shadow-[#1E63D6]/35 transition-all duration-200 group"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl text-sm sm:text-base font-bold !text-white bg-[#1E63D6] hover:bg-[#1551B5] shadow-lg shadow-[#1E63D6]/25 hover:shadow-xl hover:shadow-[#1E63D6]/35 transition-all duration-200 group"
               >
                 <span>Explore Programs</span>
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link
-                href="/internships"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl text-base font-bold !text-[#0B1E3D] border-1.5 border-[#0B1E3D] hover:bg-[#F0F4FA] transition-all duration-200"
-              >
-                <span>Internship Portal</span>
-              </Link>
             </div>
 
+
             {/* Key Trust Signals / Features Pill Row */}
-            <div className="pt-6 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#0B1E3D]">
                 <CheckCircle2 className="w-4 h-4 text-[#1E63D6] shrink-0" />
                 <span>100% Practical Activities</span>
@@ -89,49 +85,34 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Visual Showcase with Interactive Glow */}
+          {/* Right Column: Visual Showcase with Balanced Proportions */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none group">
+            <div className="relative mx-auto max-w-md lg:max-w-none group space-y-2.5">
               {/* Outer Decorative Glow Border reacting on hover */}
-              <div className="absolute -inset-2 rounded-3xl bg-linear-to-r from-[#1E63D6]/25 via-[#38bdf8]/20 to-[#0B1E3D]/15 blur-xl group-hover:blur-2xl transition-all duration-500 opacity-80 group-hover:opacity-100" />
+              <div className="absolute -inset-2 rounded-3xl bg-linear-to-r from-[#1E63D6]/20 via-[#38bdf8]/15 to-[#0B1E3D]/10 blur-xl group-hover:blur-2xl transition-all duration-500 opacity-80 group-hover:opacity-100 pointer-events-none" />
 
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white transition-transform duration-500 group-hover:scale-[1.015]">
-                <div className="relative h-72 sm:h-96 w-full">
+              {/* 1. Fully Visible Realistic Photo Frame */}
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 bg-white transition-transform duration-500 group-hover:scale-[1.01]">
+                <div className="relative h-56 sm:h-68 lg:h-[280px] w-full">
                   <Image
-                    src="/images/hero_robotics_ai.jpg"
-                    alt="Rural school students engaged in hands-on robotics and AI learning"
+                    src="/images/hero_robotics_ai_realistic.jpg"
+                    alt="Indian school students wearing black AVP polo shirts collaborating on hands-on robotics and coding in STEM lab"
                     fill
                     priority
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 500px"
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 550px"
                   />
-                  {/* Subtle Gradient Shade for Contrast */}
-                  <div className="absolute inset-0 bg-linear-to-t from-[#0B1E3D]/80 via-transparent to-transparent" />
+                </div>
 
-                  {/* Floating Highlight Card on top of Image */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/95 backdrop-blur-md shadow-lg border border-white/60 transition-transform duration-300 group-hover:translate-y-[-2px]">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#DCEBFF] flex items-center justify-center text-[#1E63D6] shrink-0 shadow-xs">
-                        <Cpu className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-[#0B1E3D]">
-                          Experiential Learning in Action
-                        </p>
-                        <p className="text-[11px] text-slate-500 font-medium">
-                          Smart sensor wiring & autonomous robotics by young innovators
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                {/* Floating Badge (Top-Right) */}
+                <div className="absolute top-2.5 right-2.5 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full shadow-xs border border-slate-100 flex items-center gap-1.5 hover:scale-105 transition-transform z-20">
+                  <span className="flex h-2 w-2 rounded-full bg-[#1E63D6] animate-pulse" />
+                  <span className="text-[11px] font-bold text-[#0B1E3D]">Sindhudurg & Beyond</span>
                 </div>
               </div>
 
-              {/* Floating Badge (Top-Right) */}
-              <div className="absolute -top-4 -right-2 sm:-right-4 px-4 py-2 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-slate-100 flex items-center gap-2 hover:scale-105 transition-transform">
-                <span className="flex h-2.5 w-2.5 rounded-full bg-[#1E63D6] animate-pulse" />
-                <span className="text-xs font-bold text-[#0B1E3D]">Sindhudurg & Beyond</span>
-              </div>
+              {/* 2. Dynamic Tech Facts Interactive Card */}
+              <HeroTechFactsWidget />
             </div>
           </div>
         </div>

@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, MessageCircle, Phone, ArrowRight } from "lucide-react";
+import { db } from "@/lib/firebaseClient";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,7 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [submittedInquiry, setSubmittedInquiry] = useState<any>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -25,50 +28,140 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
+    setErrorMessage("");
 
     // Client-side validation check
-    if (!formData.name || !formData.phone) {
+    if (!formData.name.trim() || !formData.phone.trim()) {
       setStatus("error");
-      setErrorMessage("Please provide your name and contact phone number.");
+      setErrorMessage("Please provide your full name and contact phone number.");
       return;
     }
 
-    // Simulate submission delay
-    setTimeout(() => {
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (cleanPhone.length < 10) {
+      setStatus("error");
+      setErrorMessage("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    const inquiryId = `INQ-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const inquiryRecord = {
+      id: inquiryId,
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      organization: formData.organization.trim() || "Direct Inquiry",
+      inquiryType: formData.inquiryType,
+      message: formData.message.trim(),
+      status: "Pending",
+      source: "Main Website Contact Form",
+      createdAt: new Date().toISOString().replace("T", " ").slice(0, 16),
+      counselorNotes: ""
+    };
+
+    try {
+      // 1. Save to Cloud Firestore
+      if (db) {
+        try {
+          const docRef = doc(db, "inquiries", inquiryId);
+          await setDoc(docRef, inquiryRecord, { merge: true });
+        } catch (cloudErr) {
+          console.warn("Firestore inquiry sync fallback:", cloudErr);
+        }
+      }
+
+      // 2. Local fallback sync for immediate local admin reactivity
+      if (typeof window !== "undefined") {
+        try {
+          const local = JSON.parse(localStorage.getItem("avp_inquiries") || "[]");
+          localStorage.setItem("avp_inquiries", JSON.stringify([inquiryRecord, ...local]));
+        } catch {}
+      }
+
+      // 3. Trigger backend API endpoint for notifications
+      try {
+        await fetch("/api/inquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(inquiryRecord)
+        });
+      } catch {}
+
+      setSubmittedInquiry(inquiryRecord);
       setStatus("success");
-    }, 800);
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setStatus("error");
+      setErrorMessage("Failed to send inquiry. Please call us directly at 7517238914.");
+    }
   };
+
+  const waMessage = submittedInquiry 
+    ? encodeURIComponent(`Hi AVP FutureTech Team, my name is ${submittedInquiry.name} (${submittedInquiry.organization || 'Institution'}). I have submitted Inquiry #${submittedInquiry.id} regarding "${submittedInquiry.inquiryType}".\n\nRequirements: ${submittedInquiry.message || 'General consultation'}`)
+    : "";
+  const whatsappUrl = `https://wa.me/917517238914?text=${waMessage}`;
 
   return (
     <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-6 sm:p-8">
-      {status === "success" ? (
-        <div className="py-12 text-center space-y-4">
+      {status === "success" && submittedInquiry ? (
+        <div className="py-8 text-center space-y-5">
           <div className="w-16 h-16 rounded-full bg-[#DCEBFF] text-[#1E63D6] mx-auto flex items-center justify-center">
             <CheckCircle2 className="w-9 h-9" />
           </div>
-          <h3 className="text-2xl font-bold text-[#0B1E3D] font-heading">
-            Inquiry Received!
-          </h3>
-          <p className="text-[#64748B] text-sm max-w-md mx-auto leading-relaxed">
-            Thank you, <span className="font-semibold text-[#0B1E3D]">{formData.name}</span>. Our founders will contact you within 24 hours to discuss your requirements.
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                organization: "",
-                inquiryType: "School Workshop (Grades 1-10)",
-                message: "",
-              });
-              setStatus("idle");
-            }}
-            className="mt-4 px-6 py-2.5 rounded-full text-xs font-bold text-[#1E63D6] bg-[#DCEBFF] hover:bg-[#c6dfff] transition-colors"
-          >
-            Send Another Message
-          </button>
+          <div>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 mb-2">
+              Ticket #{submittedInquiry.id} Created
+            </span>
+            <h3 className="text-2xl font-bold text-[#0B1E3D] font-heading">
+              Inquiry Received Successfully!
+            </h3>
+            <p className="text-[#64748B] text-sm max-w-md mx-auto leading-relaxed mt-2">
+              Thank you, <span className="font-semibold text-[#0B1E3D]">{submittedInquiry.name}</span>. Our founders will review your requirements and reach out via phone/WhatsApp within 24 hours.
+            </p>
+          </div>
+
+          {/* Direct Instant Action Buttons */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-5 py-3 rounded-xl text-xs font-bold text-white bg-[#25D366] hover:bg-[#20ba59] shadow-md shadow-[#25D366]/20 transition-all flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Chat Immediately on WhatsApp</span>
+            </a>
+
+            <a
+              href="tel:7517238914"
+              className="w-full sm:w-auto px-5 py-3 rounded-xl text-xs font-bold text-[#0B1E3D] bg-[#F1F5F9] hover:bg-[#E2E8F0] border border-[#CBD5E1] transition-all flex items-center justify-center gap-2"
+            >
+              <Phone className="w-4 h-4 text-[#1E63D6]" />
+              <span>Call Founder: +91 7517238914</span>
+            </a>
+          </div>
+
+          <div className="pt-4 border-t border-slate-100">
+            <button
+              type="button"
+              onClick={() => {
+                setFormData({
+                  name: "",
+                  email: "",
+                  phone: "",
+                  organization: "",
+                  inquiryType: "School Workshop (Grades 1-10)",
+                  message: "",
+                });
+                setSubmittedInquiry(null);
+                setStatus("idle");
+              }}
+              className="text-xs font-semibold text-[#1E63D6] hover:underline inline-flex items-center gap-1 cursor-pointer"
+            >
+              <span>Send Another Inquiry</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
+          </div>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -163,7 +256,7 @@ export default function ContactForm() {
               name="inquiryType"
               value={formData.inquiryType}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0B1E3D] focus:outline-hidden focus:ring-2 focus:ring-[#1E63D6] focus:border-[#1E63D6] transition-all bg-white"
+              className="w-full px-4 py-2.5 rounded-xl border border-[#E2E8F0] text-sm text-[#0B1E3D] focus:outline-hidden focus:ring-2 focus:ring-[#1E63D6] focus:border-[#1E63D6] transition-all bg-white cursor-pointer"
             >
               <option>School Workshop (Grades 1-10)</option>
               <option>Smart School Lab Setup</option>
@@ -193,10 +286,10 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="w-full py-3.5 px-6 rounded-xl font-bold text-sm text-white bg-[#1E63D6] hover:bg-[#1551B5] shadow-md shadow-[#1E63D6]/25 hover:shadow-lg hover:shadow-[#1E63D6]/35 transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-full py-3.5 px-6 rounded-xl font-bold text-sm text-white bg-[#1E63D6] hover:bg-[#1551B5] shadow-md shadow-[#1E63D6]/25 hover:shadow-lg hover:shadow-[#1E63D6]/35 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
           >
             {status === "submitting" ? (
-              <span>Sending Inquiry...</span>
+              <span>Submitting to Admissions Desk...</span>
             ) : (
               <>
                 <span>Submit Inquiry</span>

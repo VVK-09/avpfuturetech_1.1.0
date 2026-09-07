@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
-import { 
-  MessageSquare, 
-  Search, 
-  Trash2, 
-  CheckCircle2, 
-  Clock, 
-  Mail, 
-  Phone, 
-  AlertCircle, 
+import {
+  MessageSquare,
+  Search,
+  Trash2,
+  CheckCircle2,
+  Clock,
+  Mail,
+  Phone,
+  AlertCircle,
   Edit3,
   X,
   FileSpreadsheet
@@ -21,7 +21,7 @@ export default function InquiryManagement() {
   const [statusFilter, setStatusFilter] = useState('All'); // 'All' | 'Pending' | 'Contacted' | 'Resolved'
   const [selectedInquiry, setSelectedInquiry] = useState(null);
   const [deletingInquiry, setDeletingInquiry] = useState(null);
-  
+
   // Counselor reply / notes modal state
   const [notesForm, setNotesForm] = useState({
     status: 'Contacted',
@@ -44,7 +44,7 @@ export default function InquiryManagement() {
     return inquiries.filter(inq => {
       const matchStatus = statusFilter === 'All' || inq.status === statusFilter;
       const q = searchQuery.toLowerCase().trim();
-      const matchQuery = !q || 
+      const matchQuery = !q ||
         inq.name.toLowerCase().includes(q) ||
         inq.email.toLowerCase().includes(q) ||
         (inq.phone && inq.phone.includes(q)) ||
@@ -352,16 +352,16 @@ export default function InquiryManagement() {
                         color: 'var(--text-muted)',
                         flexWrap: 'wrap'
                       }}>
-                        <a 
-                          href={`mailto:${inq.email}?subject=AVP FutureTech Admissions Inquiry - ${inq.id}`} 
+                        <a
+                          href={`mailto:${inq.email}?subject=AVP FutureTech Admissions Inquiry - ${inq.id}`}
                           style={{ color: 'var(--electric-blue)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem', textDecoration: 'none' }}
                         >
                           <Mail size={13} /> {inq.email}
                         </a>
 
                         {inq.phone && (
-                          <a 
-                            href={`tel:${inq.phone}`} 
+                          <a
+                            href={`tel:${inq.phone}`}
                             style={{ color: 'var(--text-body)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem', textDecoration: 'none' }}
                           >
                             <Phone size={13} /> +91 {inq.phone}

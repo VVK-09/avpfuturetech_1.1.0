@@ -6,7 +6,14 @@ import { initialCompanies } from '../data/initialCompanies';
 import { initialInquiries } from '../data/initialInquiries';
 import { initialStudents, initialAdmins, initialInternTemplates, generate12WeekTasksForDomain } from '../data/initialInternTasks';
 import { sendEmailOtp, verifyEmailOtp, clearEmailOtp } from '../services/emailOtpService';
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../config/firebase';
+import { auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../config/firebase';
+import {
+  collection,
+  doc,
+  setDoc,
+  onSnapshot,
+  deleteDoc
+} from 'firebase/firestore';
 
 const AppContext = createContext();
 
@@ -33,20 +40,35 @@ const safeSet = (key, value) => {
   if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
-  } catch {}
+  } catch { }
 };
 
 const safeRemove = (key) => {
   if (typeof window === 'undefined') return;
   try {
     localStorage.removeItem(key);
-  } catch {}
+  } catch { }
 };
 
-export function AppProvider({ children }) {
+export function AppProvider({ children, initialView = 'landing', initialVerifyId = '' }) {
   // Navigation View State
-  const [currentView, setCurrentView] = useState('landing'); 
-  // 'landing' | 'instructions' | 'test' | 'post-test' | 'student-dashboard' | 'intern-dashboard' | 'admin-dashboard'
+  const [currentView, setCurrentView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      if (url.pathname.includes('/verify') || url.searchParams.get('view') === 'verify' || url.searchParams.get('id')) {
+        return 'verify';
+      }
+    }
+    return initialView || 'landing';
+  });
+
+  const [verifyQueryId, setVerifyQueryId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      return url.searchParams.get('id') || initialVerifyId || '';
+    }
+    return initialVerifyId || '';
+  });
 
   // Authentication State
   const [currentUser, setCurrentUser] = useState(() => {
@@ -93,12 +115,12 @@ export function AppProvider({ children }) {
     try {
       return parsed.map(d => {
         const init = initialDomains.find(item => item.id === d.id);
-        const mapped = init ? { 
-          ...init, 
-          ...d, 
-          image: d.image || init.image, 
-          perks: d.perks || init.perks, 
-          price: d.price || init.price 
+        const mapped = init ? {
+          ...init,
+          ...d,
+          image: d.image || init.image,
+          perks: d.perks || init.perks,
+          price: d.price || init.price
         } : d;
         return {
           ...mapped,
@@ -254,6 +276,254 @@ export function AppProvider({ children }) {
     }
   }, [currentUser, userRole]);
 
+  // Live Cloud Synchronization with Firebase Firestore
+  useEffect(() => {
+    if (!db) return;
+
+    // 1. Live Firestore Listener for Students
+    let unsubStudents = () => { };
+    try {
+      unsubStudents = onSnapshot(collection(db, 'students'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudStudents = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          setStudents(cloudStudents);
+          setCurrentUser(prevUser => {
+            if (prevUser && prevUser.id) {
+              const matchingCloudStudent = cloudStudents.find(s => s.id === prevUser.id);
+              if (matchingCloudStudent) {
+                return { ...prevUser, ...matchingCloudStudent };
+              }
+            }
+            return prevUser;
+          });
+        } else {
+          // If cloud collection is completely empty, seed initial records
+          initialStudents.forEach(s => {
+            const docRef = doc(db, 'students', String(s.id));
+            setDoc(docRef, JSON.parse(JSON.stringify(s)), { merge: true }).catch(() => { });
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore students listener notice:', err);
+      });
+    } catch (e) {
+      console.warn('Students listener init notice:', e);
+    }
+
+    // 2. Live Firestore Listener for Inquiries
+    let unsubInquiries = () => { };
+    try {
+      unsubInquiries = onSnapshot(collection(db, 'inquiries'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudInquiries = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          setInquiries(cloudInquiries);
+        } else {
+          initialInquiries.forEach(inq => {
+            const docRef = doc(db, 'inquiries', String(inq.id));
+            setDoc(docRef, JSON.parse(JSON.stringify(inq)), { merge: true }).catch(() => { });
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore inquiries listener notice:', err);
+      });
+    } catch (e) {
+      console.warn('Inquiries listener init notice:', e);
+    }
+
+    // 3. Live Firestore Listener for Admins
+    let unsubAdmins = () => { };
+    try {
+      unsubAdmins = onSnapshot(collection(db, 'admins'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudAdmins = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          setAdmins(cloudAdmins);
+        } else {
+          initialAdmins.forEach(a => {
+            const docRef = doc(db, 'admins', String(a.id));
+            setDoc(docRef, JSON.parse(JSON.stringify(a)), { merge: true }).catch(() => { });
+          });
+        }
+      }, (err) => {
+        console.warn('Firestore admins listener notice:', err);
+      });
+    } catch (e) {
+      console.warn('Admins listener init notice:', e);
+    }
+
+    // 4. Live Firestore Listener for Exam Settings
+    let unsubSettings = () => { };
+    try {
+      unsubSettings = onSnapshot(doc(db, 'settings', 'examSettings'), (docSnap) => {
+        if (docSnap.exists()) {
+          setExamSettings(docSnap.data());
+        }
+      }, (err) => {
+        console.warn('Firestore settings listener notice:', err);
+      });
+    } catch (e) {
+      console.warn('Settings listener init notice:', e);
+    }
+
+    return () => {
+      unsubStudents();
+      unsubInquiries();
+      unsubAdmins();
+      unsubSettings();
+    };
+  }, []);
+
+  // Cloud Sync Helpers
+  const syncStudentToCloud = async (studentData) => {
+    if (!db || !studentData || !studentData.id) return;
+    try {
+      const docRef = doc(db, 'students', String(studentData.id));
+      const cleanData = JSON.parse(JSON.stringify(studentData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing student to Firestore:', err);
+    }
+  };
+
+  const deleteStudentFromCloud = async (studentId) => {
+    if (!db || !studentId) return;
+    try {
+      await deleteDoc(doc(db, 'students', String(studentId)));
+    } catch (err) {
+      console.warn('Error deleting student from Firestore:', err);
+    }
+  };
+
+  const syncInquiryToCloud = async (inquiryData) => {
+    if (!db || !inquiryData || !inquiryData.id) return;
+    try {
+      const docRef = doc(db, 'inquiries', String(inquiryData.id));
+      const cleanData = JSON.parse(JSON.stringify(inquiryData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing inquiry to Firestore:', err);
+    }
+  };
+
+  const deleteInquiryFromCloud = async (inquiryId) => {
+    if (!db || !inquiryId) return;
+    try {
+      await deleteDoc(doc(db, 'inquiries', String(inquiryId)));
+    } catch (err) {
+      console.warn('Error deleting inquiry from Firestore:', err);
+    }
+  };
+
+  const syncAdminToCloud = async (adminData) => {
+    if (!db || !adminData || !adminData.id) return;
+    try {
+      const docRef = doc(db, 'admins', String(adminData.id));
+      const cleanData = JSON.parse(JSON.stringify(adminData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing admin to Firestore:', err);
+    }
+  };
+
+  const deleteAdminFromCloud = async (adminId) => {
+    if (!db || !adminId) return;
+    try {
+      await deleteDoc(doc(db, 'admins', String(adminId)));
+    } catch (err) {
+      console.warn('Error deleting admin from Firestore:', err);
+    }
+  };
+
+  const syncExamSettingsToCloud = async (settings) => {
+    if (!db || !settings) return;
+    try {
+      const docRef = doc(db, 'settings', 'examSettings');
+      const cleanData = JSON.parse(JSON.stringify(settings));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing exam settings to Firestore:', err);
+    }
+  };
+
+  const syncQuestionToCloud = async (questionData) => {
+    if (!db || !questionData || !questionData.id) return;
+    try {
+      const docRef = doc(db, 'questions', String(questionData.id));
+      const cleanData = JSON.parse(JSON.stringify(questionData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing question to Firestore:', err);
+    }
+  };
+
+  const deleteQuestionFromCloud = async (questionId) => {
+    if (!db || !questionId) return;
+    try {
+      await deleteDoc(doc(db, 'questions', String(questionId)));
+    } catch (err) {
+      console.warn('Error deleting question from Firestore:', err);
+    }
+  };
+
+  const syncDomainToCloud = async (domainData) => {
+    if (!db || !domainData || !domainData.id) return;
+    try {
+      const docRef = doc(db, 'domains', String(domainData.id));
+      const cleanData = JSON.parse(JSON.stringify(domainData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing domain to Firestore:', err);
+    }
+  };
+
+  const deleteDomainFromCloud = async (domainId) => {
+    if (!db || !domainId) return;
+    try {
+      await deleteDoc(doc(db, 'domains', String(domainId)));
+    } catch (err) {
+      console.warn('Error deleting domain from Firestore:', err);
+    }
+  };
+
+  const syncCompanyToCloud = async (companyData) => {
+    if (!db || !companyData || !companyData.id) return;
+    try {
+      const docRef = doc(db, 'companies', String(companyData.id));
+      const cleanData = JSON.parse(JSON.stringify(companyData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing company to Firestore:', err);
+    }
+  };
+
+  const deleteCompanyFromCloud = async (companyId) => {
+    if (!db || !companyId) return;
+    try {
+      await deleteDoc(doc(db, 'companies', String(companyId)));
+    } catch (err) {
+      console.warn('Error deleting company from Firestore:', err);
+    }
+  };
+
+  const syncTestimonialToCloud = async (testimonialData) => {
+    if (!db || !testimonialData || !testimonialData.id) return;
+    try {
+      const docRef = doc(db, 'testimonials', String(testimonialData.id));
+      const cleanData = JSON.parse(JSON.stringify(testimonialData));
+      await setDoc(docRef, cleanData, { merge: true });
+    } catch (err) {
+      console.warn('Error syncing testimonial to Firestore:', err);
+    }
+  };
+
+  const deleteTestimonialFromCloud = async (testimonialId) => {
+    if (!db || !testimonialId) return;
+    try {
+      await deleteDoc(doc(db, 'testimonials', String(testimonialId)));
+    } catch (err) {
+      console.warn('Error deleting testimonial from Firestore:', err);
+    }
+  };
+
   // Toast Helper
   const showToast = (message, type = 'info') => {
     setToast({ message, type, isVisible: true });
@@ -329,7 +599,7 @@ export function AppProvider({ children }) {
     };
 
     setStudents(prev => {
-      const alreadyExists = prev.some(s => 
+      const alreadyExists = prev.some(s =>
         (cleanEmail && s.email && s.email.trim().toLowerCase() === cleanEmail) ||
         (cleanPhone && s.phone && String(s.phone).replace(/\D/g, '') === cleanPhone) ||
         s.id === candidateId
@@ -339,6 +609,10 @@ export function AppProvider({ children }) {
       }
       return [newStudent, ...prev];
     });
+
+    // Cloud Firestore Sync
+    syncStudentToCloud(newStudent);
+
     setActiveCandidate(newStudent);
     setCurrentUser(newStudent);
     setUserRole('student');
@@ -365,8 +639,8 @@ export function AppProvider({ children }) {
   const loginStudent = (email, password) => {
     const cleanIdentifier = email ? email.trim().toLowerCase() : '';
     const found = students.find(
-      s => (s.email.toLowerCase() === cleanIdentifier || s.phone === email || s.id.toLowerCase() === cleanIdentifier) && 
-           s.password === password
+      s => (s.email.toLowerCase() === cleanIdentifier || s.phone === email || s.id.toLowerCase() === cleanIdentifier) &&
+        s.password === password
     );
 
     if (found) {
@@ -415,14 +689,51 @@ export function AppProvider({ children }) {
     }
   };
 
-  const loginAdmin = (email, password) => {
+  const validateAdminCredentials = (email, password) => {
+    const cleanEmail = email ? email.trim().toLowerCase() : '';
     const found = admins.find(
-      a => a.email.toLowerCase() === email.toLowerCase() && a.password === password
+      a => a.email.toLowerCase() === cleanEmail && a.password === password
     );
+    if (!found) {
+      return { success: false, error: 'Invalid admin email address or access key.' };
+    }
+    if (found.status === 'Inactive' || found.status === 'Suspended') {
+      return { success: false, error: 'This admin account has been suspended or deactivated.' };
+    }
+    return { success: true, admin: found };
+  };
 
-    if (found) {
+  const loginAdminWith2FA = (email, password, otpCode) => {
+    const cleanEmail = email ? email.trim().toLowerCase() : '';
+    const validation = validateAdminCredentials(cleanEmail, password);
+    if (!validation.success) {
+      showToast(validation.error, 'error');
+      return validation;
+    }
+
+    const verification = verifyEmailOtp(cleanEmail, otpCode, 'admin-2fa');
+    if (!verification.success) {
+      showToast(verification.message, 'error');
+      return { success: false, error: verification.message };
+    }
+
+    const admin = validation.admin;
+    setCurrentUser(admin);
+    const role = (admin.role === 'Super Admin' || admin.role === 'superadmin') ? 'superadmin' : 'staffadmin';
+    setUserRole(role);
+    closeModal();
+    setCurrentView('admin-dashboard');
+    logActivity(`Authorized & Logged in with 2-Factor Authentication (2FA)`, admin.name);
+    showToast(`2FA Verified! Welcome to Admin Console, ${admin.name}.`, 'success');
+    return { success: true, admin };
+  };
+
+  const loginAdmin = (email, password) => {
+    const validation = validateAdminCredentials(email, password);
+    if (validation.success) {
+      const found = validation.admin;
       setCurrentUser(found);
-      const role = found.role === 'Super Admin' ? 'superadmin' : 'staffadmin';
+      const role = (found.role === 'Super Admin' || found.role === 'superadmin') ? 'superadmin' : 'staffadmin';
       setUserRole(role);
       closeModal();
       setCurrentView('admin-dashboard');
@@ -430,7 +741,7 @@ export function AppProvider({ children }) {
       showToast(`Welcome to Admin Console, ${found.name}!`, 'success');
       return true;
     } else {
-      showToast('Invalid admin credentials.', 'error');
+      showToast(validation.error || 'Invalid admin credentials.', 'error');
       return false;
     }
   };
@@ -469,7 +780,7 @@ export function AppProvider({ children }) {
       const exists = prev.markedForReview.includes(questionId);
       return {
         ...prev,
-        markedForReview: exists 
+        markedForReview: exists
           ? prev.markedForReview.filter(id => id !== questionId)
           : [...prev.markedForReview, questionId]
       };
@@ -479,7 +790,7 @@ export function AppProvider({ children }) {
   const recordViolation = () => {
     setTestState(prev => {
       const newCount = prev.violationsCount + 1;
-      
+
       if (newCount >= examSettings.maxWarnings) {
         // Auto-submit immediately
         setTimeout(() => {
@@ -547,6 +858,7 @@ export function AppProvider({ children }) {
             scoreData: scoreResult,
             feeTier: feeTier
           };
+          syncStudentToCloud(updated);
           setActiveCandidate(updated);
           if (currentUser && currentUser.id === candidateId) {
             setCurrentUser(updated);
@@ -587,6 +899,7 @@ export function AppProvider({ children }) {
             chosenDomainId: domainId,
             chosenDomainName: domainName
           };
+          syncStudentToCloud(updated);
           setActiveCandidate(updated);
           if (currentUser && currentUser.id === candidateId) {
             setCurrentUser(updated);
@@ -624,6 +937,8 @@ export function AppProvider({ children }) {
           tasks: internTasks
         };
 
+        syncStudentToCloud(updated);
+
         if (currentUser && currentUser.id === candidateId) {
           setCurrentUser(updated);
         }
@@ -645,7 +960,7 @@ export function AppProvider({ children }) {
       const targetTask = studentRecord.tasks.find(t => t.taskId === taskId);
       if (targetTask) {
         const taskMonth = targetTask.month || (targetTask.week <= 4 ? 1 : targetTask.week <= 8 ? 2 : 3);
-        
+
         if (taskMonth === 2) {
           const month1Tasks = studentRecord.tasks.filter(t => (t.month === 1) || (t.week >= 1 && t.week <= 4));
           const month1Approved = month1Tasks.filter(t => t.status === 'Approved').length;
@@ -684,6 +999,8 @@ export function AppProvider({ children }) {
           tasks: updatedTasks
         };
 
+        syncStudentToCloud(updated);
+
         if (currentUser && currentUser.id === candidateId) {
           setCurrentUser(updated);
         }
@@ -720,6 +1037,8 @@ export function AppProvider({ children }) {
           certificateUnlocked: allApproved ? true : s.certificateUnlocked
         };
 
+        syncStudentToCloud(updated);
+
         if (currentUser && currentUser.id === candidateId) {
           setCurrentUser(updated);
         }
@@ -743,6 +1062,7 @@ export function AppProvider({ children }) {
           certificateUnlocked: true,
           tasks: updatedTasks
         };
+        syncStudentToCloud(updated);
         if (currentUser && currentUser.id === candidateId) {
           setCurrentUser(updated);
         }
@@ -766,7 +1086,7 @@ export function AppProvider({ children }) {
     if (updatedFields.email || updatedFields.phone) {
       const cleanEmail = updatedFields.email ? updatedFields.email.trim().toLowerCase() : '';
       const cleanPhone = updatedFields.phone ? String(updatedFields.phone).replace(/\D/g, '') : '';
-      const conflict = students.find(s => 
+      const conflict = students.find(s =>
         s.id !== studentId && (
           (cleanEmail && s.email && s.email.trim().toLowerCase() === cleanEmail) ||
           (cleanPhone && s.phone && String(s.phone).replace(/\D/g, '') === cleanPhone)
@@ -787,6 +1107,7 @@ export function AppProvider({ children }) {
           email: updatedFields.email !== undefined ? updatedFields.email.trim().toLowerCase() : s.email,
           phone: updatedFields.phone !== undefined ? String(updatedFields.phone).replace(/\D/g, '') : s.phone
         };
+        syncStudentToCloud(updated);
         if (currentUser && currentUser.id === studentId) {
           setCurrentUser(updated);
         }
@@ -804,6 +1125,7 @@ export function AppProvider({ children }) {
   const deleteStudent = (studentId) => {
     const studentToDelete = students.find(s => s.id === studentId);
     setStudents(prev => prev.filter(s => s.id !== studentId));
+    deleteStudentFromCloud(studentId);
     if (currentUser && currentUser.id === studentId) {
       logout();
     }
@@ -819,24 +1141,34 @@ export function AppProvider({ children }) {
       marks: Number(qData.marks) || 1
     };
     setQuestions(prev => [...prev, newQ]);
+    syncQuestionToCloud(newQ);
     logActivity(`Added Question ${newQ.id} to Section ${newQ.section}`);
     showToast('New question added to Question Bank!', 'success');
   };
 
   const updateQuestion = (qId, qData) => {
-    setQuestions(prev => prev.map(q => q.id === qId ? { ...q, ...qData } : q));
+    setQuestions(prev => prev.map(q => {
+      if (q.id === qId) {
+        const updated = { ...q, ...qData };
+        syncQuestionToCloud(updated);
+        return updated;
+      }
+      return q;
+    }));
     logActivity(`Updated Question ${qId}`);
     showToast('Question updated successfully!', 'success');
   };
 
   const deleteQuestion = (qId) => {
     setQuestions(prev => prev.filter(q => q.id !== qId));
+    deleteQuestionFromCloud(qId);
     logActivity(`Deleted Question ${qId}`);
     showToast('Question removed from Question Bank.', 'info');
   };
 
   const bulkImportQuestions = (newQuestionsList) => {
     setQuestions(prev => [...prev, ...newQuestionsList]);
+    newQuestionsList.forEach(q => syncQuestionToCloud(q));
     logActivity(`Bulk imported ${newQuestionsList.length} questions`);
     showToast(`Imported ${newQuestionsList.length} questions successfully!`, 'success');
   };
@@ -851,18 +1183,27 @@ export function AppProvider({ children }) {
       modules: dData.modules || []
     };
     setDomains(prev => [...prev, newDom]);
+    syncDomainToCloud(newDom);
     logActivity(`Created new Internship Domain: ${newDom.name}`);
     showToast(`Domain "${newDom.name}" added successfully!`, 'success');
   };
 
   const updateDomain = (dId, dData) => {
-    setDomains(prev => prev.map(d => d.id === dId ? { ...d, ...dData } : d));
+    setDomains(prev => prev.map(d => {
+      if (d.id === dId) {
+        const updated = { ...d, ...dData };
+        syncDomainToCloud(updated);
+        return updated;
+      }
+      return d;
+    }));
     logActivity(`Updated Domain ${dId}`);
     showToast('Domain details updated!', 'success');
   };
 
   const deleteDomain = (dId) => {
     setDomains(prev => prev.filter(d => d.id !== dId));
+    deleteDomainFromCloud(dId);
     logActivity(`Deleted Domain ${dId}`);
     showToast('Domain deleted.', 'info');
   };
@@ -874,12 +1215,14 @@ export function AppProvider({ children }) {
       id: `test-${Date.now().toString().slice(-4)}`
     };
     setTestimonials(prev => [newT, ...prev]);
+    syncTestimonialToCloud(newT);
     logActivity(`Added Testimonial for ${newT.name}`);
     showToast('Testimonial added to landing page!', 'success');
   };
 
   const deleteTestimonial = (tId) => {
     setTestimonials(prev => prev.filter(t => t.id !== tId));
+    deleteTestimonialFromCloud(tId);
     logActivity(`Deleted Testimonial ${tId}`);
     showToast('Testimonial removed.', 'info');
   };
@@ -897,6 +1240,7 @@ export function AppProvider({ children }) {
       bgColor: '#FFFFFF'
     };
     setCompanies(prev => [...prev, newC]);
+    syncCompanyToCloud(newC);
     logActivity(`Added Partner Company: ${newC.name}`);
     showToast(`Company "${newC.name}" added to showcase marquee!`, 'success');
   };
@@ -904,7 +1248,7 @@ export function AppProvider({ children }) {
   const updateCompany = (cId, updatedFields) => {
     setCompanies(prev => prev.map(c => {
       if (c.id === cId) {
-        return {
+        const updated = {
           ...c,
           ...updatedFields,
           name: updatedFields.name !== undefined ? updatedFields.name.trim() : c.name,
@@ -912,6 +1256,8 @@ export function AppProvider({ children }) {
           badge: updatedFields.badge !== undefined ? updatedFields.badge.trim() : c.badge,
           logo: updatedFields.logo !== undefined ? updatedFields.logo.trim() : c.logo
         };
+        syncCompanyToCloud(updated);
+        return updated;
       }
       return c;
     }));
@@ -922,6 +1268,7 @@ export function AppProvider({ children }) {
   const deleteCompany = (cId) => {
     const toDel = companies.find(c => c.id === cId);
     setCompanies(prev => prev.filter(c => c.id !== cId));
+    deleteCompanyFromCloud(cId);
     logActivity(`Deleted Partner Company ${toDel ? toDel.name : cId}`);
     showToast(`Company ${toDel ? `"${toDel.name}"` : ''} removed from marquee.`, 'info');
   };
@@ -929,6 +1276,7 @@ export function AppProvider({ children }) {
   const resetCompaniesToDefault = () => {
     setCompanies(initialCompanies);
     localStorage.removeItem('avp_companies');
+    initialCompanies.forEach(c => syncCompanyToCloud(c));
     logActivity('Reset Partner Companies to default MNC list');
     showToast('Reset partner companies to default 10 MNCs!', 'success');
   };
@@ -946,6 +1294,7 @@ export function AppProvider({ children }) {
       counselorNotes: ''
     };
     setInquiries(prev => [newInquiry, ...prev]);
+    syncInquiryToCloud(newInquiry);
     logActivity(`New Admissions Inquiry from ${newInquiry.name} (${newInquiry.email})`);
     showToast('Inquiry submitted! Our admissions counselor will contact you shortly.', 'success');
     return { success: true };
@@ -954,11 +1303,13 @@ export function AppProvider({ children }) {
   const updateInquiryStatus = (inquiryId, newStatus, counselorNotes = '') => {
     setInquiries(prev => prev.map(inq => {
       if (inq.id === inquiryId) {
-        return {
+        const updated = {
           ...inq,
           status: newStatus !== undefined ? newStatus : inq.status,
           counselorNotes: counselorNotes !== undefined ? counselorNotes : inq.counselorNotes
         };
+        syncInquiryToCloud(updated);
+        return updated;
       }
       return inq;
     }));
@@ -969,6 +1320,7 @@ export function AppProvider({ children }) {
   const deleteInquiry = (inquiryId) => {
     const toDel = inquiries.find(i => i.id === inquiryId);
     setInquiries(prev => prev.filter(i => i.id !== inquiryId));
+    deleteInquiryFromCloud(inquiryId);
     logActivity(`Deleted Inquiry ${inquiryId} from ${toDel ? toDel.name : ''}`);
     showToast('Inquiry record deleted.', 'info');
   };
@@ -976,6 +1328,7 @@ export function AppProvider({ children }) {
   // Exam Settings Update
   const updateExamSettings = (newSettings) => {
     setExamSettings(newSettings);
+    syncExamSettingsToCloud(newSettings);
     logActivity(`Updated Exam Settings & Cutoff Thresholds`);
     showToast('Exam configuration and pricing tiers updated!', 'success');
   };
@@ -1007,6 +1360,7 @@ export function AppProvider({ children }) {
       createdAt: new Date().toISOString().split('T')[0]
     };
     setAdmins(prev => [...prev, newAdmin]);
+    syncAdminToCloud(newAdmin);
     logActivity(`Created ${newAdmin.role} account for ${newAdmin.name} (${newAdmin.email})`);
     showToast(`Admin account created for ${newAdmin.name}!`, 'success');
     return { success: true, admin: newAdmin };
@@ -1042,6 +1396,8 @@ export function AppProvider({ children }) {
           password: updatedFields.password ? updatedFields.password : a.password,
           status: updatedFields.status !== undefined ? updatedFields.status : (a.status || 'Active')
         };
+
+        syncAdminToCloud(updated);
 
         if (currentUser && currentUser.id === adminId) {
           setCurrentUser(updated);
@@ -1080,6 +1436,7 @@ export function AppProvider({ children }) {
     }
 
     setAdmins(prev => prev.filter(a => a.id !== adminId));
+    deleteAdminFromCloud(adminId);
     logActivity(`Deleted admin account: ${target?.name || adminId} (${target?.email || ''})`);
     showToast(`Admin account for ${target?.name || adminId} deleted.`, 'info');
     return { success: true };
@@ -1119,6 +1476,8 @@ export function AppProvider({ children }) {
         sendEmailOtp,
         verifyEmailOtp,
         loginAdmin,
+        validateAdminCredentials,
+        loginAdminWith2FA,
         logout,
         startTest,
         saveAnswer,
@@ -1153,7 +1512,9 @@ export function AppProvider({ children }) {
         createAdminAccount,
         updateAdminAccount,
         deleteAdminAccount,
-        logActivity
+        logActivity,
+        verifyQueryId,
+        setVerifyQueryId
       }}
     >
       {children}

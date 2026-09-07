@@ -11,9 +11,12 @@ export default function ConditionalLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isInternship = pathname === "/internship" || pathname === "/internships";
+  const isStandaloneRoute =
+    pathname.startsWith("/internship") ||
+    pathname.startsWith("/internships") ||
+    pathname.startsWith("/admin");
 
-  if (isInternship) {
+  if (isStandaloneRoute) {
     return <div className="min-h-screen">{children}</div>;
   }
 

@@ -451,7 +451,7 @@ export default function FAQContactSection() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Vaishnav Vijay Kubade"
+                    placeholder="e.g. Rohan Kulkarni"
                     className="form-input"
                     value={inquiry.name}
                     onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
@@ -468,7 +468,7 @@ export default function FAQContactSection() {
                     <input
                       type="email"
                       required
-                      placeholder="e.g. vaishnav@example.com"
+                      placeholder="e.g. rohan.kulkarni@example.com"
                       className="form-input"
                       value={inquiry.email}
                       onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}

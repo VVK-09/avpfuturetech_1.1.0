@@ -278,9 +278,9 @@ export const initialStudents = [
   },
   {
     id: 'AVP-2026-1004',
-    name: 'Vaishnav Vijay Kubade',
+    name: 'Rohan Kulkarni',
     phone: '9876501234',
-    email: 'vaishnav.kubade@example.com',
+    email: 'rohan.kulkarni@example.com',
     password: 'password123',
     collegeYear: '3rd Year',
     branch: 'Computer Engineering',

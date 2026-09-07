@@ -100,9 +100,9 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNavClick('testimonials')} style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
-                  Student Reviews & Placements
-                </button>
+                <a href="/verify" style={{ color: '#38BDF8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <Shield size={14} color="#38BDF8" /> Certification Verify
+                </a>
               </li>
               <li>
                 <button onClick={() => handleNavClick('faq')} style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>

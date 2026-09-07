@@ -497,7 +497,7 @@ export default function RegistrationModal() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Vaishnav Kubade"
+                    placeholder="e.g. Aryan Sharma"
                     className="form-input"
                     style={{ fontSize: '0.84rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
                     value={formData.name}
@@ -516,7 +516,7 @@ export default function RegistrationModal() {
                   <input
                     type="email"
                     required
-                    placeholder="e.g. vaishnav@example.com"
+                    placeholder="e.g. aryan.sharma@example.com"
                     className="form-input"
                     style={{ fontSize: '0.84rem', padding: '0.55rem 0.75rem', borderRadius: '8px' }}
                     value={formData.email}
