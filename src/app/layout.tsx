@@ -70,6 +70,7 @@ export const metadata: Metadata = {
 
 import { headers } from "next/headers";
 import ConditionalLayout from "@/components/ConditionalLayout";
+import GlobalCursorEffects from "@/components/GlobalCursorEffects";
 
 export default async function RootLayout({
   children,
@@ -94,6 +95,7 @@ export default async function RootLayout({
       className={`${outfit.variable} ${plusJakarta.variable} font-sans scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col bg-white text-[#3C4658] antialiased selection:bg-[#1E63D6]/20 selection:text-[#0B1E3D]">
+        <GlobalCursorEffects />
         <ConditionalLayout isSubdomainServer={isInternshipSubdomain}>
           {children}
         </ConditionalLayout>
