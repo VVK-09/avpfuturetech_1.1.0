@@ -97,27 +97,31 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 /* ==========================================================================
-   PREMIUM TECH PATTERNS & TEXTURES SYSTEM (5 Distinct Types)
+   PREMIUM TECH PATTERNS & TEXTURES SYSTEM (Enterprise Grade)
    ========================================================================== */
 
 /* 1. Technical Architectural Grid & Crosshair Lattice */
 .pattern-tech-grid {
   background-image: 
-    radial-gradient(rgba(30, 99, 214, 0.12) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 0px 0px, rgba(30, 99, 214, 0.16) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 18px 18px, rgba(30, 99, 214, 0.06) 1px, transparent 1px),
     linear-gradient(to right, rgba(30, 99, 214, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.045) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 30%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 30%, transparent 95%);
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.045) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.015) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px, 36px 36px, 18px 18px, 18px 18px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
 }
 
 .pattern-blueprint {
   background-image: 
-    linear-gradient(to right, rgba(30, 99, 214, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.07) 1px, transparent 1px),
+    radial-gradient(circle at 0px 0px, rgba(30, 99, 214, 0.18) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.065) 1px, transparent 1px),
     linear-gradient(to right, rgba(30, 99, 214, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(30, 99, 214, 0.02) 1px, transparent 1px);
-  background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px;
+  background-size: 72px 72px, 72px 72px, 72px 72px, 18px 18px, 18px 18px;
   mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
 }
@@ -125,78 +129,98 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 /* 2. Precision Cyber Dot Matrix & Constellation */
 .pattern-dot-matrix {
   background-image: radial-gradient(rgba(30, 99, 214, 0.11) 1.25px, transparent 1.25px);
-  background-size: 20px 20px;
+  background-size: 24px 24px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 95%);
 }
 
 .pattern-dense-dots {
-  background-image: radial-gradient(rgba(11, 30, 61, 0.08) 1px, transparent 1px);
-  background-size: 14px 14px;
+  background-image: radial-gradient(rgba(11, 30, 61, 0.07) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
-/* 3. PCB Schematic Circuit Traces & Micro-nodes */
+/* 3. PCB Schematic Circuit Traces & Micro-nodes (Orthogonal, Clean) */
 .pattern-circuit-board {
   background-image: 
-    radial-gradient(circle at 14px 14px, rgba(30, 99, 214, 0.18) 2px, transparent 2.5px),
-    linear-gradient(45deg, transparent 48%, rgba(30, 99, 214, 0.04) 48%, rgba(30, 99, 214, 0.04) 52%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(30, 99, 214, 0.04) 48%, rgba(30, 99, 214, 0.04) 52%, transparent 52%),
-    linear-gradient(to right, rgba(30, 99, 214, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.035) 1px, transparent 1px);
-  background-size: 28px 28px;
+    radial-gradient(circle at 10px 10px, rgba(30, 99, 214, 0.22) 2px, transparent 2.5px),
+    radial-gradient(circle at 30px 30px, rgba(56, 189, 248, 0.25) 2px, transparent 2.5px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, 20px 20px, 20px 20px;
   mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, #000 40%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, #000 40%, transparent 95%);
 }
 
-.pattern-circuit-dark {
+/* 4. Ultra-Professional Enterprise Dark Texture (Footers, Dark Banners, Dark Cards) */
+.pattern-circuit-dark,
+.pattern-dark-grid {
   background-image: 
-    radial-gradient(circle at 16px 16px, rgba(56, 189, 248, 0.35) 2px, transparent 2.5px),
-    linear-gradient(45deg, transparent 48%, rgba(56, 189, 248, 0.1) 48%, rgba(56, 189, 248, 0.1) 52%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(56, 189, 248, 0.1) 48%, rgba(56, 189, 248, 0.1) 52%, transparent 52%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+    radial-gradient(circle at 0px 0px, rgba(56, 189, 248, 0.45) 1.25px, transparent 1.75px),
+    radial-gradient(circle at 36px 36px, rgba(56, 189, 248, 0.45) 1.25px, transparent 1.75px),
+    radial-gradient(circle at 18px 18px, rgba(147, 197, 253, 0.15) 1px, transparent 1.5px),
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px, 36px 36px, 36px 36px, 18px 18px, 18px 18px;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 35%, transparent 100%);
 }
 
-/* 4. 3D Isometric Cube & Hexagonal Lattice */
+/* 5. 3D Isometric Cube & Hexagonal Lattice (Subtle Micro-Structure) */
 .pattern-isometric-lattice {
   background-image: 
-    linear-gradient(30deg, rgba(30, 99, 214, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.04) 87.5%, rgba(30, 99, 214, 0.04)),
-    linear-gradient(150deg, rgba(30, 99, 214, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.04) 87.5%, rgba(30, 99, 214, 0.04)),
-    linear-gradient(30deg, rgba(30, 99, 214, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.04) 87.5%, rgba(30, 99, 214, 0.04)),
-    linear-gradient(150deg, rgba(30, 99, 214, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.04) 87.5%, rgba(30, 99, 214, 0.04)),
-    linear-gradient(60deg, rgba(30, 99, 214, 0.03) 25%, transparent 25.5%, transparent 75%, rgba(30, 99, 214, 0.03) 75%, rgba(30, 99, 214, 0.03)),
-    linear-gradient(60deg, rgba(30, 99, 214, 0.03) 25%, transparent 25.5%, transparent 75%, rgba(30, 99, 214, 0.03) 75%, rgba(30, 99, 214, 0.03));
+    linear-gradient(30deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(150deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(30deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(150deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(60deg, rgba(30, 99, 214, 0.025) 25%, transparent 25.5%, transparent 75%, rgba(30, 99, 214, 0.025) 75%, rgba(30, 99, 214, 0.025)),
+    linear-gradient(60deg, rgba(30, 99, 214, 0.025) 25%, transparent 25.5%, transparent 75%, rgba(30, 99, 214, 0.025) 75%, rgba(30, 99, 214, 0.025));
   background-size: 40px 70px;
   background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
 }
 
-/* 5. Carbon Micro-diagonal Texture */
+/* 6. Carbon Micro-diagonal Mesh Texture */
 .pattern-diagonal-mesh {
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(30, 99, 214, 0.025) 0px,
-    rgba(30, 99, 214, 0.025) 1px,
+    rgba(30, 99, 214, 0.02) 0px,
+    rgba(30, 99, 214, 0.02) 1px,
     transparent 1px,
-    transparent 8px
+    transparent 10px
   );
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
+}
+
+/* 7. Precision Crosshairs (Modern CAD / Linear / Stripe coordinate points) */
+.pattern-crosshairs {
+  background-image: 
+    linear-gradient(to right, rgba(30, 99, 214, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.15) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  mask-image: radial-gradient(circle 3px at 0 0, #000 100%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 3px at 0 0, #000 100%, transparent 100%);
 }
 
 /* Backwards compatibility aliases */
 .bg-tech-grid {
   background-image: 
-    radial-gradient(rgba(30, 99, 214, 0.08) 1.25px, transparent 1.25px),
-    linear-gradient(to right, rgba(30, 99, 214, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.035) 1px, transparent 1px);
-  background-size: 32px 32px;
+    radial-gradient(rgba(30, 99, 214, 0.12) 1.25px, transparent 1.25px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
   mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
 }
 
 .bg-dot-matrix {
-  background-image: radial-gradient(rgba(30, 99, 214, 0.09) 1.25px, transparent 1.25px);
+  background-image: radial-gradient(rgba(30, 99, 214, 0.1) 1.25px, transparent 1.25px);
   background-size: 24px 24px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 50%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 50%, transparent 95%);
@@ -204,9 +228,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .bg-circuit-pattern {
   background-image: 
-    radial-gradient(circle at 14px 14px, rgba(30, 99, 214, 0.16) 1.75px, transparent 2px),
-    linear-gradient(45deg, transparent 48%, rgba(30, 99, 214, 0.035) 48%, rgba(30, 99, 214, 0.035) 52%, transparent 52%),
-    linear-gradient(to right, rgba(30, 99, 214, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.03) 1px, transparent 1px);
-  background-size: 28px 28px;
+    radial-gradient(circle at 10px 10px, rgba(30, 99, 214, 0.2) 2px, transparent 2.5px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
 }

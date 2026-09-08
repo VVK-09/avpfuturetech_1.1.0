@@ -595,7 +595,7 @@
 }
 
 /* =========================================================================
-   PREMIUM HIGH-TECH PATTERN SUITE (INTERNSHIP PORTAL SCOPED)
+   PREMIUM HIGH-TECH PATTERN SUITE (INTERNSHIP PORTAL SCOPED - Enterprise Grade)
    ========================================================================= */
 
 .avp-internship-portal-app .avp-pattern-tech-grid,
@@ -603,13 +603,15 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(to right, rgba(30, 99, 214, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.08) 1px, transparent 1px),
-    linear-gradient(to right, rgba(30, 99, 214, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.03) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 100%);
+    radial-gradient(circle at 0px 0px, rgba(30, 99, 214, 0.16) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 18px 18px, rgba(30, 99, 214, 0.06) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.045) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.015) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px, 36px 36px, 18px 18px, 18px 18px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
   pointer-events: none;
   z-index: 1;
 }
@@ -619,10 +621,10 @@
 .avp-internship-portal-app .pattern-dot-matrix {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(30, 99, 214, 0.12) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(rgba(30, 99, 214, 0.11) 1.25px, transparent 1.25px);
   background-size: 24px 24px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 30%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 30%, transparent 95%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
   pointer-events: none;
   z-index: 1;
 }
@@ -634,33 +636,36 @@
   background-color: transparent;
   background-image: 
     radial-gradient(circle at 10px 10px, rgba(30, 99, 214, 0.22) 2px, transparent 2.5px),
-    radial-gradient(circle at 50px 50px, rgba(56, 189, 248, 0.25) 2.5px, transparent 3px),
-    linear-gradient(45deg, transparent 48%, rgba(30, 99, 214, 0.06) 48%, rgba(30, 99, 214, 0.06) 52%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(56, 189, 248, 0.05) 48%, rgba(56, 189, 248, 0.05) 52%, transparent 52%),
+    radial-gradient(circle at 30px 30px, rgba(56, 189, 248, 0.25) 2px, transparent 2.5px),
     linear-gradient(to right, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px);
-  background-size: 60px 60px, 60px 60px, 60px 60px, 60px 60px, 30px 30px, 30px 30px;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 30%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 30%, transparent 95%);
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, 20px 20px, 20px 20px;
+  mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, #000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, #000 40%, transparent 95%);
   pointer-events: none;
   z-index: 1;
 }
 
+/* 4. Ultra-Professional Enterprise Dark Texture (Footers, Dark Banners, Dark Cards) */
 .avp-internship-portal-app .avp-pattern-circuit-dark,
-.avp-internship-portal-app .pattern-circuit-dark {
+.avp-internship-portal-app .pattern-circuit-dark,
+.avp-internship-portal-app .avp-pattern-dark-grid {
   position: absolute;
   inset: 0;
   background-color: transparent;
   background-image: 
-    radial-gradient(circle at 12px 12px, rgba(56, 189, 248, 0.35) 2px, transparent 2.5px),
-    radial-gradient(circle at 52px 52px, rgba(129, 140, 248, 0.3) 2px, transparent 2.5px),
-    linear-gradient(45deg, transparent 48%, rgba(56, 189, 248, 0.12) 49%, rgba(56, 189, 248, 0.12) 51%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(56, 189, 248, 0.08) 49%, rgba(56, 189, 248, 0.08) 51%, transparent 52%),
+    radial-gradient(circle at 0px 0px, rgba(56, 189, 248, 0.45) 1.25px, transparent 1.75px),
+    radial-gradient(circle at 36px 36px, rgba(56, 189, 248, 0.45) 1.25px, transparent 1.75px),
+    radial-gradient(circle at 18px 18px, rgba(147, 197, 253, 0.15) 1px, transparent 1.5px),
     linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
-  background-size: 64px 64px, 64px 64px, 64px 64px, 64px 64px, 32px 32px, 32px 32px;
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 100%);
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px, 36px 36px, 36px 36px, 18px 18px, 18px 18px;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 35%, transparent 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -670,12 +675,12 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(30deg, rgba(30, 99, 214, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.05) 87.5%, rgba(30, 99, 214, 0.05)),
-    linear-gradient(150deg, rgba(30, 99, 214, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.05) 87.5%, rgba(30, 99, 214, 0.05)),
-    linear-gradient(30deg, rgba(30, 99, 214, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.05) 87.5%, rgba(30, 99, 214, 0.05)),
-    linear-gradient(150deg, rgba(30, 99, 214, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.05) 87.5%, rgba(30, 99, 214, 0.05)),
-    linear-gradient(60deg, rgba(56, 189, 248, 0.04) 25%, transparent 25.5%, transparent 75%, rgba(56, 189, 248, 0.04) 75%, rgba(56, 189, 248, 0.04)),
-    linear-gradient(60deg, rgba(56, 189, 248, 0.04) 25%, transparent 25.5%, transparent 75%, rgba(56, 189, 248, 0.04) 75%, rgba(56, 189, 248, 0.04));
+    linear-gradient(30deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(150deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(30deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(150deg, rgba(30, 99, 214, 0.035) 12%, transparent 12.5%, transparent 87%, rgba(30, 99, 214, 0.035) 87.5%, rgba(30, 99, 214, 0.035)),
+    linear-gradient(60deg, rgba(30, 99, 214, 0.025) 25%, transparent 25.5%, transparent 75%, rgba(30, 99, 214, 0.025) 75%, rgba(30, 99, 214, 0.025)),
+    linear-gradient(60deg, rgba(30, 99, 214, 0.025) 25%, transparent 25.5%, transparent 75%, rgba(30, 99, 214, 0.025) 75%, rgba(30, 99, 214, 0.025));
   background-size: 40px 70px;
   background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
@@ -688,13 +693,13 @@
 .avp-internship-portal-app .pattern-diagonal-mesh {
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(45deg, rgba(30, 99, 214, 0.05) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(30, 99, 214, 0.05) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(30, 99, 214, 0.05) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(30, 99, 214, 0.05) 75%);
-  background-size: 16px 16px;
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(30, 99, 214, 0.02) 0px,
+    rgba(30, 99, 214, 0.02) 1px,
+    transparent 1px,
+    transparent 10px
+  );
   mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 35%, transparent 95%);
   pointer-events: none;
@@ -705,9 +710,10 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(to right, rgba(30, 99, 214, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.05) 1px, transparent 1px);
-  background-size: 36px 36px;
+    radial-gradient(circle at 0px 0px, rgba(30, 99, 214, 0.14) 1.25px, transparent 1.25px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px, 36px 36px;
   mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, #000 40%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, #000 40%, transparent 95%);
   pointer-events: none;
@@ -718,12 +724,28 @@
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(rgba(30, 99, 214, 0.08) 1px, transparent 1px),
-    linear-gradient(to right, rgba(30, 99, 214, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 99, 214, 0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 50%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 50%, transparent 100%);
+    radial-gradient(circle at 0px 0px, rgba(30, 99, 214, 0.18) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.065) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 99, 214, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.02) 1px, transparent 1px);
+  background-size: 72px 72px, 72px 72px, 72px 72px, 18px 18px, 18px 18px;
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, #000 40%, transparent 95%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.avp-internship-portal-app .avp-pattern-crosshairs {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(30, 99, 214, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 99, 214, 0.15) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  mask-image: radial-gradient(circle 3px at 0 0, #000 100%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 3px at 0 0, #000 100%, transparent 100%);
   pointer-events: none;
   z-index: 1;
 }

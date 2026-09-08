@@ -61,8 +61,48 @@ export default function Footer() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* High-tech Cyber PCB Circuit Pattern Overlay */}
-      <div className="avp-pattern-circuit-dark" style={{ opacity: 0.25 }} />
+      {/* Decorative top circuit line accent */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '3px',
+        background: 'linear-gradient(90deg, #1E63D6, #38BDF8, #1E63D6)',
+        zIndex: 3
+      }} />
+
+      {/* High-tech Enterprise Dark Texture Overlay */}
+      <div className="avp-pattern-circuit-dark" style={{ opacity: 0.35 }} />
+
+      {/* Ambient background lighting orbs */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        marginTop: '-5rem',
+        marginRight: '-5rem',
+        width: '24rem',
+        height: '24rem',
+        backgroundColor: 'rgba(30, 99, 214, 0.12)',
+        borderRadius: '9999px',
+        filter: 'blur(64px)',
+        pointerEvents: 'none'
+      }} />
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        marginBottom: '-5rem',
+        marginLeft: '-5rem',
+        width: '24rem',
+        height: '24rem',
+        backgroundColor: 'rgba(56, 189, 248, 0.08)',
+        borderRadius: '9999px',
+        filter: 'blur(64px)',
+        pointerEvents: 'none'
+      }} />
+
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         {/* Main Footer Grid */}
         <div style={{

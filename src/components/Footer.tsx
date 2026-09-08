@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="h-1.5 w-full bg-linear-to-r from-[#1E63D6] via-[#38BDF8] to-[#1E63D6]" />
 
       {/* Background patterns and ambient lighting */}
-      <div className="absolute inset-0 pattern-circuit-dark opacity-25 pointer-events-none" />
+      <div className="absolute inset-0 pattern-circuit-dark opacity-35 pointer-events-none" />
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#1E63D6]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-[#38BDF8]/5 rounded-full blur-3xl pointer-events-none" />
 
