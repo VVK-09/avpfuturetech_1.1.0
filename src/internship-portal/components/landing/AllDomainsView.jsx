@@ -128,7 +128,9 @@ export default function AllDomainsView() {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-page)', minHeight: '100vh', paddingBottom: '5rem' }}>
+    <div style={{ backgroundColor: 'var(--bg-page)', minHeight: '100vh', paddingBottom: '5rem', position: 'relative', overflow: 'hidden' }}>
+      {/* 3D Isometric Lattice Pattern Overlay */}
+      <div className="avp-pattern-isometric-lattice" style={{ opacity: 0.45 }} />
 
       {/* Top Hero Header */}
       <div style={{
@@ -139,6 +141,9 @@ export default function AllDomainsView() {
         position: 'relative',
         overflow: 'hidden'
       }}>
+        {/* High-tech Cyber Circuit Pattern Overlay */}
+        <div className="avp-pattern-circuit-dark" style={{ opacity: 0.35 }} />
+
         {/* Ambient background decorative circles */}
         <div style={{
           position: 'absolute',

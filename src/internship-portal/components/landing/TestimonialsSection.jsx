@@ -89,8 +89,8 @@ export default function TestimonialsSection() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Minimal Professional Background Pattern Overlay */}
-      <div className="avp-pattern-dots" />
+      {/* Precision Cyber Dot Matrix Pattern */}
+      <div className="avp-pattern-dot-matrix" style={{ opacity: 0.5 }} />
 
       {/* Decorative ambient background glows */}
       <div style={{

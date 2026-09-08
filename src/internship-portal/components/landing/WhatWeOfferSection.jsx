@@ -129,8 +129,8 @@ export default function WhatWeOfferSection() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Minimal Tech Grid Pattern */}
-      <div className="avp-pattern-grid" />
+      {/* 3D Isometric Lattice Pattern */}
+      <div className="avp-pattern-isometric-lattice" style={{ opacity: 0.55 }} />
 
       {/* Decorative ambient background glows */}
       <div style={{

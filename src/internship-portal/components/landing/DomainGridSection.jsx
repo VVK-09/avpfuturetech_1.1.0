@@ -199,8 +199,8 @@ export default function DomainGridSection() {
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
-      {/* Minimal Tech Grid Pattern */}
-      <div className="avp-pattern-grid" />
+      {/* Schematic Circuit Board Pattern */}
+      <div className="avp-pattern-circuit-board" style={{ opacity: 0.45 }} />
 
       {/* Decorative ambient background glows */}
       <div style={{

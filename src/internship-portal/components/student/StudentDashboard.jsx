@@ -73,8 +73,10 @@ export default function StudentDashboard() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-page)', padding: '2.5rem 0 5rem 0' }}>
-      <div className="container">
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-page)', padding: '2.5rem 0 5rem 0', position: 'relative', overflow: 'hidden' }}>
+      {/* Precision Blueprint Tech Grid Pattern */}
+      <div className="avp-pattern-tech-grid" style={{ opacity: 0.45 }} />
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         {/* Top Header Card */}
         <div style={{
           backgroundColor: '#FFFFFF',

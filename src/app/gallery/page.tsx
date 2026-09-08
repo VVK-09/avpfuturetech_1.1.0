@@ -58,6 +58,9 @@ export default function GalleryPage() {
     <div className="bg-white min-h-screen">
       {/* Header */}
       <section className="py-16 sm:py-20 bg-linear-to-b from-[#F7F9FC] to-white border-b border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 1: Tech Blueprint Grid */}
+        <div className="absolute inset-0 pattern-tech-grid pointer-events-none opacity-60" />
+
         {/* Decorative ambient background glows */}
         <div
           className="pointer-events-none absolute -top-36 -right-36 w-[500px] h-[500px] rounded-full"
@@ -65,10 +68,9 @@ export default function GalleryPage() {
             background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(247, 249, 252, 0) 70%)",
           }}
         />
-        <div className="absolute inset-0 bg-circuit-lines opacity-40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] mb-4 shadow-xs">
             <Camera className="w-3.5 h-3.5 text-[#1E63D6]" />
             <span>Visual Journey</span>
           </div>
@@ -101,8 +103,11 @@ export default function GalleryPage() {
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+        {/* Pattern 2: Precision Dot Matrix Texture */}
+        <div className="absolute inset-0 pattern-dot-matrix pointer-events-none opacity-50" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {filteredItems.length === 0 ? (
             <div className="text-center py-16 bg-[#F8FAFC] rounded-2xl border border-dashed border-slate-300">
               <Camera className="w-10 h-10 text-slate-400 mx-auto mb-3" />

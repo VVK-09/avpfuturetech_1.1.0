@@ -168,8 +168,8 @@ export default function VerificationView({ initialQuery = '' }) {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Premium Tech Blueprint & Dot Matrix Pattern */}
-      <div className="avp-pattern-blueprint" />
+      {/* Precision Blueprint Tech Grid Pattern */}
+      <div className="avp-pattern-tech-grid" style={{ opacity: 0.5 }} />
 
       {/* Decorative ambient background glows */}
       <div style={{

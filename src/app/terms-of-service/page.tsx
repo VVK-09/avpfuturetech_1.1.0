@@ -51,7 +51,8 @@ export default function TermsOfServicePage() {
     <div className="min-h-screen bg-[#F8FAFC]">
       {/* Top Hero Section */}
       <section className="relative bg-gradient-to-br from-[#07152B] via-[#0B1E3D] to-[#173B7A] text-white py-16 lg:py-20 overflow-hidden">
-        {/* Ambient Glows */}
+        {/* Pattern & Ambient Glows */}
+        <div className="absolute inset-0 pattern-circuit-dark opacity-35 pointer-events-none" />
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#1E63D6]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#38BDF8]/15 rounded-full blur-3xl pointer-events-none" />
 

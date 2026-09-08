@@ -18,7 +18,7 @@ interface FounderCardProps {
 
 export default function FounderCard({ founder }: FounderCardProps) {
   const linkedinUrl =
-    founder.linkedin || "https://www.linkedin.com/company/avpfuturetech";
+    founder.linkedin || "https://www.linkedin.com/company/avp-futuretech/";
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden card-hover hover:border-[#1E63D6]/40 hover:-translate-y-1">

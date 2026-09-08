@@ -70,14 +70,14 @@ export default function KitsPage() {
     <div className="bg-white">
       {/* Hero Header */}
       <section className="py-16 sm:py-24 bg-linear-to-b from-[#F7F9FC] to-white border-b border-[#E2E8F0] relative overflow-hidden">
-        {/* Decorative ambient background glows */}
+        {/* Pattern & Decorative ambient background glows */}
+        <div className="absolute inset-0 pattern-tech-grid opacity-60 pointer-events-none" />
         <div
           className="pointer-events-none absolute -top-36 -right-36 w-[500px] h-[500px] rounded-full"
           style={{
             background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(247, 249, 252, 0) 70%)",
           }}
         />
-        <div className="absolute inset-0 bg-circuit-lines opacity-40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -125,8 +125,9 @@ export default function KitsPage() {
       </section>
 
       {/* Kit Advantages */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 pattern-dot-matrix opacity-40 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Hardware Standards"
             title="Engineered for"
@@ -157,8 +158,9 @@ export default function KitsPage() {
       </section>
 
       {/* Kit Tiers */}
-      <section className="py-16 sm:py-20 bg-[#F7F9FC] border-y border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-[#F7F9FC] border-y border-[#E2E8F0] relative overflow-hidden">
+        <div className="absolute inset-0 pattern-isometric-lattice opacity-55 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Product Lineup"
             title="Explore Our"
@@ -207,8 +209,9 @@ export default function KitsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 bg-[#0B1E3D] text-white text-center">
-        <div className="max-w-3xl mx-auto px-4 space-y-4">
+      <section className="py-14 bg-[#0B1E3D] text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 pattern-circuit-dark opacity-30 pointer-events-none" />
+        <div className="max-w-3xl mx-auto px-4 space-y-4 relative z-10">
           <h2 className="text-2xl sm:text-3xl font-bold font-heading">
             Equip Your School or College Lab Today
           </h2>

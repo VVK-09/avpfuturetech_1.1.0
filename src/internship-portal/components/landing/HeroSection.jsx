@@ -148,7 +148,8 @@ export default function HeroSection() {
       backgroundColor: '#FFFFFF',
       overflow: 'hidden'
     }}>
-      {/* Interactive Minimal Canvas */}
+      {/* Precision Blueprint Grid & Interactive Canvas */}
+      <div className="avp-pattern-tech-grid" style={{ opacity: 0.55 }} />
       <InteractiveBackground />
 
       {/* Decorative ambient background glows */}

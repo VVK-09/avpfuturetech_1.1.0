@@ -37,13 +37,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group focus:outline-hidden">
-            <div className="relative h-11 w-36 sm:h-12 sm:w-44 flex items-center">
+            <div className="relative h-12 w-32 sm:h-14 sm:w-36 flex items-center">
               <Image
                 src={SITE_CONFIG.logos.color}
                 alt="AVP FutureTech Logo"
                 fill
                 priority
-                sizes="(max-width: 640px) 144px, 176px"
+                sizes="(max-width: 640px) 128px, 144px"
                 className="object-contain object-left transition-transform duration-300 group-hover:scale-[1.02]"
               />
             </div>

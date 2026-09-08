@@ -72,8 +72,8 @@ export const SITE_CONFIG = {
     googleMapsQuery: "Nirmiti+Lakshminarayan+Tower+Kudal+Sindhudurg+Maharashtra",
   },
   socials: {
-    linkedin: "https://www.linkedin.com/company/avpfuturetech",
-    instagram: "https://www.instagram.com/avpfuturetech",
+    linkedin: "https://www.linkedin.com/company/avp-futuretech/",
+    instagram: "https://www.instagram.com/avp_futuretech",
     facebook: "https://www.facebook.com/avpfuturetech",
     youtube: "https://www.youtube.com/@avpfuturetech",
   },

@@ -67,15 +67,8 @@ export default function TestBannerSection() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* High-tech grid background overlay */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: 'radial-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-        opacity: 0.8,
-        pointerEvents: 'none'
-      }} />
+      {/* High-tech Cyber PCB Circuit Pattern Overlay */}
+      <div className="avp-pattern-circuit-dark" style={{ opacity: 0.35 }} />
 
       {/* Ambient Neon Lighting */}
       <div style={{

@@ -164,6 +164,9 @@ export default function OurCompanyPage() {
     <div className="bg-white overflow-hidden selection:bg-[#1E63D6] selection:text-white">
       {/* Hero / Who We Are Header */}
       <section className="relative py-20 sm:py-28 bg-linear-to-b from-[#F7F9FC] via-white to-[#F7F9FC] border-b border-[#E2E8F0] overflow-hidden">
+        {/* Pattern 1: Tech Blueprint Grid */}
+        <div className="absolute inset-0 pattern-tech-grid pointer-events-none opacity-60" />
+
         {/* Decorative ambient background glows */}
         <div
           className="pointer-events-none absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full"
@@ -177,7 +180,6 @@ export default function OurCompanyPage() {
             background: "radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(247, 249, 252, 0) 70%)",
           }}
         />
-        <div className="absolute inset-0 bg-circuit-lines opacity-35 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -227,8 +229,9 @@ export default function OurCompanyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
             {/* Vision Card */}
             <div className="rounded-3xl p-8 sm:p-10 bg-white border-2 border-[#1E63D6]/30 shadow-xl shadow-[#1E63D6]/5 relative overflow-hidden group hover:border-[#1E63D6] transition-all card-hover flex flex-col justify-between">
+              <div className="absolute inset-0 pattern-dot-matrix pointer-events-none opacity-40" />
               <div className="absolute top-0 right-0 w-40 h-40 bg-[#1E63D6]/10 rounded-full blur-2xl pointer-events-none" />
-              <div>
+              <div className="relative z-10">
                 <div className="w-14 h-14 rounded-2xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center mb-6 shadow-xs group-hover:scale-110 transition-transform">
                   <Compass className="w-7 h-7" />
                 </div>
@@ -243,7 +246,7 @@ export default function OurCompanyPage() {
                 </p>
               </div>
 
-              <div className="mt-8 pt-5 border-t border-slate-100 flex flex-wrap gap-2">
+              <div className="mt-8 pt-5 border-t border-slate-100 flex flex-wrap gap-2 relative z-10">
                 <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#F0F4FA] text-[#1E63D6]">
                   Democratize Tech
                 </span>
@@ -257,9 +260,10 @@ export default function OurCompanyPage() {
             </div>
 
             {/* Mission Card */}
-            <div className="rounded-3xl p-8 sm:p-10 bg-[#0B1E3D] text-white border-2 border-[#0B1E3D] shadow-xl shadow-[#0B1E3D]/10 relative overflow-hidden group transition-all card-hover flex flex-col justify-between">
+            <div className="rounded-3xl p-8 sm:p-10 bg-[#07152B] text-white border-2 border-[#162C52] shadow-xl shadow-[#0B1E3D]/20 relative overflow-hidden group transition-all card-hover flex flex-col justify-between">
+              <div className="absolute inset-0 pattern-circuit-dark pointer-events-none opacity-35" />
               <div className="absolute top-0 right-0 w-40 h-40 bg-[#38BDF8]/15 rounded-full blur-2xl pointer-events-none" />
-              <div>
+              <div className="relative z-10">
                 <div className="w-14 h-14 rounded-2xl bg-white/10 text-[#38BDF8] border border-white/15 flex items-center justify-center mb-6 shadow-xs group-hover:scale-110 transition-transform">
                   <Target className="w-7 h-7" />
                 </div>
@@ -274,7 +278,7 @@ export default function OurCompanyPage() {
                 </p>
               </div>
 
-              <div className="mt-8 pt-5 border-t border-white/10 flex flex-wrap gap-2">
+              <div className="mt-8 pt-5 border-t border-white/10 flex flex-wrap gap-2 relative z-10">
                 <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-[#38BDF8] border border-white/15">
                   100% Practical Labs
                 </span>
@@ -291,8 +295,11 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Impact Numbers Strip */}
-      <section className="py-8 bg-[#0B1E3D] border-y border-white/10 text-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-8 bg-[#07152B] border-y border-white/10 text-white relative overflow-hidden">
+        {/* Pattern 2: Cyber Circuit Dark */}
+        <div className="absolute inset-0 pattern-circuit-dark pointer-events-none opacity-40" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="p-4 border-r border-white/10 last:border-none">
               <div className="text-2xl sm:text-4xl font-extrabold font-heading text-[#38BDF8]">
@@ -331,8 +338,11 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Curriculum & Teaching Approach Bento Grid */}
-      <section className="py-12 sm:py-16 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-white relative overflow-hidden">
+        {/* Pattern 3: Dot Matrix Pattern */}
+        <div className="absolute inset-0 pattern-dot-matrix pointer-events-none opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Pedagogical Standard"
             title="Our Curriculum &"
@@ -378,8 +388,11 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Why You Need AVP FutureTech / Benefits Grid */}
-      <section className="py-12 sm:py-16 bg-[#F8FAFC] border-y border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-[#F8FAFC] border-y border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 4: Isometric 3D Hexagonal Lattice */}
+        <div className="absolute inset-0 pattern-isometric-lattice pointer-events-none opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Measurable Impact"
             title="Why Schools & Students Choose"
@@ -389,78 +402,84 @@ export default function OurCompanyPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8 sm:mt-10">
             {/* Student Benefits Card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#E2E8F0] shadow-sm hover:shadow-xl transition-all space-y-6 card-hover">
-              <div className="flex items-center gap-3.5 pb-4 border-b border-slate-100">
-                <div className="w-12 h-12 rounded-2xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center font-bold shadow-xs">
-                  <GraduationCap className="w-6 h-6" />
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#E2E8F0] shadow-sm hover:shadow-xl transition-all space-y-6 card-hover relative overflow-hidden">
+              <div className="absolute inset-0 pattern-dot-matrix pointer-events-none opacity-30" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3.5 pb-4 border-b border-slate-100">
+                  <div className="w-12 h-12 rounded-2xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center font-bold shadow-xs">
+                    <GraduationCap className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#1E63D6] block">
+                      For Young Innovators
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#0B1E3D] font-heading">
+                      Benefits for Students (Grades 1–10)
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#1E63D6] block">
-                    For Young Innovators
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#0B1E3D] font-heading">
-                    Benefits for Students (Grades 1–10)
-                  </h3>
-                </div>
-              </div>
 
-              <div className="space-y-4">
-                {STUDENT_BENEFITS.map((item, idx) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={idx} className="flex items-start gap-3.5 group">
-                      <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#1E63D6] group-hover:text-white transition-colors">
-                        <Icon className="w-4 h-4" />
+                <div className="space-y-4 mt-6">
+                  {STUDENT_BENEFITS.map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={idx} className="flex items-start gap-3.5 group">
+                        <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#1E63D6] group-hover:text-white transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-[#0B1E3D] leading-snug">
+                            {item.title}
+                          </h4>
+                          <p className="text-xs text-[#64748B] mt-0.5 leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-[#0B1E3D] leading-snug">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs text-[#64748B] mt-0.5 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
             {/* School Benefits Card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#0B1E3D] text-white border border-[#0B1E3D] shadow-lg hover:shadow-2xl transition-all space-y-6 card-hover">
-              <div className="flex items-center gap-3.5 pb-4 border-b border-white/10">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 text-[#38BDF8] border border-white/15 flex items-center justify-center font-bold shadow-xs">
-                  <School className="w-6 h-6" />
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#07152B] text-white border border-[#162C52] shadow-lg hover:shadow-2xl transition-all space-y-6 card-hover relative overflow-hidden">
+              <div className="absolute inset-0 pattern-circuit-dark pointer-events-none opacity-30" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3.5 pb-4 border-b border-white/10">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 text-[#38BDF8] border border-white/15 flex items-center justify-center font-bold shadow-xs">
+                    <School className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#38BDF8] block">
+                      For Educational Leaders
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">
+                      Benefits for Schools & Institutions
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#38BDF8] block">
-                    For Educational Leaders
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">
-                    Benefits for Schools & Institutions
-                  </h3>
-                </div>
-              </div>
 
-              <div className="space-y-4">
-                {SCHOOL_BENEFITS.map((item, idx) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={idx} className="flex items-start gap-3.5 group">
-                      <div className="w-8 h-8 rounded-xl bg-white/10 text-[#38BDF8] border border-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#38BDF8] group-hover:text-[#0B1E3D] transition-colors">
-                        <Icon className="w-4 h-4" />
+                <div className="space-y-4 mt-6">
+                  {SCHOOL_BENEFITS.map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={idx} className="flex items-start gap-3.5 group">
+                        <div className="w-8 h-8 rounded-xl bg-white/10 text-[#38BDF8] border border-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#38BDF8] group-hover:text-[#0B1E3D] transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-white leading-snug">
+                            {item.title}
+                          </h4>
+                          <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-white leading-snug">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -468,8 +487,11 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Our Collaboration Approach (4-Step Process) */}
-      <section className="py-12 sm:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-white relative overflow-hidden">
+        {/* Pattern 5: Blueprint Grid Texture */}
+        <div className="absolute inset-0 pattern-blueprint pointer-events-none opacity-50" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Proven Methodology"
             title="Our 4-Step School"
@@ -515,6 +537,9 @@ export default function OurCompanyPage() {
 
       {/* Meet Our Founders */}
       <section className="py-12 sm:py-16 bg-linear-to-b from-[#F8FAFC] via-white to-[#F8FAFC] border-t border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 6: PCB Circuit Board Mesh */}
+        <div className="absolute inset-0 pattern-circuit-board pointer-events-none opacity-60" />
+
         {/* Subtle decorative ambient lights */}
         <div
           className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] rounded-full opacity-70"
@@ -522,7 +547,6 @@ export default function OurCompanyPage() {
             background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(248, 250, 252, 0) 70%)",
           }}
         />
-        <div className="absolute inset-0 bg-circuit-lines opacity-20 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
@@ -562,8 +586,11 @@ export default function OurCompanyPage() {
       </section>
 
       {/* Get In Touch Block + Contact Form */}
-      <section id="contact" className="py-12 sm:py-16 bg-white border-t border-[#E2E8F0] scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-12 sm:py-16 bg-white border-t border-[#E2E8F0] scroll-mt-20 relative overflow-hidden">
+        {/* Pattern 7: Tech Grid Background */}
+        <div className="absolute inset-0 pattern-tech-grid pointer-events-none opacity-50" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Reach Out"
             title="Get In Touch With Our"
@@ -573,10 +600,11 @@ export default function OurCompanyPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-6xl mx-auto mt-8 sm:mt-10">
             {/* Left Contact Information Card */}
-            <div className="lg:col-span-5 bg-[#0B1E3D] text-white rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6 relative overflow-hidden">
+            <div className="lg:col-span-5 bg-[#07152B] text-white rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6 relative overflow-hidden border border-[#162C52]">
+              <div className="absolute inset-0 pattern-circuit-dark pointer-events-none opacity-40" />
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#1E63D6]/20 rounded-full blur-3xl pointer-events-none" />
 
-              <div>
+              <div className="relative z-10">
                 <span className="text-xs font-bold uppercase tracking-widest text-[#38BDF8]">
                   Head Office & Innovation Hub
                 </span>
@@ -588,7 +616,7 @@ export default function OurCompanyPage() {
                 </p>
               </div>
 
-              <div className="space-y-4 pt-4 border-t border-white/10 text-sm">
+              <div className="space-y-4 pt-4 border-t border-white/10 text-sm relative z-10">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#38BDF8] shrink-0 mt-0.5" />
                   <span className="text-slate-200 text-xs sm:text-sm leading-snug">
@@ -638,7 +666,7 @@ export default function OurCompanyPage() {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-white/10">
+              <div className="pt-6 border-t border-white/10 relative z-10">
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
                   <span className="text-xs font-bold text-[#38BDF8] flex items-center gap-1.5 mb-1">
                     <Sparkles size={13} /> Request an On-Campus Demo
@@ -651,7 +679,7 @@ export default function OurCompanyPage() {
             </div>
 
             {/* Right: Contact Form */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 relative z-10">
               <ContactForm />
             </div>
           </div>

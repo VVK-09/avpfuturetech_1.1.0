@@ -42,9 +42,13 @@ export default function TestInstructionsView() {
       minHeight: '100vh',
       backgroundColor: 'var(--bg-page)',
       paddingTop: '2.5rem',
-      paddingBottom: '4rem'
+      paddingBottom: '4rem',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div className="container" style={{ maxWidth: '880px' }}>
+      {/* Precision Blueprint Tech Grid Pattern */}
+      <div className="avp-pattern-tech-grid" style={{ opacity: 0.45 }} />
+      <div className="container" style={{ maxWidth: '880px', position: 'relative', zIndex: 2 }}>
         {/* Top Header Card */}
         <div style={{
           backgroundColor: '#FFFFFF',

@@ -28,6 +28,9 @@ export default function WorkshopsPage() {
     <div className="bg-white">
       {/* Page Header */}
       <section className="py-16 sm:py-24 bg-linear-to-b from-[#F7F9FC] to-white border-b border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 1: Tech Blueprint Grid */}
+        <div className="absolute inset-0 pattern-tech-grid pointer-events-none opacity-60" />
+
         {/* Decorative ambient background glows */}
         <div
           className="pointer-events-none absolute -top-36 -right-36 w-[500px] h-[500px] rounded-full"
@@ -35,10 +38,9 @@ export default function WorkshopsPage() {
             background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(247, 249, 252, 0) 70%)",
           }}
         />
-        <div className="absolute inset-0 bg-circuit-lines opacity-40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] mb-4 shadow-xs">
             <Wrench className="w-3.5 h-3.5 text-[#1E63D6]" />
             <span>Hands-on Learning Series</span>
           </div>
@@ -53,10 +55,13 @@ export default function WorkshopsPage() {
       </section>
 
       {/* SECTION A: WORKSHOPS FOR SCHOOLS */}
-      <section className="py-16 sm:py-20 bg-white" id="schools">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white relative overflow-hidden" id="schools">
+        {/* Pattern 2: Precision Dot Matrix */}
+        <div className="absolute inset-0 pattern-dot-matrix pointer-events-none opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center font-bold shadow-xs">
               <GraduationCap className="w-5 h-5" />
             </div>
             <div>
@@ -81,10 +86,13 @@ export default function WorkshopsPage() {
       </section>
 
       {/* SECTION B: WORKSHOPS FOR COLLEGES */}
-      <section className="py-16 sm:py-20 bg-[#F7F9FC] border-y border-[#E2E8F0]" id="colleges">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-[#F7F9FC] border-y border-[#E2E8F0] relative overflow-hidden" id="colleges">
+        {/* Pattern 3: PCB Circuit Board Mesh */}
+        <div className="absolute inset-0 pattern-circuit-board pointer-events-none opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-[#0B1E3D] text-white flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-[#0B1E3D] text-white flex items-center justify-center font-bold shadow-xs">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
@@ -109,7 +117,9 @@ export default function WorkshopsPage() {
       </section>
 
       {/* SECTION C: OTHER SOLUTIONS FOR SCHOOLS */}
-      <section className="py-16 sm:py-24 bg-white" id="other-solutions">
+      <section className="py-16 sm:py-24 bg-white relative overflow-hidden" id="other-solutions">
+        {/* Pattern 4: 3D Isometric Lattice */}
+        <div className="absolute inset-0 pattern-isometric-lattice pointer-events-none opacity-65" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Turnkey Ecosystem"

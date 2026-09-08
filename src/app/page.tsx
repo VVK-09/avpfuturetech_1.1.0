@@ -16,8 +16,8 @@ export default function HomePage() {
 
       {/* 2. RECENT NEWS SECTION */}
       <section className="py-16 sm:py-24 bg-[#F7F9FC] border-y border-[#E2E8F0] relative overflow-hidden">
-        {/* Subtle decorative circuit dot pattern */}
-        <div className="absolute inset-0 bg-circuit-pattern pointer-events-none" />
+        {/* Pattern 1: Precision Cyber Dot Matrix */}
+        <div className="absolute inset-0 pattern-dot-matrix pointer-events-none opacity-80" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -58,17 +58,20 @@ export default function HomePage() {
 
       {/* 3. OUR SERVICES SECTION */}
       <section className="py-16 sm:py-24 bg-linear-to-b from-white via-[#F8FAFC] to-white relative overflow-hidden">
+        {/* Pattern 2: Architectural Tech Grid */}
+        <div className="absolute inset-0 pattern-tech-grid pointer-events-none opacity-60" />
+
         {/* Ambient background glows */}
         <div
           className="pointer-events-none absolute top-1/4 -left-48 w-96 h-96 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(30, 99, 214, 0.05) 0%, rgba(248, 250, 252, 0) 70%)",
+            background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(248, 250, 252, 0) 70%)",
           }}
         />
         <div
           className="pointer-events-none absolute bottom-1/4 -right-48 w-96 h-96 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(13, 148, 136, 0.05) 0%, rgba(248, 250, 252, 0) 70%)",
+            background: "radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, rgba(248, 250, 252, 0) 70%)",
           }}
         />
 
@@ -88,18 +91,21 @@ export default function HomePage() {
           </div>
 
           {/* Bottom callout strip */}
-          <div className="mt-14 relative overflow-hidden rounded-3xl bg-linear-to-r from-[#0B1E3D] via-[#122B54] to-[#1E63D6] p-8 sm:p-10 text-white shadow-2xl shadow-[#0B1E3D]/25 border border-white/15">
+          <div className="mt-14 relative overflow-hidden rounded-3xl bg-linear-to-r from-[#07152B] via-[#0B1E3D] to-[#173B7A] p-8 sm:p-10 text-white shadow-2xl shadow-[#0B1E3D]/30 border border-white/15">
+            {/* Pattern 3: Cyber Circuit Dark Pattern */}
+            <div className="absolute inset-0 pattern-circuit-dark pointer-events-none opacity-45" />
+
             {/* Ambient inner decorative glows */}
             <div
               className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full"
               style={{
-                background: "radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(30, 99, 214, 0) 70%)",
+                background: "radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(30, 99, 214, 0) 70%)",
               }}
             />
             <div
               className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 rounded-full"
               style={{
-                background: "radial-gradient(circle, rgba(30, 99, 214, 0.25) 0%, rgba(11, 30, 61, 0) 70%)",
+                background: "radial-gradient(circle, rgba(30, 99, 214, 0.3) 0%, rgba(11, 30, 61, 0) 70%)",
               }}
             />
 
@@ -138,8 +144,11 @@ export default function HomePage() {
       </section>
 
       {/* 4. FREQUENTLY ASKED QUESTIONS & SUPPORT */}
-      <section className="py-16 sm:py-24 bg-[#F7F9FC] border-t border-[#E2E8F0] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-24 bg-[#F7F9FC] border-t border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 4: Isometric 3D Hexagonal Lattice */}
+        <div className="absolute inset-0 pattern-isometric-lattice pointer-events-none opacity-70" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Got Questions?"
             title="Frequently Asked Questions &"

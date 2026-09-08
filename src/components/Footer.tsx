@@ -21,7 +21,8 @@ export default function Footer() {
       {/* Decorative top circuit line accent */}
       <div className="h-1.5 w-full bg-linear-to-r from-[#1E63D6] via-[#38BDF8] to-[#1E63D6]" />
 
-      {/* Background ambient lighting */}
+      {/* Background patterns and ambient lighting */}
+      <div className="absolute inset-0 pattern-circuit-dark opacity-25 pointer-events-none" />
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#1E63D6]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-[#38BDF8]/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -30,7 +31,7 @@ export default function Footer() {
           {/* Brand Info (2 Columns on large screens) */}
           <div className="lg:col-span-2 space-y-5">
             <Link href="/" className="inline-block">
-              <div className="relative h-14 w-48 flex items-center">
+              <div className="relative h-16 w-36 sm:h-20 sm:w-44 flex items-center">
                 <Image
                   src={SITE_CONFIG.logos.white}
                   alt="AVP FutureTech Logo"

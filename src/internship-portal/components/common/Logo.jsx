@@ -23,7 +23,7 @@ export default function Logo({
   if (isHorizontal) {
     logoSrc = isLight ? '/avp-logo-horizontal-light.png' : '/avp-logo-horizontal.png';
   } else {
-    logoSrc = isLight ? '/avp-logo-white.png' : '/avp-logo-transparent.png';
+    logoSrc = isLight ? '/logos/white-logo.png' : '/logos/logo.png';
   }
 
   return (

@@ -122,8 +122,8 @@ export default function FAQContactSection() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Minimal Tech Dot Pattern */}
-      <div className="avp-pattern-dots" />
+      {/* Precision Blueprint Tech Grid Pattern */}
+      <div className="avp-pattern-tech-grid" style={{ opacity: 0.5 }} />
 
       {/* Background ambient lighting */}
       <div style={{

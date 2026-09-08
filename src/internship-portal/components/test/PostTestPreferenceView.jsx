@@ -48,9 +48,13 @@ export default function PostTestPreferenceView() {
       minHeight: '100vh',
       backgroundColor: 'var(--bg-page)',
       paddingTop: '2.5rem',
-      paddingBottom: '4.5rem'
+      paddingBottom: '4.5rem',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div className="container" style={{ maxWidth: '800px' }}>
+      {/* 3D Isometric Lattice Pattern Overlay */}
+      <div className="avp-pattern-isometric-lattice" style={{ opacity: 0.45 }} />
+      <div className="container" style={{ maxWidth: '800px', position: 'relative', zIndex: 2 }}>
         {/* Top Branding & Congratulations Card */}
         <div style={{
           backgroundColor: '#FFFFFF',

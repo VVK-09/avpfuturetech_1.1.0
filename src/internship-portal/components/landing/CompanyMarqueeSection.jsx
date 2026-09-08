@@ -16,8 +16,8 @@ export default function CompanyMarqueeSection() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Minimal Tech Dot Pattern */}
-      <div className="avp-pattern-dots" />
+      {/* Precision Cyber Dot Matrix Pattern */}
+      <div className="avp-pattern-dot-matrix" style={{ opacity: 0.45 }} />
       <div className="container" style={{ textAlign: 'center', marginBottom: '2.5rem', position: 'relative', zIndex: 2 }}>
         <div style={{
           display: 'inline-flex',

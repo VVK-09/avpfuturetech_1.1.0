@@ -11,7 +11,8 @@ import HeroTechFactsWidget from "./HeroTechFactsWidget";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-18">
-      {/* Interactive Minimal Canvas (Matches Internship Portal) */}
+      {/* Precision Blueprint Grid & Interactive Canvas */}
+      <div className="absolute inset-0 pattern-tech-grid opacity-50 pointer-events-none" />
       <InteractiveHeroBackground />
 
       {/* Decorative ambient background glows (Matches Internship Portal) */}

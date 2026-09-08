@@ -57,9 +57,13 @@ export default function Footer() {
       paddingTop: '4.5rem',
       paddingBottom: '2.5rem',
       marginTop: 'auto',
-      borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+      borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div className="container">
+      {/* High-tech Cyber PCB Circuit Pattern Overlay */}
+      <div className="avp-pattern-circuit-dark" style={{ opacity: 0.25 }} />
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         {/* Main Footer Grid */}
         <div style={{
           display: 'grid',

@@ -50,6 +50,9 @@ export default function CollegeSolutionPage() {
     <div className="bg-white">
       {/* Hero Header */}
       <section className="py-16 sm:py-24 bg-linear-to-b from-[#F7F9FC] to-white border-b border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 1: Tech Blueprint Grid */}
+        <div className="absolute inset-0 pattern-tech-grid pointer-events-none opacity-60" />
+
         {/* Decorative ambient background glows */}
         <div
           className="pointer-events-none absolute -top-36 -right-36 w-[500px] h-[500px] rounded-full"
@@ -57,12 +60,11 @@ export default function CollegeSolutionPage() {
             background: "radial-gradient(circle, rgba(30, 99, 214, 0.08) 0%, rgba(247, 249, 252, 0) 70%)",
           }}
         />
-        <div className="absolute inset-0 bg-circuit-lines opacity-40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE]">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] shadow-xs">
                 <Cpu className="w-3.5 h-3.5 text-[#1E63D6]" />
                 <span>For Engineering & Polytechnic Colleges</span>
               </div>
@@ -105,8 +107,11 @@ export default function CollegeSolutionPage() {
       </section>
 
       {/* Technology Domains */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+        {/* Pattern 2: PCB Circuit Board Mesh */}
+        <div className="absolute inset-0 pattern-circuit-board pointer-events-none opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Engineering Modules"
             title="Core Technical Focus"
@@ -120,9 +125,9 @@ export default function CollegeSolutionPage() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-[#F7F9FC] border border-[#E2E8F0] space-y-3 card-hover"
+                  className="p-6 rounded-2xl bg-[#F7F9FC] border border-[#E2E8F0] space-y-3 card-hover shadow-xs"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-[#DCEBFF] text-[#1E63D6] flex items-center justify-center font-bold shadow-xs">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-[#0B1E3D] font-heading">{area.title}</h3>
@@ -137,8 +142,11 @@ export default function CollegeSolutionPage() {
       </section>
 
       {/* College Pricing Tiers */}
-      <section className="py-16 sm:py-20 bg-[#F7F9FC] border-y border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-[#F7F9FC] border-y border-[#E2E8F0] relative overflow-hidden">
+        {/* Pattern 3: 3D Isometric Lattice */}
+        <div className="absolute inset-0 pattern-isometric-lattice pointer-events-none opacity-65" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
             badge="Campus Bootcamps"
             title="College Workshop"
@@ -155,8 +163,11 @@ export default function CollegeSolutionPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 bg-[#0B1E3D] text-white text-center">
-        <div className="max-w-3xl mx-auto px-4 space-y-4">
+      <section className="py-14 bg-[#07152B] text-white text-center relative overflow-hidden border-t border-white/10">
+        {/* Pattern 4: Cyber Circuit Dark */}
+        <div className="absolute inset-0 pattern-circuit-dark pointer-events-none opacity-40" />
+
+        <div className="max-w-3xl mx-auto px-4 space-y-4 relative z-10">
           <h2 className="text-2xl sm:text-3xl font-bold font-heading">
             Host an AVP FutureTech Bootcamp on Your Campus
           </h2>
