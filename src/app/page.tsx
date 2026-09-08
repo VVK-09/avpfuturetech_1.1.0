@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Newspaper, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Newspaper } from "lucide-react";
 import Hero from "@/components/Hero";
 import NewsCard from "@/components/NewsCard";
 import ServiceCard from "@/components/ServiceCard";
@@ -111,12 +111,6 @@ export default function HomePage() {
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               <div className="space-y-3.5 max-w-3xl text-left">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-sky-400/30 text-sky-300 text-xs font-bold uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-sky-300 shrink-0" />
-                  <span>Custom Institutional Curricula</span>
-                </div>
-
                 {/* Visible High-Contrast Headline */}
                 <h3 className="text-2xl sm:text-3xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug font-heading">
                   Looking for a customized STEM workshop for your institution?
