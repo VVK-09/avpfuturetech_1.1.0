@@ -15,7 +15,10 @@ import {
   ArrowRight,
   Shield,
   FileCheck2,
-  ArrowLeft
+  ArrowLeft,
+  RotateCcw,
+  ShieldAlert,
+  Calculator
 } from 'lucide-react';
 import { generateCertificateCanvas, downloadCertificatePNG } from '../../utils/certificateGenerator';
 import { initialStudents } from '../../data/initialInternTasks';
@@ -29,6 +32,40 @@ export default function VerificationView({ initialQuery = '' }) {
   const [searched, setSearched] = useState(Boolean(initialQuery));
   const [copied, setCopied] = useState(false);
   const canvasRef = useRef(null);
+
+  // Anti-DDoS Math Security Challenge State
+  const [mathChallenge, setMathChallenge] = useState({ question: '4 + 3', token: 'local', localAns: 7 });
+  const [mathAnswer, setMathAnswer] = useState('');
+  const [mathError, setMathError] = useState('');
+  const [isVerifyingSecurity, setIsVerifyingSecurity] = useState(false);
+  const [mathLoading, setMathLoading] = useState(false);
+
+  const fetchMathChallenge = async () => {
+    setMathLoading(true);
+    setMathError('');
+    try {
+      const res = await fetch('/api/math-captcha');
+      const data = await res.json();
+      if (data.success && data.question && data.token) {
+        setMathChallenge({ question: data.question, token: data.token });
+        setMathAnswer('');
+      } else {
+        throw new Error('Fallback to local challenge');
+      }
+    } catch {
+      // Local dynamic fallback
+      const n1 = Math.floor(Math.random() * 12) + 2;
+      const n2 = Math.floor(Math.random() * 9) + 1;
+      setMathChallenge({ question: `${n1} + ${n2}`, token: 'local', localAns: n1 + n2 });
+      setMathAnswer('');
+    } finally {
+      setMathLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMathChallenge();
+  }, []);
 
   // Search logic across Context Students, LocalStorage, and initial registered records
   const findCandidate = (query) => {
@@ -134,10 +171,54 @@ export default function VerificationView({ initialQuery = '' }) {
     }
   }, [verifiedCandidate]);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchInput.trim()) return;
-    setActiveQuery(searchInput.trim());
+
+    if (!mathAnswer.trim()) {
+      setMathError('Please answer the simple math question to verify you are human.');
+      return;
+    }
+
+    setIsVerifyingSecurity(true);
+    setMathError('');
+
+    try {
+      if (mathChallenge.token === 'local') {
+        if (parseInt(mathAnswer.trim(), 10) !== mathChallenge.localAns) {
+          setMathError('Incorrect answer. Please solve the updated problem.');
+          fetchMathChallenge();
+          setIsVerifyingSecurity(false);
+          return;
+        }
+      } else {
+        const res = await fetch('/api/math-captcha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: mathChallenge.token, answer: mathAnswer.trim() })
+        });
+        const data = await res.json();
+        if (!data.success) {
+          setMathError(data.message || 'Incorrect security answer. Please try again.');
+          if (data.newChallenge) {
+            setMathChallenge(data.newChallenge);
+            setMathAnswer('');
+          } else {
+            fetchMathChallenge();
+          }
+          setIsVerifyingSecurity(false);
+          return;
+        }
+      }
+
+      // Math verification passed! Execute query lookup
+      setActiveQuery(searchInput.trim());
+      setIsVerifyingSecurity(false);
+    } catch {
+      // Graceful fallback
+      setActiveQuery(searchInput.trim());
+      setIsVerifyingSecurity(false);
+    }
   };
 
   const handleCopyLink = () => {
@@ -218,25 +299,6 @@ export default function VerificationView({ initialQuery = '' }) {
 
         {/* Header Title Section */}
         <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 2.5rem auto' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.4rem 1rem',
-            borderRadius: '9999px',
-            backgroundColor: 'rgba(30, 99, 214, 0.1)',
-            border: '1px solid rgba(30, 99, 214, 0.25)',
-            color: 'var(--electric-blue)',
-            fontSize: '0.78rem',
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            marginBottom: '1rem'
-          }}>
-            <ShieldCheck size={16} color="var(--electric-blue)" />
-            Official Academic & Internship Credential Registry
-          </div>
-
           <h1 style={{
             fontSize: 'clamp(1.8rem, 4vw, 2.75rem)',
             fontWeight: 800,
@@ -252,54 +314,136 @@ export default function VerificationView({ initialQuery = '' }) {
           </p>
         </div>
 
-        {/* Verification Search Bar */}
-        <div style={{ maxWidth: '660px', margin: '0 auto 3rem auto' }}>
-          <form
-            onSubmit={handleSearch}
-            style={{
+        {/* Verification Search & Anti-DDoS Security Container */}
+        <div className="verify-search-card">
+          <form onSubmit={handleSearch} className="verify-search-form">
+            {/* 1. Main Search Field */}
+            <div style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '16px',
-              border: '1.5px solid rgba(30, 99, 214, 0.18)',
-              boxShadow: '0 12px 35px -5px rgba(11, 30, 61, 0.08), 0 0 0 1px rgba(30, 99, 214, 0.05)',
-              padding: '0.4rem 0.5rem 0.4rem 1.15rem',
-              transition: 'all 0.25s ease'
-            }}
-          >
-            <Search size={19} color="#1E63D6" style={{ marginRight: '0.75rem', flexShrink: 0 }} />
-            <input
-              type="text"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Enter Credential ID or registered candidate email..."
-              style={{
-                width: '100%',
-                border: 'none',
-                outline: 'none',
-                fontSize: '0.95rem',
-                color: 'var(--primary-navy)',
-                backgroundColor: 'transparent',
-                fontWeight: 600
-              }}
-            />
-            <button
-              type="submit"
-              className="btn btn-primary"
-              style={{
-                borderRadius: '12px',
-                padding: '0.7rem 1.5rem',
-                fontSize: '0.9rem',
-                fontWeight: 700,
+              backgroundColor: '#F8FAFC',
+              borderRadius: '10px',
+              border: '1px solid #E2E8F0',
+              padding: '0.65rem 1rem'
+            }}>
+              <Search size={18} color="#1E63D6" style={{ marginRight: '0.75rem', flexShrink: 0 }} />
+              <input
+                type="text"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="Enter Credential ID or email..."
+                style={{
+                  width: '100%',
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '0.92rem',
+                  color: 'var(--primary-navy)',
+                  backgroundColor: 'transparent',
+                  fontWeight: 500
+                }}
+              />
+            </div>
+
+            {/* 2. Simple Math Security Challenge & Submit Row (Responsive Desktop & Mobile) */}
+            <div className="verify-action-row">
+              <div className="verify-math-challenge">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Solve:</span>
+                  <span style={{
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    color: 'var(--primary-navy)',
+                    backgroundColor: '#FFFFFF',
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: '6px',
+                    border: '1px solid #E2E8F0'
+                  }}>
+                    {mathLoading ? '...' : mathChallenge.question} =
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={mathAnswer}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === '' || /^-?\d*$/.test(val)) {
+                        setMathAnswer(val);
+                      }
+                    }}
+                    placeholder="?"
+                    aria-label="Security math answer"
+                    style={{
+                      width: '48px',
+                      padding: '0.35rem 0.4rem',
+                      borderRadius: '6px',
+                      border: mathError ? '1.5px solid #EF4444' : '1px solid #CBD5E1',
+                      fontSize: '0.9rem',
+                      fontWeight: 700,
+                      textAlign: 'center',
+                      backgroundColor: '#FFFFFF',
+                      color: 'var(--primary-navy)',
+                      outline: 'none'
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={fetchMathChallenge}
+                    title="Generate new problem"
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: '#94A3B8',
+                      display: 'flex',
+                      alignItems: 'center',
+                      padding: '0.35rem',
+                      borderRadius: '6px'
+                    }}
+                  >
+                    <RotateCcw size={14} className={mathLoading ? 'animate-spin' : ''} />
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isVerifyingSecurity}
+                className="btn btn-primary verify-submit-btn"
+              >
+                {isVerifyingSecurity ? (
+                  <span>Verifying...</span>
+                ) : (
+                  <>
+                    <span>Verify Credential</span>
+                    <ArrowRight size={14} />
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Error Message Box */}
+            {mathError && (
+              <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                flexShrink: 0
-              }}
-            >
-              <span>Verify</span>
-              <ArrowRight size={15} />
-            </button>
+                backgroundColor: '#FEF2F2',
+                border: '1px solid #FECACA',
+                color: '#DC2626',
+                padding: '0.45rem 0.75rem',
+                borderRadius: '8px',
+                fontSize: '0.8rem',
+                fontWeight: 500
+              }}>
+                <AlertCircle size={14} color="#DC2626" style={{ flexShrink: 0 }} />
+                <span>{mathError}</span>
+              </div>
+            )}
           </form>
         </div>
 

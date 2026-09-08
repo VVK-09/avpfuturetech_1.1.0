@@ -33,16 +33,6 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Copy and CTAs */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-left">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DCEBFF] border border-[#BFDBFE] text-[#1E63D6] text-xs sm:text-sm font-bold shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#1E63D6]" />
-              <span>{SITE_CONFIG.tagline}</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1E63D6]" />
-              <span className="text-[#0B1E3D] font-semibold hidden sm:inline">
-                Grades 1–10 & Beyond
-              </span>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-5xl font-extrabold text-[#0B1E3D] tracking-tight leading-[1.16] font-heading">
               Bringing World-Class{" "}

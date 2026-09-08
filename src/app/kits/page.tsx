@@ -82,10 +82,6 @@ export default function KitsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE]">
-                <Boxes className="w-3.5 h-3.5 text-[#1E63D6]" />
-                <span>Hands-On Hardware</span>
-              </div>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-[#0B1E3D] tracking-tight font-heading">
                 High-Quality Robotics &{" "}
                 <span className="text-[#1E63D6]">IoT STEM Kits</span>
@@ -129,7 +125,6 @@ export default function KitsPage() {
         <div className="absolute inset-0 pattern-dot-matrix opacity-40 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Hardware Standards"
             title="Engineered for"
             titleHighlight="Classroom Success"
             subtitle="Why our kits are trusted by educators and loved by young student makers."
@@ -162,7 +157,6 @@ export default function KitsPage() {
         <div className="absolute inset-0 pattern-isometric-lattice opacity-55 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Product Lineup"
             title="Explore Our"
             titleHighlight="Robotics Kits"
             subtitle="Available for individual student tinkering or bulk institutional lab supply."

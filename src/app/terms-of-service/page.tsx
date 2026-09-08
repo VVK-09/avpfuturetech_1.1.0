@@ -58,10 +58,6 @@ export default function TermsOfServicePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-[#38BDF8] uppercase tracking-wider mb-5">
-              <Scale className="w-3.5 h-3.5 text-[#38BDF8]" />
-              <span>Platform Terms & Agreement</span>
-            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 font-heading">
               Terms of Service
             </h1>

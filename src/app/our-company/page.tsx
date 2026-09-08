@@ -183,18 +183,6 @@ export default function OurCompanyPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
-            {/* Pill Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] shadow-xs">
-                <Users className="w-3.5 h-3.5 text-[#1E63D6]" />
-                <span>About AVP FutureTech</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200 shadow-xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
-                <span>MCA Registered & ISO 9001:2015</span>
-              </div>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B1E3D] tracking-tight font-heading leading-tight">
               Empowering Rural India Through{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#1E63D6] via-[#2563EB] to-[#38BDF8]">
@@ -344,7 +332,6 @@ export default function OurCompanyPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Pedagogical Standard"
             title="Our Curriculum &"
             titleHighlight="Teaching Methodology"
             subtitle="Engineered to turn young students from passive consumers of technology into active inventors and creators."
@@ -394,7 +381,6 @@ export default function OurCompanyPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Measurable Impact"
             title="Why Schools & Students Choose"
             titleHighlight="AVP FutureTech"
             subtitle="Designed to maximize student growth while offering turnkey simplicity to schools and teachers."
@@ -493,7 +479,6 @@ export default function OurCompanyPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Proven Methodology"
             title="Our 4-Step School"
             titleHighlight="Collaboration Approach"
             subtitle="From initial discovery to continuous lab excellence, we handle every phase with structured precision."
@@ -555,28 +540,6 @@ export default function OurCompanyPage() {
             subtitle="Engineered and led by passionate technologists committed to delivering equal-footing STEM & AI opportunities to every student."
           />
 
-          {/* Leadership Pillars / Trust Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl text-xs font-bold bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/90 shadow-xs hover:border-[#1E63D6]/40 hover:bg-white transition-all">
-              <div className="w-5 h-5 rounded-lg bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-3.5 h-3.5" />
-              </div>
-              <span>Founder-Led Curriculum & Delivery</span>
-            </div>
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl text-xs font-bold bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/90 shadow-xs hover:border-[#1E63D6]/40 hover:bg-white transition-all">
-              <div className="w-5 h-5 rounded-lg bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0">
-                <Cpu className="w-3.5 h-3.5" />
-              </div>
-              <span>In-House R&D & Hardware Architecture</span>
-            </div>
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl text-xs font-bold bg-white/90 backdrop-blur-xs text-slate-800 border border-slate-200/90 shadow-xs hover:border-[#1E63D6]/40 hover:bg-white transition-all">
-              <div className="w-5 h-5 rounded-lg bg-blue-50 text-[#1E63D6] flex items-center justify-center shrink-0">
-                <HeartHandshake className="w-3.5 h-3.5" />
-              </div>
-              <span>Direct Institutional Mentorship</span>
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {FOUNDERS.map((founder, idx) => (
               <FounderCard key={idx} founder={founder} />
@@ -592,7 +555,6 @@ export default function OurCompanyPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Reach Out"
             title="Get In Touch With Our"
             titleHighlight="Founders & Team"
             subtitle="Whether you're a school principal, college coordinator, student, or partner — we'd love to connect."

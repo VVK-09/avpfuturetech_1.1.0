@@ -70,10 +70,6 @@ export default function GalleryPage() {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] mb-4 shadow-xs">
-            <Camera className="w-3.5 h-3.5 text-[#1E63D6]" />
-            <span>Visual Journey</span>
-          </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#0B1E3D] tracking-tight font-heading">
             Innovation in Action:{" "}
             <span className="text-[#1E63D6]">Photo Gallery</span>

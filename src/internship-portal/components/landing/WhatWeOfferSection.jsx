@@ -158,9 +158,6 @@ export default function WhatWeOfferSection() {
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         {/* Section Header */}
         <div className="section-header" style={{ marginBottom: '3.5rem' }}>
-          <div className="section-tag" style={{ marginBottom: '0.85rem' }}>
-            <Sparkles size={14} /> Why Choose AVP FutureTech
-          </div>
           <h2 className="section-title" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', letterSpacing: '-0.5px' }}>
             Empowering Future Engineers with Real Industry Rigor
           </h2>

@@ -77,10 +77,6 @@ export default function SchoolSolutionPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] shadow-xs">
-                <GraduationCap className="w-3.5 h-3.5 text-[#1E63D6]" />
-                <span>For Schools & Educators</span>
-              </div>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-[#0B1E3D] tracking-tight font-heading">
                 Turnkey STEM, AI &{" "}
                 <span className="text-[#1E63D6]">Robotics School Solutions</span>
@@ -126,7 +122,6 @@ export default function SchoolSolutionPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Institutional Excellence"
             title="Designed for Impact &"
             titleHighlight="Compliance"
             subtitle="Our school program is built from the ground up to minimize administration while maximizing student achievement."
@@ -156,7 +151,6 @@ export default function SchoolSolutionPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Structured Progression"
             title="Age-Appropriate"
             titleHighlight="Learning Roadmap"
             subtitle="Tailored to meet students where they are, building logical confidence year by year."

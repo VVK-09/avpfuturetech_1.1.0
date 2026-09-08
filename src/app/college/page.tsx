@@ -64,10 +64,6 @@ export default function CollegeSolutionPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] shadow-xs">
-                <Cpu className="w-3.5 h-3.5 text-[#1E63D6]" />
-                <span>For Engineering & Polytechnic Colleges</span>
-              </div>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-[#0B1E3D] tracking-tight font-heading">
                 Advanced Hands-On Tech for{" "}
                 <span className="text-[#1E63D6]">College Innovators</span>
@@ -113,7 +109,6 @@ export default function CollegeSolutionPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Engineering Modules"
             title="Core Technical Focus"
             titleHighlight="Domains"
             subtitle="Industry-aligned practical domains designed to make graduates stand out in tech recruitment."
@@ -148,7 +143,6 @@ export default function CollegeSolutionPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Campus Bootcamps"
             title="College Workshop"
             titleHighlight="Formats & Pricing"
             subtitle="Intensive 2-day and 3-day bootcamps with hardware kits provided for hands-on team builds."

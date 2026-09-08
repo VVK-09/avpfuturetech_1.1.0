@@ -22,10 +22,6 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DCEBFF] text-[#1E63D6] border border-[#BFDBFE] mb-3 shadow-xs">
-                <Newspaper className="w-3.5 h-3.5 text-[#1E63D6]" />
-                <span>Latest Updates</span>
-              </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1E3D] tracking-tight font-heading">
                 Recent News & Announcements
               </h2>
@@ -77,7 +73,6 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="What We Offer"
             title="Comprehensive Tech Education"
             titleHighlight="Solutions"
             subtitle="From foundational school labs to college engineering bootcamps and hands-on robotics kits — end-to-end EdTech solutions designed to bridge opportunity."
