@@ -150,7 +150,6 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
-            badge="Got Questions?"
             title="Frequently Asked Questions &"
             titleHighlight="Support"
             subtitle="Everything you need to know about our school workshops, curriculum alignment, hardware kits, and partnership model."

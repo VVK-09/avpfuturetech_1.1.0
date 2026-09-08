@@ -52,6 +52,10 @@ export interface WorkshopPlan {
   description: string;
   features: string[];
   highlight?: boolean;
+  image?: string;
+  badgeTag?: string;
+  prototypesCount?: string;
+  hardwareStack?: string[];
 }
 
 export const SITE_CONFIG = {
@@ -246,7 +250,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "AI & ML Graduate | MBA in Data Science & Business Analytics",
     phone: "+91 9307076962",
     email: "avishkar@avpfuturetech.com",
-    linkedin: "https://www.linkedin.com/in/avishkarkamble",
+    linkedin: "https://www.linkedin.com/in/avishkar-kamble-22843027b/",
     image: "/images/avishkar_kamble.jpg",
     bio: "Passionate about democratizing futuristic technology education in rural communities, Avishkar blends machine learning expertise with strategic educational administration to build impactful, scalable STEM curricula and institutional alliances.",
     responsibilities: [
@@ -269,7 +273,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "AI & ML Graduate",
     phone: "+91 7744001079",
     email: "vaishnav@avpfuturetech.com",
-    linkedin: "https://www.linkedin.com/in/vaishnavkubade",
+    linkedin: "https://www.linkedin.com/in/vaishnav-kubade-a75221323/",
     image: "/images/vaishnav_kubade.jpg",
     bio: "Driving the technology core of AVP FutureTech, Vaishnav spearheads hardware-software synergy, student kit prototyping, robotics architecture, and technical workshops that transform complex robotics into intuitive, hands-on learning.",
     responsibilities: [
@@ -293,7 +297,7 @@ export const FOUNDERS: Founder[] = [
     credentials: "Computer Engineering Graduate",
     phone: "+91 7744001079",
     email: "prathmesh@avpfuturetech.com",
-    linkedin: "https://www.linkedin.com/in/prathmeshnarvekar",
+    linkedin: "https://www.linkedin.com/in/prathmeshnarvekar09/",
     image: "/images/prathmesh_narvekar.jpg",
     bio: "A dedicated computer engineer and educator, Prathmesh focuses on interactive training delivery, student engagement, school relations, and empowering every child with the confidence to code and build functional innovations.",
     responsibilities: [
@@ -326,6 +330,16 @@ export const WORKSHOPS_DATA: {
       tagline: "Deeper learning. More builds.",
       price: "₹299",
       priceUnit: "per student",
+      image: "/images/robotics_workshop_students.jpg",
+      badgeTag: "Sensor Circuits & Motors",
+      prototypesCount: "2+ Working Prototypes",
+      hardwareStack: [
+        "Ultrasonic Distance Sensor",
+        "DC Gear Motors & Wheels",
+        "Buzzer & LED Arrays",
+        "L293D Motor Controller",
+        "Plug-and-Play Chassis",
+      ],
       description:
         "An intensive, hands-on introduction to sensor science, robotics mechanisms, and algorithmic problem-solving for Grades 1–10.",
       features: [
@@ -346,6 +360,16 @@ export const WORKSHOPS_DATA: {
       tagline: "Build. Innovate. Showcase.",
       price: "₹399",
       priceUnit: "per student",
+      image: "/images/school_event_exhibition.jpg",
+      badgeTag: "Autonomous Bots & Hackathon",
+      prototypesCount: "Obstacle Avoidance Bot + Live Expo",
+      hardwareStack: [
+        "Autonomous Micro-Bot",
+        "IR Distance & Line Trackers",
+        "Servo Steering Mechanism",
+        "NEP 2020 Project Manual",
+        "Mini Hackathon Day 3",
+      ],
       description:
         "Our flagship immersive workshop culminating in an interactive robotics exhibition and mini-hackathon showcase.",
       features: [
@@ -368,6 +392,16 @@ export const WORKSHOPS_DATA: {
       tagline: "Hardware Interfacing & Telemetry",
       price: "₹499",
       priceUnit: "per student",
+      image: "/images/smart_street_light_iot.jpg",
+      badgeTag: "Cloud IoT & Sensor Telemetry",
+      prototypesCount: "Connected IoT Dashboard Prototype",
+      hardwareStack: [
+        "ESP32-WROOM Dual-Core",
+        "MQTT / HTTP Cloud Telemetry",
+        "PIR & Temperature Telemetry",
+        "C++ / MicroPython Codebase",
+        "L298N High-Current Driver",
+      ],
       description:
         "Bridging theoretical engineering with practical microcontrollers, real sensor telemetry, and cloud dashboard integration.",
       features: [
@@ -388,6 +422,16 @@ export const WORKSHOPS_DATA: {
       tagline: "Applied AI, Computer Vision & Smart IoT",
       price: "₹599",
       priceUnit: "per student",
+      image: "/images/ai_waste_classifier.jpg",
+      badgeTag: "Edge AI & Computer Vision",
+      prototypesCount: "Edge AI Camera Classifier Prototype",
+      hardwareStack: [
+        "Edge AI Camera Module",
+        "OpenCV / YOLO Tiny Classifiers",
+        "Autonomous Sorting Mechanism",
+        "Live Cloud Telemetry Streams",
+        "Internship Fast-Track Entry",
+      ],
       description:
         "Advanced hands-on workshop focused on real-world edge AI, computer vision classifiers, and smart automated robotics.",
       features: [

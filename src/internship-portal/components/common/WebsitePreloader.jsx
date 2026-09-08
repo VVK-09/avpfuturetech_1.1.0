@@ -181,11 +181,11 @@ export default function WebsitePreloader() {
           }}
         >
           <img
-            src="/avp-logo-white.png"
+            src="/logos/white-logo.png"
             alt="AVP FUTURETECH"
             style={{
               width: '100%',
-              maxWidth: '290px',
+              maxWidth: '240px',
               height: 'auto',
               display: 'block',
               objectFit: 'contain'
