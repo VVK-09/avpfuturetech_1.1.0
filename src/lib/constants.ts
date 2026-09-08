@@ -87,7 +87,7 @@ export const NAV_LINKS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Our Company", href: "/our-company" },
   { label: "Workshops", href: "/workshops" },
-  { label: "Internships", href: "/internships" },
+  { label: "Internships", href: "https://internship.avpfuturetech.com/" },
   { label: "Gallery", href: "/gallery" },
 ];
 
@@ -130,7 +130,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     subtitle: "Real-World Project Internships",
     description:
       "Project-based internships in AI, IoT, and Robotics giving students direct exposure to industry workflows, hardware fabrication, and software logic.",
-    href: "/internship",
+    href: "https://internship.avpfuturetech.com/",
     iconName: "Rocket",
     features: [
       "Production-Grade Hardware & Code Development",

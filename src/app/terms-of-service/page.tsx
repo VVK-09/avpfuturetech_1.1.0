@@ -238,7 +238,7 @@ export default function TermsOfServicePage() {
                 Upon verified completion of all 12-week milestones and submission of an approved capstone project, AVP FutureTech issues an official <strong>ISO 9001:2015 & MCA Recognized Certificate of Completion</strong> along with a performance-based Letter of Recommendation (LOR).
               </p>
               <div className="p-4 rounded-xl bg-blue-50/50 border border-blue-100 text-sm leading-relaxed">
-                <strong>Public Verification Portal:</strong> Each certificate contains a unique cryptographic identifier and verifiable QR code accessible at <Link href="/internships/verify" className="text-[#1E63D6] underline font-bold">avpfuturetech.com/internships/verify</Link>. We reserve the right to immediately invalidate and revoke any credential found to have been obtained via plagiarized code or fraudulent credentials.
+                <strong>Public Verification Portal:</strong> Each certificate contains a unique cryptographic identifier and verifiable QR code accessible at <Link href="https://internship.avpfuturetech.com/verify" className="text-[#1E63D6] underline font-bold">internship.avpfuturetech.com/verify</Link>. We reserve the right to immediately invalidate and revoke any credential found to have been obtained via plagiarized code or fraudulent credentials.
               </div>
             </section>
 

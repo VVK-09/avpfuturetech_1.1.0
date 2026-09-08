@@ -37,18 +37,47 @@ export function proxy(request: NextRequest) {
     }
 
     // 4. If someone visits /internships directly on the subdomain, redirect to clean path
-    if (pathname === '/internships' || pathname === '/internship') {
-      return NextResponse.redirect(new URL('/', request.url));
+    if (pathname === '/internships' || pathname === '/internships/' || pathname === '/internship' || pathname === '/internship/') {
+      const cleanUrl = new URL('/', request.url);
+      cleanUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(cleanUrl);
     }
 
     if (pathname.startsWith('/internships/')) {
       const cleanPath = pathname.replace(/^\/internships/, '');
-      return NextResponse.redirect(new URL(cleanPath || '/', request.url));
+      const cleanUrl = new URL(cleanPath || '/', request.url);
+      cleanUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(cleanUrl);
     }
 
     if (pathname.startsWith('/internship/')) {
       const cleanPath = pathname.replace(/^\/internship/, '');
-      return NextResponse.redirect(new URL(cleanPath || '/', request.url));
+      const cleanUrl = new URL(cleanPath || '/', request.url);
+      cleanUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(cleanUrl);
+    }
+  }
+
+  // If request hits the main domain (e.g. www.avpfuturetech.com or avpfuturetech.com) for internship routes in production:
+  if (!isInternshipSubdomain && host.includes('avpfuturetech.com')) {
+    if (pathname === '/internships' || pathname === '/internships/' || pathname === '/internship' || pathname === '/internship/') {
+      const targetUrl = new URL('https://internship.avpfuturetech.com/');
+      targetUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(targetUrl, 308);
+    }
+
+    if (pathname.startsWith('/internships/')) {
+      const cleanPath = pathname.replace(/^\/internships/, '');
+      const targetUrl = new URL(`https://internship.avpfuturetech.com${cleanPath || '/'}`);
+      targetUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(targetUrl, 308);
+    }
+
+    if (pathname.startsWith('/internship/')) {
+      const cleanPath = pathname.replace(/^\/internship/, '');
+      const targetUrl = new URL(`https://internship.avpfuturetech.com${cleanPath || '/'}`);
+      targetUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(targetUrl, 308);
     }
   }
 

@@ -115,11 +115,16 @@ export default function AllDomainsView() {
   };
 
   const handleBackToHome = () => {
-    if (typeof window !== 'undefined' && window.location.pathname.includes('/domains')) {
-      window.location.href = '/internships';
-    } else {
-      setCurrentView('landing');
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
+    if (typeof window !== 'undefined') {
+      const rootPath = isSub ? '/' : '/internships';
+      window.history.pushState(null, '', rootPath);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    setCurrentView('landing');
   };
 
   return (

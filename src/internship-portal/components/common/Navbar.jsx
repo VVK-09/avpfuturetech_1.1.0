@@ -129,14 +129,18 @@ export default function Navbar() {
 
   const handleNavClick = (sectionId) => {
     setMobileMenuOpen(false);
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
+
     if (sectionId === 'verify') {
-      if (typeof window !== 'undefined' && window.location.pathname.startsWith('/internships')) {
-        setActiveSection('verify');
-        setCurrentView('verify');
-        window.history.pushState(null, '', '/internships/verify');
+      setActiveSection('verify');
+      setCurrentView('verify');
+      if (typeof window !== 'undefined') {
+        const verifyPath = isSub ? '/verify' : '/internships/verify';
+        window.history.pushState(null, '', verifyPath);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        window.location.href = '/internships/verify';
       }
       return;
     }
@@ -153,13 +157,30 @@ export default function Navbar() {
     };
 
     if (currentView !== 'landing') {
-      if (typeof window !== 'undefined' && (window.location.pathname.includes('/verify') || window.location.pathname.includes('/domains'))) {
-        window.history.pushState(null, '', '/internships');
+      if (typeof window !== 'undefined' && (window.location.pathname.includes('/verify') || window.location.pathname.includes('/domains') || window.location.pathname.includes('/internships'))) {
+        const rootPath = isSub ? '/' : '/internships';
+        window.history.pushState(null, '', rootPath);
       }
       setCurrentView('landing');
       setTimeout(scrollToTarget, 100);
     } else {
       scrollToTarget();
+    }
+  };
+
+  const handleLogoClick = () => {
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
+    if (typeof window !== 'undefined' && (window.location.pathname.includes('/verify') || window.location.pathname.includes('/domains') || window.location.pathname.includes('/internships'))) {
+      const rootPath = isSub ? '/' : '/internships';
+      window.history.pushState(null, '', rootPath);
+    }
+    setActiveSection('hero');
+    setCurrentView('landing');
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -174,7 +195,7 @@ export default function Navbar() {
     { id: 'domains', label: 'Domains', badge: '6 Tracks', icon: Compass },
     { id: 'students-placed', label: 'Our Students', icon: Users },
     { id: 'contact', label: 'Contact', icon: Phone },
-    { id: 'verify', label: 'Certification Verify', icon: ShieldCheck, href: '/internships/verify' }
+    { id: 'verify', label: 'Certification Verify', icon: ShieldCheck, href: '/verify' }
   ];
 
   return (
@@ -220,10 +241,7 @@ export default function Navbar() {
 
           {/* Left: Brand Logo */}
           <div
-            onClick={() => {
-              setCurrentView('landing');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onClick={handleLogoClick}
             className="brand-logo-btn"
           >
             <div className="desktop-logo">

@@ -168,11 +168,16 @@ export default function DomainGridSection() {
   };
 
   const handleShowAll = () => {
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
     if (typeof window !== 'undefined') {
-      window.location.href = '/internships/domains';
-    } else {
-      setCurrentView('all-domains');
+      const domainsPath = isSub ? '/domains' : '/internships/domains';
+      window.history.pushState(null, '', domainsPath);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    setCurrentView('all-domains');
   };
 
   const gap = 20; // in px
@@ -795,8 +800,8 @@ export default function DomainGridSection() {
             Visit our detailed domain catalog to compare full curriculum milestones, letter of recommendation (LOR) details, and capstone deliverables.
           </p>
 
-          <a
-            href="/internships/domains"
+          <button
+            onClick={handleShowAll}
             className="btn btn-primary btn-lg"
             style={{
               padding: '0.85rem 2.25rem',
@@ -804,7 +809,8 @@ export default function DomainGridSection() {
               borderRadius: '12px',
               fontWeight: 700,
               gap: '0.6rem',
-              textDecoration: 'none',
+              border: 'none',
+              cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
               boxShadow: '0 8px 24px rgba(30, 99, 214, 0.25)'
@@ -812,7 +818,7 @@ export default function DomainGridSection() {
           >
             Explore All 6 Domains Catalog
             <ArrowRight size={18} />
-          </a>
+          </button>
         </div>
       </div>
     </section>

@@ -131,7 +131,7 @@ export default function AdminDashboard() {
           </div>
 
           <Link
-            href="/internship"
+            href="https://internship.avpfuturetech.com/"
             className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold text-white border border-white/15 transition-all"
           >
             <GraduationCap className="w-3.5 h-3.5 text-[#38BDF8]" />
@@ -207,7 +207,7 @@ export default function AdminDashboard() {
                 Other Modules
               </span>
               <Link
-                href="/internship"
+                href="https://internship.avpfuturetech.com/"
                 className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 hover:text-[#0B1E3D] transition-all"
               >
                 <GraduationCap className="w-4 h-4 text-[#1E63D6]" />

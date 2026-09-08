@@ -330,7 +330,7 @@ export function generateCertificateCanvas(canvas, internData) {
     year: 'numeric',
   });
   const credId = internData?.internId || 'INT-2026-AI-1002';
-  const stripText = `Credential ID: ${credId}   ·   Issue Date: ${issueDateStr}   ·   Verification: https://avpfuturetech.com/internships/verify`;
+  const stripText = `Credential ID: ${credId}   ·   Issue Date: ${issueDateStr}   ·   Verification: https://internship.avpfuturetech.com/verify`;
 
   ctx.save();
   ctx.font = '600 29px "Plus Jakarta Sans", sans-serif';

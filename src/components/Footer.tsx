@@ -134,7 +134,7 @@ export default function Footer() {
               ))}
               <li>
                 <Link
-                  href="/internships/domains"
+                  href="https://internship.avpfuturetech.com/domains"
                   className="text-slate-300 hover:text-[#38BDF8] hover:translate-x-1 inline-flex items-center gap-1 transition-all duration-200"
                 >
                   <span>Internship Domains</span>
@@ -142,7 +142,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/internships/verify"
+                  href="https://internship.avpfuturetech.com/verify"
                   className="text-slate-300 hover:text-[#38BDF8] hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200"
                 >
                   <ShieldCheck className="w-3.5 h-3.5 text-[#38BDF8]" />

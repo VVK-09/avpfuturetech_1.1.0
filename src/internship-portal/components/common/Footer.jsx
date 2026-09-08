@@ -7,19 +7,47 @@ export default function Footer() {
   const { setCurrentView, openModal } = useApp();
 
   const handleNavClick = (sectionId) => {
-    if (typeof window !== 'undefined') {
-      const isSub = window.location.hostname.startsWith('internship.') || window.location.hostname.startsWith('internships.');
-      const isInternshipPath = window.location.pathname === '/' || window.location.pathname === '/internships' || window.location.pathname === '/internship';
-      if (!isSub && !isInternshipPath) {
-        window.location.href = `/internships#${sectionId}`;
-        return;
-      }
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
+    if (typeof window !== 'undefined' && (window.location.pathname.includes('/verify') || window.location.pathname.includes('/domains') || window.location.pathname.includes('/internships'))) {
+      const rootPath = isSub ? '/' : '/internships';
+      window.history.pushState(null, '', rootPath);
     }
     setCurrentView('landing');
     setTimeout(() => {
       const el = document.getElementById(sectionId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+  };
+
+  const handleDomainsClick = (e) => {
+    if (e) e.preventDefault();
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
+    if (typeof window !== 'undefined') {
+      const domainsPath = isSub ? '/domains' : '/internships/domains';
+      window.history.pushState(null, '', domainsPath);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setCurrentView('all-domains');
+  };
+
+  const handleVerifyClick = (e) => {
+    if (e) e.preventDefault();
+    const isSub = typeof window !== 'undefined' && (
+      window.location.hostname.startsWith('internship.') || 
+      window.location.hostname.startsWith('internships.')
+    );
+    if (typeof window !== 'undefined') {
+      const verifyPath = isSub ? '/verify' : '/internships/verify';
+      window.history.pushState(null, '', verifyPath);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setCurrentView('verify');
   };
 
   return (
@@ -103,9 +131,9 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <a href="/internships/domains" style={{ color: '#94A3B8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#38BDF8'} onMouseLeave={(e) => e.currentTarget.style.color = '#94A3B8'}>
+                <button onClick={handleDomainsClick} style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0, fontSize: 'inherit', textAlign: 'left' }} onMouseEnter={(e) => e.currentTarget.style.color = '#38BDF8'} onMouseLeave={(e) => e.currentTarget.style.color = '#94A3B8'}>
                   Internship Domains Catalog
-                </a>
+                </button>
               </li>
               <li>
                 <button onClick={() => openModal('register')} style={{ background: 'none', border: 'none', color: '#38BDF8', fontWeight: 600, cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
@@ -113,9 +141,9 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <a href="/internships/verify" style={{ color: '#38BDF8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                <button onClick={handleVerifyClick} style={{ background: 'none', border: 'none', color: '#38BDF8', cursor: 'pointer', padding: 0, fontSize: 'inherit', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
                   <Shield size={14} color="#38BDF8" /> Certification Verify
-                </a>
+                </button>
               </li>
               <li>
                 <button onClick={() => handleNavClick('faq')} style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0, fontSize: 'inherit' }}>
@@ -140,20 +168,24 @@ export default function Footer() {
                 'Marketing & Media'
               ].map((domainName) => (
                 <li key={domainName}>
-                  <a
-                    href="/internships/domains"
+                  <button
+                    onClick={handleDomainsClick}
                     style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
                       color: '#94A3B8',
-                      textDecoration: 'none',
+                      cursor: 'pointer',
                       fontSize: 'inherit',
                       display: 'inline-block',
+                      textAlign: 'left',
                       transition: 'color 0.2s ease'
                     }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = '#38BDF8'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
                   >
                     {domainName}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>

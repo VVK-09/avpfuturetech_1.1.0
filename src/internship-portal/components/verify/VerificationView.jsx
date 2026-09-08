@@ -143,7 +143,10 @@ export default function VerificationView({ initialQuery = '' }) {
   const handleCopyLink = () => {
     if (typeof window !== 'undefined' && verifiedCandidate) {
       const id = verifiedCandidate.internId || verifiedCandidate.id;
-      const url = `${window.location.origin}/internships/verify?id=${encodeURIComponent(id)}`;
+      const isSub = window.location.hostname.startsWith('internship.') || window.location.hostname.startsWith('internships.');
+      const url = isSub
+        ? `${window.location.origin}/verify?id=${encodeURIComponent(id)}`
+        : `https://internship.avpfuturetech.com/verify?id=${encodeURIComponent(id)}`;
       navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);

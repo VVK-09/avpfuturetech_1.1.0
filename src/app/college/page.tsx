@@ -81,7 +81,7 @@ export default function CollegeSolutionPage() {
                   Partner With Us
                 </Link>
                 <Link
-                  href="/internships"
+                  href="https://internship.avpfuturetech.com/"
                   className="px-7 py-3.5 rounded-xl text-sm font-bold text-[#0B1E3D] bg-white border border-[#E2E8F0] hover:bg-[#F0F4FA] transition-all"
                 >
                   Explore Internships

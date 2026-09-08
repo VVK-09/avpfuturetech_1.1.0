@@ -83,7 +83,7 @@ export default function Navbar() {
               <span>+91 9307076962</span>
             </Link>
             <Link
-              href="/internships"
+              href="https://internship.avpfuturetech.com/"
               className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl text-sm font-bold !text-white bg-[#1E63D6] hover:bg-[#1551B5] shadow-md shadow-[#1E63D6]/25 hover:shadow-lg hover:shadow-[#1E63D6]/35 transition-all duration-200 group"
             >
               <Sparkles className="w-3.5 h-3.5 mr-1.5 text-sky-200" />
@@ -95,7 +95,7 @@ export default function Navbar() {
           {/* Mobile Hamburger Button */}
           <div className="flex items-center md:hidden gap-2">
             <Link
-              href="/internships"
+              href="https://internship.avpfuturetech.com/"
               className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-[#1E63D6] hover:bg-[#1551B5] transition-colors shadow-xs"
             >
               Internships
@@ -139,7 +139,7 @@ export default function Navbar() {
 
           <div className="pt-6 mt-4 border-t border-slate-100 flex flex-col gap-3">
             <Link
-              href="/internships"
+              href="https://internship.avpfuturetech.com/"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-center font-bold text-white bg-[#1E63D6] hover:bg-[#1551B5] shadow-md shadow-[#1E63D6]/20"
             >
